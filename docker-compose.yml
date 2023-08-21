@@ -1,0 +1,17 @@
+version: "3"
+services:
+  listings-page:
+    build: . 
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/workspace/src
+  postgres:
+    image: postgres:latest
+    container_name: MyDatabase
+    environment:
+      POSTGRES_USER: jg
+      POSTGRES_PASSWORD: 036930
+      POSTGRES_DB: listings
+    ports:
+      - "5432:5432"
