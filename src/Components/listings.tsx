@@ -2,7 +2,7 @@ import React from "react";
 
 function Listings() {
     return (
-        <div className="col-9 border">
+        <div className="col-10 bordergrey">
             <p>listings</p>
         </div>
     );

@@ -7,9 +7,9 @@ import Listings from './Components/listings';
 
 function App() {
   return (
-    <div className="container border">
+    <div className="container-fluid">
      <Navbar />
-      <div className="row border">
+      <div className="row height">
         <Categories />
         <Listings />
       </div>
