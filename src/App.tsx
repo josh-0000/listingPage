@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="container-fluid">
      <Navbar />
-      <div className="row height">
-        <Categories />
+     <Categories />
+      <div className="row listingsContainerHeight">
         <Listings />
       </div>
     </div>

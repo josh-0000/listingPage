@@ -1,11 +1,15 @@
-.bordergrey {
-  border: solid 2px rgb(185, 185, 185);
+
+.borderTop {
+  border-top: solid 1px rgb(185, 185, 185);
 }
 
-.bordertop {
-  border-top: solid 2px rgb(185, 185, 185);
+.navBackground {
+  background-color: rgb(0, 40, 89);
 }
 
+.whiteText {
+  color:white;
+}
 .noPadding {
   padding: 0px;
 }
@@ -14,6 +18,16 @@
   margin: 0px;
 }
 
-.height {
-  height: 2000px;
+.listingsContainerHeight {
+  min-height: 2000px;
+  max-height: 5000px;
+}
+
+.categoriesContainerHeight {
+  height:40px;
+  padding-top:5px;
+}
+
+.hideOverflow {
+  overflow: clip;
 }

@@ -2,8 +2,8 @@ import React from "react";
 
 function Listings() {
     return (
-        <div className="col-10 bordergrey">
-            <p>listings</p>
+        <div className="col-12 borderTop">
+            
         </div>
     );
 }
