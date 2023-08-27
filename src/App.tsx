@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Categories from './Components/categories';
 import Navbar from './Components/navbar';
-import Listings from './Components/listings';
+import ListingContainer from './Components/listingContainer';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
      <Navbar />
      <Categories />
       <div className="row listingsContainerHeight">
-        <Listings />
+        <ListingContainer />
       </div>
     </div>
   );
