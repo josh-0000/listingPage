@@ -3,7 +3,7 @@ import React from "react";
 function Categories() {
     const num: number = 2;
     return (
-        <div className="row categoriesContainerHeight hideOverflow bg-secondary borderLeft">
+        <div className="row categoriesContainer bg-secondary">
             <div className="btn-group-sm btn-group-secondary hideOverflow" role="group">
                 <button type="button" className="btn btn-secondary">All</button>
                 <button type="button" className="btn btn-secondary">Category one</button>
