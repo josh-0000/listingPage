@@ -5,8 +5,8 @@
         "type": "chrome",
         "request": "launch",
         "name": "Launch Chrome Server",
-        "url": "http://localhost:3001", // Change this to your application's URL
-        "webRoot": "${workspaceFolder}/src"
+        "url": "http://localhost:3000", // Change this to your application's URL
+        "webRoot": "${workspaceFolder}"
       }
     ]
   }
