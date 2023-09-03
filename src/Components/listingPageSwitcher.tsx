@@ -3,18 +3,23 @@ import React, { useContext, useState } from "react";
 import { ListingContext } from "../Context/listingContext"
 
 function ListingPageSwitcher() {
+    // use state for the currernt page 
     const {currentPage, setCurrentPage} = useContext(ListingContext);
+
+    // use states for the three numbers inside of the page switcher
     const [buttonOne, setButtonOne] = useState(1);
     const [buttonTwo, setButtonTwo] = useState(2);
     const [buttonThree, setButtonThree] = useState(3);
     const { numPages } = useContext(ListingContext);
 
+    // function for First button 
     const firstPage = () => {
         setButtonOne(1);
         setButtonTwo(2);
         setButtonThree(3);
     };
-
+    
+    // function for Previous button
     const previousPage = () => {
         if (buttonOne != 1) {
             setButtonOne(buttonOne - 3);
@@ -23,6 +28,7 @@ function ListingPageSwitcher() {
         }
     };
 
+    // function for the Next button
     const nextPage = () => {
         if (buttonThree != numPages) {
             setButtonOne(buttonOne + 3);
@@ -31,24 +37,30 @@ function ListingPageSwitcher() {
         }
     };
 
+    // function for the Last button
     const lastPage = () => {
         setButtonOne(numPages - 2);
         setButtonTwo(numPages - 1);
         setButtonThree(numPages);
     };
 
+    // function for first number slot 
     const currentPageOptionOne = () => {
         setCurrentPage(buttonOne);
     };
 
+
+    // function for second number slot 
     const currentPageOptionTwo = () => {
         setCurrentPage(buttonTwo);
     };
 
+    // function for third number slot
     const currentPageOptionThree = () => {
         setCurrentPage(buttonThree);
     };
 
+    // Below is css switching for the button of the page the user is currently on
     let buttonOneCss = "btn btn-light";
     let buttonTwoCss = "btn btn-light";
     let buttonThreeCss = "btn btn-light";

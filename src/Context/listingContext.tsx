@@ -21,11 +21,12 @@ let allProductsFake: productInterface[] = [] as productInterface[];
 
 for ( let i = 0 ; i < 102 ; i += 1) {
     const product: productInterface = {
+        productId: i,
         productName: "product Name " + i,
         productPrice: 100,
         productRatings: "Ratings",
         productArrivalDate: "Arrival Date",
-        productImgSource: "../../src/Assets/SteelersLogo.png"
+        productImgSource: "src/Assets/SteelersLogo.png",
     };
     allProductsFake.push(product);
 }
