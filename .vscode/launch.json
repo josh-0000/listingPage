@@ -1,31 +1,13 @@
 {
+    "version": "0.2.0",
     "configurations": [
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Debug React App in Chrome",
-            "url": "http://localhost:3001",
-            "webRoot": "${workspaceFolder}/src",
-        },
-        {
-            "type": "pwa-msedge",
-            "request": "launch",
-            "name": "Debug React App in Microsoft Edge (Chromium)",
-            "url": "http://localhost:3001",
-            "webRoot": "${workspaceFolder}/src",
-            "sourceMapPathOverrides": {
-                "webpack:///src/*": "${webRoot}/*"
-            }
-        },
-        {
-            "type": "safari",
-            "request": "launch",
-            "name": "Debug React App in Safari",
-            "url": "http://localhost:3001",
-            "webRoot": "${workspaceFolder}/src",
-            "sourceMapPathOverrides": {
-                "webpack:///src/*": "${webRoot}/*"
-            }
-        }
+      {
+        "type": "chrome",
+        "request": "launch",
+        "name": "Launch Chrome Server",
+        "url": "http://localhost:3001", // Change this to your application's URL
+        "webRoot": "${workspaceFolder}/src"
+      }
     ]
-}
+  }
+  
