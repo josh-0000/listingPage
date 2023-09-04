@@ -34,9 +34,9 @@ CREATE TABLE Cards (
   Card BYTEA NOT NULL               -- Encrypted card data, required
 );
 
--- Create Order Table
-CREATE TABLE "Order" (
-  OrderID SERIAL PRIMARY KEY,       -- Primary key, auto-increment
+-- Create Reciept Table
+CREATE TABLE Reciept (
+  RecieptID SERIAL PRIMARY KEY,       -- Primary key, auto-increment
   UserID INT REFERENCES Users(UserID), -- Foreign key to Users table
   ListingID INT REFERENCES Listings(ListingID), -- Foreign key to Listings table
   Card BYTEA NOT NULL,              -- Encrypted card data, required
@@ -51,13 +51,6 @@ CREATE TABLE Cart (
   CartID SERIAL PRIMARY KEY,        -- Primary key, auto-increment
   UserID INT REFERENCES Users(UserID), -- Foreign key to Users table
   ListingID INT REFERENCES Listings(ListingID) -- Foreign key to Listings table
-);
-
--- Create OrderHistory Table
-CREATE TABLE OrderHistory (
-  HistoryID SERIAL PRIMARY KEY,     -- Primary key, auto-increment
-  UserID INT REFERENCES Users(UserID), -- Foreign key to Users table
-  OrderID INT REFERENCES "Order"(OrderID) -- Foreign key to Order table
 );
 
 CREATE TABLE Reviews (
