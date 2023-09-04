@@ -1,0 +1,48 @@
+.noPadding {
+  padding: 0px;
+}
+
+.noMargins {
+  margin: 0px;
+}
+
+.listingsContainer {
+  min-height: 1000px;
+  max-height: 5000px;
+  padding-top: 50px;
+  padding-bottom: 75px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.footer {
+  height: 200px;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.listingPageSwitcher {
+  height: 100px;
+}
+
+.categoriesContainer {
+  height:40px;
+  padding-top:5px;
+  overflow: clip;
+}
+
+.img {
+  height:10px;
+  width:10px;
+}
+
+.card {
+  height:50px;
+  width:200px;
+  font-size: 10pt;
+  display: inline-block;
+}
+

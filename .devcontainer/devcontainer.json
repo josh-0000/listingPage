@@ -1,0 +1,10 @@
+{
+  "name": "DevContainer",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "listingspage", // Adjust to match your service name
+  "workspaceFolder": "/workspace",
+  "extensions": [
+    "ms-vscode.vscode-typescript-tslint-plugin"
+  ],
+}
+  

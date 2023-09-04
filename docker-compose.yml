@@ -1,0 +1,19 @@
+version: "3"
+services:
+  listingspage:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/workspace
+  postgres:
+    image: postgres:latest
+    container_name: MyDatabase
+    environment:
+      POSTGRES_USER: jg
+      POSTGRES_PASSWORD: 036930
+      POSTGRES_DB: listings
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./src/db/initdb:/docker-entrypoint-initdb.d
