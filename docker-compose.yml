@@ -6,14 +6,17 @@ services:
       - "3000:3000"
     volumes:
       - .:/workspace
+    depends_on:
+      - postgres  # Make sure to start this service after the postgres service
+
   postgres:
     image: postgres:latest
     container_name: MyDatabase
     environment:
-      POSTGRES_USER: jg
-      POSTGRES_PASSWORD: 036930
-      POSTGRES_DB: listings
+      POSTGRES_USER: "jg"
+      POSTGRES_PASSWORD: "03asd3wsada"
+      POSTGRES_DB: "listings"
     ports:
       - "5432:5432"
     volumes:
-      - ./src/db/initdb:/docker-entrypoint-initdb.d
+      - ./database/initdb:/docker-entrypoint-initdb.d
