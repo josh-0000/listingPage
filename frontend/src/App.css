@@ -6,15 +6,6 @@
   margin: 0px;
 }
 
-.listingsContainer {
-  min-height: 1000px;
-  max-height: 5000px;
-  padding-top: 50px;
-  padding-bottom: 75px;
-  padding-left: 100px;
-  padding-right: 100px;
-}
-
 .footer {
   height: 200px;
 }
@@ -26,6 +17,15 @@
 
 .listingPageSwitcher {
   height: 100px;
+}
+
+.listingsContainer {
+  min-height: 1000px;
+  max-height: 5000px;
+  padding-top: 50px;
+  padding-bottom: 75px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 .categoriesContainer {

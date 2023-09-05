@@ -1,46 +1,77 @@
-# Getting Started with Create React App
+Certainly! Below is a generic `README.md` template that aligns with your project's folder structure.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+# Listings Page
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+This repository houses the Listings Page application. It is built using a microservices architecture with a React TypeScript frontend and a Node.js backend, both running in separate Docker containers.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Table of Contents
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. [Requirements](#requirements)
+2. [Installation](#installation)
+3. [Running the Project](#running-the-project)
+4. [Folder Structure](#folder-structure)
+5. [License](#license)
+6. [Contributing](#contributing)
 
-### `npm test`
+## Requirements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Docker
+- Docker Compose
+- Node.js
+- npm or yarn
+- Visual Studio Code (Optional, for DevContainer support)
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Clone the repository
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/josh-0000/listings-page.git
+cd listings-page
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Build Docker containers
 
-### `npm run eject`
+Navigate to the root directory of the project and run:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+docker-compose build
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Running the Project
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To start all services, simply run:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+docker-compose up
+```
 
-## Learn More
+Your frontend will be running at [http://localhost:3000](http://localhost:3000), and your backend will be running at [http://localhost:3001](http://localhost:3001).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To stop the services, press `Ctrl+C` in the terminal where you ran `docker-compose up`, or run `docker-compose down` from another terminal in the project directory.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Folder Structure
+
+- `/.devcontainer`: Configuration for Visual Studio Code DevContainer.
+- `/.vscode`: Visual Studio Code specific settings.
+- `/backend`: All backend code.
+- `/frontend`: All frontend code.
+- `.gitignore`: List of files and folders not to track in Git.
+- `.dockerignore`: List of files and folders not to include in Docker build context.
+- `docker-compose.yml`: Docker Compose file to run your services.
+- `LICENSE`: License details for how the code can be used or distributed.
+- `README.md`: This file, explaining the project, how to use it, how to install it, etc.
+
+## License
+
+This project is licensed under the terms of the [MIT License](LICENSE).
+
+## Contributing
+
+For details about how to contribute, please refer to the [Contributing Guidelines](CONTRIBUTING.md).
+
+---

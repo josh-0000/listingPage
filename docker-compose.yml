@@ -1,22 +1,31 @@
-version: "3"
+version: '3'
+
 services:
-  listingspage:
-    build: .
+  frontend:
+    build: ./frontend
     ports:
       - "3000:3000"
     volumes:
-      - .:/workspace
+      - ./frontend:/app
     depends_on:
-      - postgres  # Make sure to start this service after the postgres service
-
-  postgres:
-    image: postgres:latest
-    container_name: MyDatabase
-    environment:
-      POSTGRES_USER: "jg"
-      POSTGRES_PASSWORD: "03asd3wsada"
-      POSTGRES_DB: "listings"
+      - backend
+  
+  backend:
+    build: ./backend
     ports:
-      - "5432:5432"
+      - "3001:3001"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - database
+
+  database:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: jg
+      POSTGRES_PASSWORD: 03asd3wsada
+      POSTGRES_DB: listings
     volumes:
       - ./database/initdb:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"

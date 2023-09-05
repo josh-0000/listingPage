@@ -4,21 +4,44 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Node.js Server",
-      "program": "${workspaceFolder}/server/server.js",
+      "name": "Backend",
+      "protocol": "inspector",
+      "program": "${workspaceFolder}/backend/src/index.js",
+      "preLaunchTask": "",
+      "outFiles": [
+        "${workspaceFolder}/backend/dist/**/*.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      }
     },
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Web UI",
+      "name": "Frontend",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}",
+      "webRoot": "${workspaceFolder}/frontend/src"
     },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Server API",
+      "url": "http://localhost:3001",
+      "webRoot": "${workspaceFolder}/backend/src"
+    }
   ],
   "compounds": [
     {
-      "name": "Launch Both",
-      "configurations": ["Node.js Server", "Web UI",],
+      "name": "Launch Backend and Frontend",
+      "configurations": ["Backend", "Frontend"]
+    },
+    {
+      "name": "Launch Backend and Server API",
+      "configurations": ["Backend", "Server API"]
+    },
+    {
+      "name": "Launch All",
+      "configurations": ["Backend", "Frontend", "Server API"]
     }
   ]
 }
