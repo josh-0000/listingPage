@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./Styles/App.css";
 import Categories from "./Components/categories";
 import Navbar from "./Components/navbar";
 import ListingContainer from "./Components/listingContainer";

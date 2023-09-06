@@ -1,7 +1,7 @@
 {
   "name": "DevContainer",
   "dockerComposeFile": "../docker-compose.yml",
-  "service": "frontend", // or "frontend", depending on which one you want to work in
+  "service": "backend", // or "frontend", depending on which one you want to work in
   "workspaceFolder": "/app",
   "extensions": [
     "dbaeumer.vscode-eslint",

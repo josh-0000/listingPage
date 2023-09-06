@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { useMemo } from "react";
-import { productInterface } from "../Components/listing";
+import { ListingInterface } from "../Interfaces/Interfaces";
 
 const defaultContextValues = {
   currentPage: 1,
@@ -11,26 +11,10 @@ const defaultContextValues = {
   setCurrentPage: (() => {}) as React.Dispatch<React.SetStateAction<number>>,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setNumPages: (() => {}) as React.Dispatch<React.SetStateAction<number>>,
-  allProducts: [] as productInterface[],
+  allListings: [] as ListingInterface[],
   numPages: 1,
   productsPerPage: 20,
 };
-
-// simulating fetching
-const allProductsFake: productInterface[] = [] as productInterface[];
-
-for (let i = 0; i < 102; i += 1) {
-  const product: productInterface = {
-    productId: i,
-    productName: "product Name " + i,
-    productPrice: 100,
-    productRatings: "Ratings",
-    productArrivalDate: "Arrival Date",
-    productImgSource: "src/Assets/SteelersLogo.png",
-  };
-  allProductsFake.push(product);
-}
-// end
 
 export const ListingContext = createContext(defaultContextValues);
 
@@ -38,20 +22,40 @@ export const ListingContext = createContext(defaultContextValues);
 export function ListingContextProvider({ children }: any) {
   const [currentPage, setCurrentPage] = useState(1);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [allProducts, setAllProducts] = useState(allProductsFake); // function to fetch will update this use state
+  const [allListings, setallListings] = useState([] as ListingInterface[]); // function to fetch will update this use state
+
+  const fetchListings = () => {
+    fetch("http://localhost:3001/listings")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data: ListingInterface[]) => {
+        setallListings(data);
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchListings();
+  }, []);
 
   // function to fetch data should go here
-
+  console.log(allListings);
   const productsPerPage = 20;
   const [numPages, setNumPages] = useState(
-    Math.ceil(allProducts.length / productsPerPage)
+    Math.ceil(allListings.length / productsPerPage)
   );
 
   const contextData = {
     currentPage,
     setCurrentPage,
     setNumPages,
-    allProducts,
+    allListings,
     numPages,
     productsPerPage,
   };

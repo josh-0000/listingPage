@@ -3,11 +3,11 @@ import Listing from "./listing";
 import { ListingContext } from "../Context/listingContext";
 
 function ListingContainer(): JSX.Element {
-  const { allProducts, currentPage, productsPerPage } =
+  const { allListings, currentPage, productsPerPage } =
     useContext(ListingContext);
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
-  const currentProducts = allProducts.slice(startIndex, endIndex);
+  const currentProducts = allListings.slice(startIndex, endIndex);
   return (
     <div className="col-12 borderTop">
       <div className="container">

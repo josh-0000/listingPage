@@ -1,32 +1,6 @@
 -- Insert Users
-INSERT INTO Users (Name, Email)
-VALUES ('Charlie', 'charlie@example.com'),
-       ('Diana', 'diana@example.com'),
-       ('Emily', 'emily@example.com'),
-       ('Frank', 'frank@example.com'),
-       ('Grace', 'grace@example.com'),
-       ('Hannah', 'hannah@example.com'),
-       ('Isaac', 'isaac@example.com'),
-       ('Jack', 'jack@example.com'),
-       ('Karen', 'karen@example.com'),
-       ('Liam', 'liam@example.com'),
-       ('Mike', 'mike@example.com'),
-       ('Nora', 'nora@example.com'),
-       ('Olivia', 'olivia@example.com'),
-       ('Paul', 'paul@example.com'),
-       ('Quincy', 'quincy@example.com'),
-       ('Rachel', 'rachel@example.com'),
-       ('Steve', 'steve@example.com'),
-       ('Tina', 'tina@example.com'),
-       ('Ursula', 'ursula@example.com'),
-       ('Victor', 'victor@example.com'),
-       ('Walter', 'walter@example.com'),
-       ('Xena', 'xena@example.com'),
-       ('Yara', 'yara@example.com'),
-       ('Zack', 'zack@example.com'),
-       ('Aaron', 'aaron@example.com'),
-       ('Bella', 'bella@example.com'),
-       ('Cindy', 'cindy@example.com'),
-       ('David', 'david@example.com'),
-       ('Ella', 'ella@example.com'),
-       ('Fiona', 'fiona@example.com');
+INSERT INTO Users (Name, Email, Password)
+VALUES 
+('Josh', 'josh@example.com', 'josh'),
+('Justin', 'justin@example.com','justin')
+;
