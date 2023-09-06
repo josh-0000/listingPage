@@ -4,7 +4,9 @@ setTimeout(() => {
 
   const app = express();
 
-
+  app.get('/', (req, res) => {
+    res.send('Connected to database');
+  });
 
   app.get('/dbtest', async (req, res) => {
   console.log("Received request for /dbtest");
