@@ -1,9 +1,12 @@
-const express = require('express');
-const { client } = require('./connection.js'); // Replace with the actual path
+setTimeout(() => {
+  const express = require('express');
+  const { client } = require('./connection.js'); // Replace with the actual path
 
-const app = express();
+  const app = express();
 
-app.get('/dbtest', async (req, res) => {
+
+
+  app.get('/dbtest', async (req, res) => {
   console.log("Received request for /dbtest");
   try {
     const result = await client.query('SELECT * FROM users');
@@ -12,8 +15,9 @@ app.get('/dbtest', async (req, res) => {
     console.error("Database query failed:", err);
     res.status(500).json({ error: err.message });
   }
-});
+  });
 
-app.listen(3001, () => {
-  console.log("Server running on http://localhost:3001/");
-});
+  app.listen(3001, () => {
+    console.log("Server running on http://localhost:3001/");
+  });
+},10000);

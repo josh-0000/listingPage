@@ -1,15 +1,17 @@
 version: '3'
 
 services:
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:3000"
+  database:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: "jg"
+      POSTGRES_PASSWORD: "03asd3wsada"
+      POSTGRES_DB: "listings"
     volumes:
-      - ./frontend:/app
-    depends_on:
-      - backend
-  
+      - ./database/initdb:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+
   backend:
     build: ./backend
     ports:
@@ -19,13 +21,14 @@ services:
     depends_on:
       - database
 
-  database:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: jg
-      POSTGRES_PASSWORD: 03asd3wsada
-      POSTGRES_DB: listings
-    volumes:
-      - ./database/initdb:/docker-entrypoint-initdb.d
+  frontend:
+    build: ./frontend
     ports:
-      - "5432:5432"
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend 
+
+
+ 

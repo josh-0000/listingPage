@@ -1,12 +1,13 @@
 const { Client } = require('pg');
 
-const client = new Client({
-  host: "database", // Name of the service in docker-compose.yml
-  port: 5432,
-  user: "jg",
-  password: "03asd3wsada",
-  database: "listings",
-});
+const client = new Client(
+  {
+    host: "database", // Use service name as hostname
+    port: 5432,
+    user: "jg",
+    password: "03asd3wsada",
+    database: "listings",
+  });
 
 client.connect()
   .then(() => console.log('Connected to PostgreSQL database!'))
