@@ -12,7 +12,6 @@
 
 .card:hover {
   cursor: pointer;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 .listingPageSwitcher {
@@ -20,29 +19,69 @@
 }
 
 .listingsContainer {
-  min-height: 1000px;
-  max-height: 5000px;
-  padding-top: 50px;
-  padding-bottom: 75px;
-  padding-left: 100px;
-  padding-right: 100px;
+  min-height: 2000px;
+  padding-top: 25px;
+  padding-bottom: 50px;
 }
 
 .categoriesContainer {
   height:40px;
   padding-top:5px;
+  padding-bottom: 40px;
   overflow: clip;
 }
+
+.filterContainer {
+  margin-top: 100px;
+}
+.sortForm {
+  margin-top:5px;
+  float: right;
+}
+
+.results {
+  margin-top:8px;
+  font-size: 10pt;
+}
+.btn {
+  margin-right: 30px;
+}
+.sortContainer {
+  background-color: white;
+  height: 35px;
+}
+
 
 .img {
   height:10px;
   width:10px;
 }
 
+.bg-lightblue {
+  background-color: rgb(0, 75, 237)
+}
+
 .card {
-  height:50px;
-  width:200px;
+  width:100%;
+  border: none;
+}
+.card-body {
+  height:200px;
+}
+ 
+.card-title {
+  font-size: 15pt;
+}
+
+.bold {
+  font-weight:bold;
+}
+
+.description {
   font-size: 10pt;
-  display: inline-block;
+}
+
+.price {
+  font-size: 13pt;
 }
 

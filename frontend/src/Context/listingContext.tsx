@@ -14,6 +14,7 @@ const defaultContextValues = {
   allListings: [] as ListingInterface[],
   numPages: 1,
   productsPerPage: 20,
+  numResults: 0,
 };
 
 export const ListingContext = createContext(defaultContextValues);
@@ -23,6 +24,9 @@ export function ListingContextProvider({ children }: any) {
   const [currentPage, setCurrentPage] = useState(1);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [allListings, setallListings] = useState([] as ListingInterface[]); // function to fetch will update this use state
+  const [numPages, setNumPages] = useState(0);
+  const [numResults, setNumResults] = useState(0);
+  const productsPerPage = 20;
 
   const fetchListings = () => {
     fetch("http://localhost:3001/listings")
@@ -34,6 +38,8 @@ export function ListingContextProvider({ children }: any) {
       })
       .then((data: ListingInterface[]) => {
         setallListings(data);
+        setNumPages(Math.ceil(data.length / productsPerPage));
+        setNumResults(data.length);
       })
       .catch((error) => {
         console.error("Fetch error:", error);
@@ -44,13 +50,6 @@ export function ListingContextProvider({ children }: any) {
     fetchListings();
   }, []);
 
-  // function to fetch data should go here
-  console.log(allListings);
-  const productsPerPage = 20;
-  const [numPages, setNumPages] = useState(
-    Math.ceil(allListings.length / productsPerPage)
-  );
-
   const contextData = {
     currentPage,
     setCurrentPage,
@@ -58,6 +57,7 @@ export function ListingContextProvider({ children }: any) {
     allListings,
     numPages,
     productsPerPage,
+    numResults,
   };
 
   return (

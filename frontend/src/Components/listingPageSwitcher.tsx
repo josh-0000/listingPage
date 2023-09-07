@@ -16,23 +16,30 @@ function ListingPageSwitcher(): JSX.Element {
     setButtonOne(1);
     setButtonTwo(2);
     setButtonThree(3);
+    setCurrentPage(1);
   };
 
   // function for Previous button
   const previousPage = () => {
-    if (buttonOne !== 1) {
-      setButtonOne(buttonOne - 3);
-      setButtonTwo(buttonTwo - 3);
-      setButtonThree(buttonThree - 3);
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+      if (buttonOne !== 1) {
+        setButtonOne(buttonOne - 3);
+        setButtonTwo(buttonTwo - 3);
+        setButtonThree(buttonThree - 3);
+      }
     }
   };
 
   // function for the Next button
   const nextPage = () => {
-    if (buttonThree !== numPages) {
-      setButtonOne(buttonOne + 3);
-      setButtonTwo(buttonTwo + 3);
-      setButtonThree(buttonThree + 3);
+    if (currentPage !== numPages) {
+      setCurrentPage(currentPage + 1);
+      if (currentPage % 3 === 0 && currentPage !== numPages) {
+        setButtonOne(buttonOne + 3);
+        setButtonTwo(buttonTwo + 3);
+        setButtonThree(buttonThree + 3);
+      }
     }
   };
 
@@ -41,6 +48,7 @@ function ListingPageSwitcher(): JSX.Element {
     setButtonOne(numPages - 2);
     setButtonTwo(numPages - 1);
     setButtonThree(numPages);
+    setCurrentPage(numPages);
   };
 
   // function for first number slot

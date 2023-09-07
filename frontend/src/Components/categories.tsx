@@ -8,43 +8,40 @@ function Categories(): JSX.Element {
         role="group"
       >
         <button type="button" className="btn btn-secondary">
-          All
+          Mens
         </button>
         <button type="button" className="btn btn-secondary">
-          Category one
+          Womens
         </button>
         <button type="button" className="btn btn-secondary">
-          Category two
+          Children
         </button>
         <button type="button" className="btn btn-secondary">
-          Category three
+          Jeans
         </button>
         <button type="button" className="btn btn-secondary">
-          Category four
+          Shorts
         </button>
         <button type="button" className="btn btn-secondary">
-          Category five
+          Shoes
         </button>
         <button type="button" className="btn btn-secondary">
-          Category six
+          Socks
         </button>
         <button type="button" className="btn btn-secondary">
-          Category seven
+          Underwear
         </button>
         <button type="button" className="btn btn-secondary">
-          Category eight
+          Accessories
         </button>
         <button type="button" className="btn btn-secondary">
-          Category nine
+          Activewear
         </button>
         <button type="button" className="btn btn-secondary">
-          Category ten
+          Outerwear
         </button>
         <button type="button" className="btn btn-secondary">
-          Category eleven
-        </button>
-        <button type="button" className="btn btn-secondary">
-          Category twelve
+          Formalwear
         </button>
       </div>
     </div>

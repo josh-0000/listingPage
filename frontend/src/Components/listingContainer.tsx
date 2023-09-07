@@ -3,15 +3,16 @@ import Listing from "./listing";
 import { ListingContext } from "../Context/listingContext";
 
 function ListingContainer(): JSX.Element {
+  // used to display items based on current page.
   const { allListings, currentPage, productsPerPage } =
     useContext(ListingContext);
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
   const currentProducts = allListings.slice(startIndex, endIndex);
   return (
-    <div className="col-12 borderTop">
-      <div className="container">
-        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+    <div className="col-10 borderTop">
+      <div className="container listingsContainer">
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
           {currentProducts.map((product, index) => (
             <div key={index} className="col">
               <Listing product={product} />
