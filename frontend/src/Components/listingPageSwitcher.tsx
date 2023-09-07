@@ -23,7 +23,7 @@ function ListingPageSwitcher(): JSX.Element {
   const previousPage = () => {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
-      if (buttonOne !== 1) {
+      if ((currentPage - 1) % 3 === 0) {
         setButtonOne(buttonOne - 3);
         setButtonTwo(buttonTwo - 3);
         setButtonThree(buttonThree - 3);
