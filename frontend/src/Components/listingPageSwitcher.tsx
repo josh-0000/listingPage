@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ListingContext } from "../Context/listingContext";
 
 function ListingPageSwitcher(): JSX.Element {
@@ -13,9 +13,6 @@ function ListingPageSwitcher(): JSX.Element {
 
   // function for First button
   const firstPage = () => {
-    setButtonOne(1);
-    setButtonTwo(2);
-    setButtonThree(3);
     setCurrentPage(1);
   };
 
@@ -45,26 +42,55 @@ function ListingPageSwitcher(): JSX.Element {
 
   // function for the Last button
   const lastPage = () => {
-    setButtonOne(numPages - 2);
-    setButtonTwo(numPages - 1);
-    setButtonThree(numPages);
+    const buttonToBeLast = numPages % 3;
+    if (buttonToBeLast === 1) {
+      setButtonOne(numPages);
+      setButtonTwo(numPages + 1);
+      setButtonThree(numPages + 2);
+    } else if (buttonToBeLast === 2) {
+      setButtonOne(numPages - 1);
+      setButtonTwo(numPages);
+      setButtonThree(numPages + 1);
+    } else {
+      setButtonOne(numPages - 2);
+      setButtonTwo(numPages - 1);
+      setButtonThree(numPages);
+    }
     setCurrentPage(numPages);
   };
 
   // function for first number slot
   const currentPageOptionOne = () => {
-    setCurrentPage(buttonOne);
+    if (buttonOne <= numPages) {
+      setCurrentPage(buttonOne);
+    }
   };
 
   // function for second number slot
   const currentPageOptionTwo = () => {
-    setCurrentPage(buttonTwo);
+    if (buttonTwo <= numPages) {
+      setCurrentPage(buttonTwo);
+    }
   };
 
   // function for third number slot
   const currentPageOptionThree = () => {
-    setCurrentPage(buttonThree);
+    if (buttonThree <= numPages) {
+      setCurrentPage(buttonThree);
+    }
   };
+
+  const resetOptions = () => {
+    setButtonOne(1);
+    setButtonTwo(2);
+    setButtonThree(3);
+  };
+
+  useEffect(() => {
+    if (currentPage === 1) {
+      resetOptions();
+    }
+  }, [currentPage]);
 
   // Below is css switching for the button of the page the user is currently on
   let buttonOneCss = "btn btn-light";
@@ -98,21 +124,21 @@ function ListingPageSwitcher(): JSX.Element {
               className={buttonOneCss}
               onClick={currentPageOptionOne}
             >
-              {buttonOne}
+              {buttonOne <= numPages ? buttonOne : ""}
             </button>
             <button
               type="button"
               className={buttonTwoCss}
               onClick={currentPageOptionTwo}
             >
-              {buttonTwo}
+              {buttonTwo <= numPages ? buttonTwo : ""}
             </button>
             <button
               type="button"
               className={buttonThreeCss}
               onClick={currentPageOptionThree}
             >
-              {buttonThree}
+              {buttonThree <= numPages ? buttonThree : ""}
             </button>
             <button type="button" className="btn btn-light" onClick={nextPage}>
               Next

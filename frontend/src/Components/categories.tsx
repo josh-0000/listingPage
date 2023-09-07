@@ -1,49 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ListingContext } from "src/Context/listingContext";
 
 function Categories(): JSX.Element {
+  const { setCategory, setCurrentPage } = useContext(ListingContext);
+  const categories = [
+    "All",
+    "Men",
+    "Women",
+    "Boy",
+    "Girl",
+    "Jeans",
+    "Shorts",
+    "Shoes",
+    "Socks",
+    "Underwear",
+    "Accessories",
+    "Activewear",
+  ];
+
+  function sortByCategory(category: string) {
+    setCategory(category);
+    setCurrentPage(1);
+    console.log(category);
+  }
+
   return (
     <div className="row categoriesContainer bg-secondary">
-      <div
-        className="btn-group-sm btn-group-secondary hideOverflow"
-        role="group"
-      >
-        <button type="button" className="btn btn-secondary">
-          Mens
+      {categories.map((category) => (
+        <button
+          key={category}
+          type="button"
+          className="btn btn-secondary col-1"
+          onClick={() => sortByCategory(category)}
+        >
+          {category}
         </button>
-        <button type="button" className="btn btn-secondary">
-          Womens
-        </button>
-        <button type="button" className="btn btn-secondary">
-          Children
-        </button>
-        <button type="button" className="btn btn-secondary">
-          Jeans
-        </button>
-        <button type="button" className="btn btn-secondary">
-          Shorts
-        </button>
-        <button type="button" className="btn btn-secondary">
-          Shoes
-        </button>
-        <button type="button" className="btn btn-secondary">
-          Socks
-        </button>
-        <button type="button" className="btn btn-secondary">
-          Underwear
-        </button>
-        <button type="button" className="btn btn-secondary">
-          Accessories
-        </button>
-        <button type="button" className="btn btn-secondary">
-          Activewear
-        </button>
-        <button type="button" className="btn btn-secondary">
-          Outerwear
-        </button>
-        <button type="button" className="btn btn-secondary">
-          Formalwear
-        </button>
-      </div>
+      ))}
     </div>
   );
 }

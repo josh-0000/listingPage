@@ -5,7 +5,7 @@ import { ListingInterface } from "../Interfaces/Interfaces";
 function Listing(props: { product: ListingInterface }) {
   const { product } = props;
   return (
-    <div className="card text-center border-1">
+    <div className="card text-center border-1 m-0">
       <img className="card-img-top" alt="alt" src={logo} />
       <div className="card-body">
         <h5 className="card-title bold">{product.listingname}</h5>

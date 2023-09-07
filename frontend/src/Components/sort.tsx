@@ -6,7 +6,7 @@ function Sort(): JSX.Element {
   return (
     <div className="row sortContainer border">
       <div className="col-3">
-        <p className="results">
+        <p className="results bold">
           {currentPage}-{numPages} of {numResults} results
         </p>
       </div>

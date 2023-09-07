@@ -1,7 +1,6 @@
 .noPadding {
-  padding: 0px;
+  padding-left: -10px;
 }
-
 .noMargins {
   margin: 0px;
 }
@@ -26,8 +25,8 @@
 
 .categoriesContainer {
   height:40px;
-  padding-top:5px;
   padding-bottom: 40px;
+  padding-inline:60px;
   overflow: clip;
 }
 
@@ -35,7 +34,7 @@
   margin-top: 100px;
 }
 .sortForm {
-  margin-top:5px;
+  margin-top:3px;
   float: right;
 }
 
@@ -43,12 +42,11 @@
   margin-top:8px;
   font-size: 10pt;
 }
-.btn {
-  margin-right: 30px;
-}
+
 .sortContainer {
   background-color: white;
   height: 35px;
+  padding-inline: 20px;
 }
 
 

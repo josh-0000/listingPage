@@ -1,16 +1,27 @@
-import React, { createContext } from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
-import { useMemo } from "react";
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  useMemo,
+} from "react";
 import { ListingInterface } from "../Interfaces/Interfaces";
 
 const defaultContextValues = {
+  category: "All",
   currentPage: 1,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setCurrentPage: (() => {}) as React.Dispatch<React.SetStateAction<number>>,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setNumPages: (() => {}) as React.Dispatch<React.SetStateAction<number>>,
+  setCurrentPage: (_value: number) => {
+    console.error("setCurrentPage function not yet implemented");
+  },
+  setNumPages: (_value: number) => {
+    console.error("setNumPages function not yet implemented");
+  },
+  setNumResults: (_value: number) => {
+    console.error("setNumPages function not yet implemented");
+  },
+  setCategory: (_value: string) => {
+    console.error("setCategory function not yet implemented");
+  },
   allListings: [] as ListingInterface[],
   numPages: 1,
   productsPerPage: 20,
@@ -19,13 +30,12 @@ const defaultContextValues = {
 
 export const ListingContext = createContext(defaultContextValues);
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function ListingContextProvider({ children }: any) {
   const [currentPage, setCurrentPage] = useState(1);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [allListings, setallListings] = useState([] as ListingInterface[]); // function to fetch will update this use state
+  const [allListings, setallListings] = useState([] as ListingInterface[]);
   const [numPages, setNumPages] = useState(0);
   const [numResults, setNumResults] = useState(0);
+  const [category, setCategory] = useState("All");
   const productsPerPage = 20;
 
   const fetchListings = () => {
@@ -38,8 +48,6 @@ export function ListingContextProvider({ children }: any) {
       })
       .then((data: ListingInterface[]) => {
         setallListings(data);
-        setNumPages(Math.ceil(data.length / productsPerPage));
-        setNumResults(data.length);
       })
       .catch((error) => {
         console.error("Fetch error:", error);
@@ -51,9 +59,12 @@ export function ListingContextProvider({ children }: any) {
   }, []);
 
   const contextData = {
+    setCategory,
+    category,
     currentPage,
     setCurrentPage,
     setNumPages,
+    setNumResults,
     allListings,
     numPages,
     productsPerPage,
