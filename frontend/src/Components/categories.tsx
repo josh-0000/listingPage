@@ -30,7 +30,7 @@ function Categories(): JSX.Element {
         <button
           key={category}
           type="button"
-          className="btn btn-secondary col-1"
+          className="btn btn-secondary col-1 category"
           onClick={() => sortByCategory(category)}
         >
           {category}

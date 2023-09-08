@@ -30,15 +30,13 @@ function ListingContainer(): JSX.Element {
   const currentProducts = filteredListings.slice(startIndex, endIndex);
 
   return (
-    <div className="col-10 borderTop">
-      <div className="container listingsContainer">
-        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-          {currentProducts.map((product, index) => (
-            <div key={index} className="col px-1 mt-2">
-              <Listing product={product} />
-            </div>
-          ))}
-        </div>
+    <div className="col-10">
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4 listingRow noPaddingOrMargins">
+        {currentProducts.map((product, index) => (
+          <div key={index} className="col px-1 mt-2ß">
+            <Listing product={product} />
+          </div>
+        ))}
       </div>
     </div>
   );

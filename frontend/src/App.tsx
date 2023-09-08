@@ -8,6 +8,7 @@ import ListingPageSwitcher from "./Components/listingPageSwitcher";
 import { ListingContextProvider } from "./Context/listingContext";
 import Filters from "./Components/filter";
 import Sort from "./Components/sort";
+import Featured from "./Components/featured";
 
 function App() {
   return (

@@ -4,7 +4,7 @@ import { ListingContext } from "src/Context/listingContext";
 function Sort(): JSX.Element {
   const { numPages, currentPage, numResults } = useContext(ListingContext);
   return (
-    <div className="row sortContainer border">
+    <div className="row sortContainer">
       <div className="col-3">
         <p className="results bold">
           {currentPage}-{numPages} of {numResults} results
