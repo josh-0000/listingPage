@@ -6,7 +6,7 @@ import ListingContainer from "./Components/listingContainer";
 import Footer from "./Components/footer";
 import ListingPageSwitcher from "./Components/listingPageSwitcher";
 import { ListingContextProvider } from "./Context/listingContext";
-import Sort from "./Components/sort";
+import ListingContainerHeader from "./Components/listingContainerHeader";
 import Featured from "./Components/featured";
 
 function App() {
@@ -15,8 +15,9 @@ function App() {
       <ListingContextProvider>
         <Navbar />
         <Categories />
-        <Sort />
         <div className="row listingsContainer bg-light">
+          <Featured />
+          <ListingContainerHeader />
           <ListingContainer />
         </div>
         <ListingPageSwitcher />

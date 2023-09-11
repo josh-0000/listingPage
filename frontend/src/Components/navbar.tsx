@@ -3,7 +3,7 @@ import React from "react";
 function Navbar(): JSX.Element {
   return (
     <div className="row">
-      <nav className="navbar navbar-expand-lg bg-dark custom-navbar">
+      <nav className="navbar navbar-expand-lg sticky-top bg-dark custom-navbar">
         <div className="container-fluid">
           <a className="navbar-brand text-white" href="adksops">
             Shopping

@@ -1,28 +1,74 @@
-import React, { useContext, useState } from "react";
-import { ListingContext } from "src/Context/listingContext";
+import React, { useState } from "react";
 
 function Sort(): JSX.Element {
-  const { numPages, currentPage, numResults } = useContext(ListingContext);
+  const [sortOrder, setSortOrder] = useState("");
   return (
-    <div className="row sortContainer bg-white">
-      <div className="col-3">
-        <p className="results bold">
-          {currentPage}-{numPages} of {numResults} results
-        </p>
-      </div>
-      <div className="col-7"></div>
-      <div className="col-2">
-        <form id="sort-form" className="sort-dropdown sortForm">
-          <select id="sort-options" name="sort">
-            <option value="disabledselected">Sort By:</option>
-            <option value="relevance">Relevance</option>
-            <option value="priceLowToHigh">Price: Low to High</option>
-            <option value="priceHighToLow">Price: High to Low</option>
-            <option value="avgCustomerReview">Avg. Customer Review</option>
-            <option value="newestArrivals">Newest Arrivals</option>
-          </select>
-        </form>
-      </div>
+    <div className="dropdown sortDropDown">
+      <button
+        className="btn btn-primary dropdown-toggle"
+        type="button"
+        id="sortDropdown"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Sort by: {sortOrder}
+      </button>
+      <ul className="dropdown-menu" aria-labelledby="sortDropdown">
+        <li>
+          <a
+            className="dropdown-item"
+            href="#"
+            onClick={() => setSortOrder("Featured")}
+          >
+            Featured
+          </a>
+        </li>
+        <li>
+          <a
+            className="dropdown-item"
+            href="#"
+            onClick={() => setSortOrder("Price Low to high")}
+          >
+            Price: Low to High
+          </a>
+        </li>
+        <li>
+          <a
+            className="dropdown-item"
+            href="#"
+            onClick={() => setSortOrder("Price High to low")}
+          >
+            Price: High to low
+          </a>
+        </li>
+        <li>
+          <a
+            className="dropdown-item"
+            href="#"
+            onClick={() => setSortOrder("Avg Customer Review")}
+          >
+            Avg. Customer Review
+          </a>
+        </li>
+        <li>
+          <a
+            className="dropdown-item"
+            href="#"
+            onClick={() => setSortOrder("Newest Arrivals")}
+          >
+            Newest Arrivals
+          </a>
+        </li>
+        <li>
+          <a
+            className="dropdown-item"
+            href="#"
+            onClick={() => setSortOrder("Best Sellers")}
+          >
+            Best Sellers
+          </a>
+        </li>
+      </ul>
     </div>
   );
 }

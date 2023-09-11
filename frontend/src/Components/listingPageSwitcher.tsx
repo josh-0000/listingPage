@@ -93,15 +93,15 @@ function ListingPageSwitcher(): JSX.Element {
   }, [currentPage]);
 
   // Below is css switching for the button of the page the user is currently on
-  let buttonOneCss = "btn btn-light";
-  let buttonTwoCss = "btn btn-light";
-  let buttonThreeCss = "btn btn-light";
+  let buttonOneCss = "btn btn-outline-dark";
+  let buttonTwoCss = "btn btn-outline-dark";
+  let buttonThreeCss = "btn btn-outline-dark";
   if (currentPage === buttonOne) {
-    buttonOneCss = "btn btn-secondary";
+    buttonOneCss = "btn btn-dark";
   } else if (currentPage === buttonTwo) {
-    buttonTwoCss = "btn btn-secondary";
+    buttonTwoCss = "btn btn-dark";
   } else if (currentPage === buttonThree) {
-    buttonThreeCss = "btn btn-secondary";
+    buttonThreeCss = "btn btn-dark";
   }
 
   return (
@@ -109,12 +109,16 @@ function ListingPageSwitcher(): JSX.Element {
       <div className="col-md-4 offset-md-4 text-center">
         <div className="row">
           <div className="btn-group" role="group" aria-label="Basic example">
-            <button type="button" className="btn btn-light" onClick={firstPage}>
+            <button
+              type="button"
+              className="btn btn-outline-dark"
+              onClick={firstPage}
+            >
               First
             </button>
             <button
               type="button"
-              className="btn btn-light"
+              className="btn btn-outline-dark"
               onClick={previousPage}
             >
               Prev
@@ -140,10 +144,18 @@ function ListingPageSwitcher(): JSX.Element {
             >
               {buttonThree <= numPages ? buttonThree : ""}
             </button>
-            <button type="button" className="btn btn-light" onClick={nextPage}>
+            <button
+              type="button"
+              className="btn btn-outline-dark"
+              onClick={nextPage}
+            >
               Next
             </button>
-            <button type="button" className="btn btn-light" onClick={lastPage}>
+            <button
+              type="button"
+              className="btn btn-outline-dark"
+              onClick={lastPage}
+            >
               Last
             </button>
           </div>

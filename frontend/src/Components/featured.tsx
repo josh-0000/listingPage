@@ -3,20 +3,13 @@ import { ListingContext } from "src/Context/listingContext";
 
 function Featured(): JSX.Element {
   return (
-    <div className="row noPaddingOrMargins">
+    <div className="row noPaddingOrMargins featured-row">
       <div className="col noPaddingOrMargins">
-        <div className="card text-bg-dark featured-card">
-          <img className="card-img" alt="..." />
+        <div className="card text-bg-secondary featured-card">
+          <img className="card-img" />
           <div className="card-img-overlay">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
-            </p>
-            <p className="card-text">
-              <small>Last updated 3 mins ago</small>
-            </p>
+            <h5 className="card-title">Featured</h5>
+            <p className="card-text">Description</p>
           </div>
         </div>
       </div>
