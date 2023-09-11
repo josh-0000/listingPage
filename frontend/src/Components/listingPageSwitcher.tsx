@@ -105,60 +105,62 @@ function ListingPageSwitcher(): JSX.Element {
   }
 
   return (
-    <div className="row listingPageSwitcher bg-light">
-      <div className="col-md-4 offset-md-4 text-center">
-        <div className="row">
-          <div className="btn-group" role="group" aria-label="Basic example">
-            <button
-              type="button"
-              className="btn btn-outline-dark"
-              onClick={firstPage}
-            >
-              First
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline-dark"
-              onClick={previousPage}
-            >
-              Prev
-            </button>
-            <button
-              type="button"
-              className={buttonOneCss}
-              onClick={currentPageOptionOne}
-            >
-              {buttonOne <= numPages ? buttonOne : ""}
-            </button>
-            <button
-              type="button"
-              className={buttonTwoCss}
-              onClick={currentPageOptionTwo}
-            >
-              {buttonTwo <= numPages ? buttonTwo : ""}
-            </button>
-            <button
-              type="button"
-              className={buttonThreeCss}
-              onClick={currentPageOptionThree}
-            >
-              {buttonThree <= numPages ? buttonThree : ""}
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline-dark"
-              onClick={nextPage}
-            >
-              Next
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline-dark"
-              onClick={lastPage}
-            >
-              Last
-            </button>
-          </div>
+    <div className="row listingPageSwitcherContainer bg-light noPaddingOrMargins">
+      <div className="col bg-light d-flex justify-content-center align-items-center noPaddingOrMargins">
+        <div
+          className="btn-group listingPageSwitcher"
+          role="group"
+          aria-label="Basic example"
+        >
+          <button
+            type="button"
+            className="btn btn-outline-dark"
+            onClick={firstPage}
+          >
+            First
+          </button>
+          <button
+            type="button"
+            className="btn btn-outline-dark"
+            onClick={previousPage}
+          >
+            Prev
+          </button>
+          <button
+            type="button"
+            className={buttonOneCss}
+            onClick={currentPageOptionOne}
+          >
+            {buttonOne <= numPages ? buttonOne : ""}
+          </button>
+          <button
+            type="button"
+            className={buttonTwoCss}
+            onClick={currentPageOptionTwo}
+          >
+            {buttonTwo <= numPages ? buttonTwo : ""}
+          </button>
+          <button
+            type="button"
+            className={buttonThreeCss}
+            onClick={currentPageOptionThree}
+          >
+            {buttonThree <= numPages ? buttonThree : ""}
+          </button>
+          <button
+            type="button"
+            className="btn btn-outline-dark"
+            onClick={nextPage}
+          >
+            Next
+          </button>
+          <button
+            type="button"
+            className="btn btn-outline-dark"
+            onClick={lastPage}
+          >
+            Last
+          </button>
         </div>
       </div>
     </div>
