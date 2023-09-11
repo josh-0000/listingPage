@@ -15,7 +15,7 @@ function App() {
       <ListingContextProvider>
         <Navbar />
         <Categories />
-        <div className="row listingsContainer bg-light p-5 m-2">
+        <div className="row listingsContainer bg-light p-10 m-2">
           <Featured />
           <ListingContainerHeader />
           <ListingContainer />
