@@ -6,11 +6,10 @@ import Results from "./results";
 function ListingContainerHeader(): JSX.Element {
   return (
     <div className="row ListingContainerHeader noPaddingOrMargins bg-light">
-      <div className="col-5 d-flex flex-column">
+      <div className="col d-flex flex-column">
         <Results />
       </div>
-      <div className="col-2 d-flex flex-column"></div>
-      <div className="col-5 d-flex flex-column">
+      <div className="col d-flex flex-column">
         <div className="mt-auto">
           <Sort />
           <Filter />

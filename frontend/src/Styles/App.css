@@ -78,10 +78,6 @@
   font-size: 12pt;
 }
 
-.featuredcard {
-  height: 100px !important;
-}
-
 .noPaddingOrMargins {
   padding: 0px !important;
   margin: 0px !important;
@@ -89,7 +85,6 @@
 
 .featured-card {
   width: 100%; /* Adjust width to your preference */
-
 }
 
 .featured-card .card-img {

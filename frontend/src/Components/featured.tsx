@@ -4,7 +4,7 @@ import { ListingContext } from "src/Context/listingContext";
 function Featured(): JSX.Element {
   return (
     <div className="row noPaddingOrMargins featured-row">
-      <div className="col noPaddingOrMargins">
+      <div className="col">
         <div className="card text-bg-secondary featured-card">
           <img className="card-img" />
           <div className="card-img-overlay">
