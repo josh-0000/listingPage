@@ -2,7 +2,7 @@ import React from "react";
 import homeImg from "../Assets/home.png";
 import profileImg from "../Assets/profile.png";
 import cartImg from "../Assets/cart.png";
-
+import Search from "./search";
 function Navbar(): JSX.Element {
   return (
     <div className="row">
@@ -15,20 +15,7 @@ function Navbar(): JSX.Element {
             className="navbar-collapse align-items-center"
             id="navbarSupportedContent"
           >
-            <form
-              className="d-flex me-auto w-50 align-items-center"
-              role="search"
-            >
-              <input
-                className="form-control me-2 w-100"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
+            <Search />
             <ul className="navbar-nav ml-auto mb-2 align-items-center">
               <li className="nav-item">
                 <button className="nav-link active text-white me-4 mt-2 white-icon">
