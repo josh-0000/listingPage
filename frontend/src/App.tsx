@@ -11,16 +11,16 @@ import Featured from "./Components/featured";
 
 function App() {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid bg-light">
       <ListingContextProvider>
         <Navbar />
         <Categories />
-        <div className="row listingsContainer bg-light">
+        <div className="row listingsContainer bg-light p-5 m-2">
           <Featured />
           <ListingContainerHeader />
           <ListingContainer />
+          <ListingPageSwitcher />
         </div>
-        <ListingPageSwitcher />
         <Footer />
       </ListingContextProvider>
     </div>

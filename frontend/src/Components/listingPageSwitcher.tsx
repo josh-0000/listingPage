@@ -105,13 +105,9 @@ function ListingPageSwitcher(): JSX.Element {
   }
 
   return (
-    <div className="row listingPageSwitcherContainer bg-light noPaddingOrMargins">
-      <div className="col bg-light d-flex justify-content-center align-items-center noPaddingOrMargins">
-        <div
-          className="btn-group listingPageSwitcher"
-          role="group"
-          aria-label="Basic example"
-        >
+    <div className="row listingPageSwitcherContainer bg-light">
+      <div className="col bg-light d-flex justify-content-center align-items-center">
+        <div className="btn-group" role="group" aria-label="Basic example">
           <button
             type="button"
             className="btn btn-outline-dark"
