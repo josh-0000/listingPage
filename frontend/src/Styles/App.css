@@ -6,6 +6,7 @@
 }
 .listing {
   width: 100% !important;
+  border: none !important;
 }
 
 .listingRow {
@@ -26,6 +27,7 @@
 
 .category {
   border-radius: 0px !important;
+  font-size: 1rem !important;
 }
 
 .listingContainersCol {
@@ -36,21 +38,34 @@
 .listingsContainer {
   min-height: 2000px;
   width: 100%;
+  padding-top: 50px;
   padding-bottom: 50px;
-  padding-inline: 0px !important;
+  padding-inline: 100px !important;
   margin-right: 0px !important;
 }
-
+.hide {
+  display: none !important;
+}
 .categoriesContainer {
   height:40px;
   padding-bottom: 40px;
-  padding-inline:60px;
-  overflow: clip;
+  background-color: skyblue !important;
 }
 
 .filterContainer {
-  margin-top: 100px;
-  border-right: 1px solid #dee2e6;
+  height: 200px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.filter {
+  background: none;
+  appearance: none;
+  border: none;
+}
+.filterButtonContainer {
+  height: 30px;
+  background-color: white;
+  border-bottom: 1px solid #dee2e6;
 }
 .sortForm {
   margin-top:3px;
@@ -63,10 +78,8 @@
 }
 
 .sortContainer {
-  background-color: white;
   height: 35px;
   padding-inline: 20px;
-  border-bottom: 1px solid #dee2e6;
 }
 
 

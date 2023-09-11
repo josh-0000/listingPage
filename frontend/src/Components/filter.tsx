@@ -1,11 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Filters(): JSX.Element {
-  return (
-    <div className="col-2 filterContainer">
-      <p></p>
-    </div>
-  );
+  return <div></div>;
 }
 
 export default Filters;
