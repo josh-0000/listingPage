@@ -127,21 +127,21 @@ function ListingPageSwitcher(): JSX.Element {
             className={buttonOneCss}
             onClick={currentPageOptionOne}
           >
-            {buttonOne <= numPages ? buttonOne : ""}
+            {buttonOne <= numPages ? buttonOne : "."}
           </button>
           <button
             type="button"
             className={buttonTwoCss}
             onClick={currentPageOptionTwo}
           >
-            {buttonTwo <= numPages ? buttonTwo : ""}
+            {buttonTwo <= numPages ? buttonTwo : "."}
           </button>
           <button
             type="button"
             className={buttonThreeCss}
             onClick={currentPageOptionThree}
           >
-            {buttonThree <= numPages ? buttonThree : ""}
+            {buttonThree <= numPages ? buttonThree : "."}
           </button>
           <button
             type="button"

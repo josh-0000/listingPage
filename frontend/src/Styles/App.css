@@ -79,6 +79,9 @@ img.home {
   margin-right: 0px !important;
 }
 
+.listingPageCol {
+  min-height: 2800px;
+}
 .listingColumn {
   min-height: 2200px;
   margin-top: 30px;
