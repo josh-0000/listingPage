@@ -8,7 +8,7 @@ import React, {
 import { ListingInterface } from "../Interfaces/Interfaces";
 
 const defaultContextValues = {
-  category: "All",
+  categoryList: ["All"],
   currentPage: 1,
   setCurrentPage: (_value: number) => {
     console.error("setCurrentPage function not yet implemented");
@@ -19,7 +19,10 @@ const defaultContextValues = {
   setNumResults: (_value: number) => {
     console.error("setNumPages function not yet implemented");
   },
-  setCategory: (_value: string) => {
+  setCategoryCategories: (_value: string) => {
+    console.error("setCategory function not yet implemented");
+  },
+  setCategorySearch: (_value: string) => {
     console.error("setCategory function not yet implemented");
   },
   allListings: [] as ListingInterface[],
@@ -35,7 +38,17 @@ export function ListingContextProvider({ children }: any) {
   const [allListings, setallListings] = useState([] as ListingInterface[]);
   const [numPages, setNumPages] = useState(0);
   const [numResults, setNumResults] = useState(0);
-  const [category, setCategory] = useState("All");
+  const [categoryList, setCategoryList] = useState(["All"]);
+
+  const setCategorySearch = (category: string) => {
+    const splitCategory = category.split(/\s+/);
+    setCategoryList([...splitCategory]);
+  };
+
+  const setCategoryCategories = (category: string) => {
+    setCategoryList([category]);
+  };
+
   const productsPerPage = 20;
 
   const fetchListings = () => {
@@ -59,8 +72,9 @@ export function ListingContextProvider({ children }: any) {
   }, []);
 
   const contextData = {
-    setCategory,
-    category,
+    setCategoryCategories,
+    setCategorySearch,
+    categoryList,
     currentPage,
     setCurrentPage,
     setNumPages,

@@ -9,7 +9,7 @@ function Navbar(): JSX.Element {
       <nav className="navbar navbar-expand sticky-top bg-dark custom-navbar align-items-center">
         <div className="container-fluid">
           <a className="navbar-brand text-white" href="adksops">
-            Shopping
+            Brand
           </a>
           <div
             className="navbar-collapse align-items-center"

@@ -36,6 +36,9 @@ img.home {
   height: 50px;
 }
 
+.custom-search {
+  width: 100px;
+}
 .custom-navbar {
   padding: 1px 1rem !important;  /* Adjust the first value (20px) to set the desired thickness */
 }
@@ -71,16 +74,34 @@ img.home {
   padding-inline: 40px !important;
 }
 .listingsContainer {
-  min-height: 2800px;
+  min-height: 2300px;
   width: 100%;
   padding-top: 50px;
   padding-bottom: 50px;
   padding-inline: 100px !important;
   margin-right: 0px !important;
 }
+.no-style-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.searchList {
+  position: absolute;
+  width: 40%;
+  z-index: 1000;
+  top: 90px;
+  left: 90px;
+}
 
 .listingPageCol {
-  min-height: 2800px;
+  min-height: 1700px;
 }
 .listingColumn {
   min-height: 2200px;

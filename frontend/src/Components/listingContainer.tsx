@@ -1,32 +1,64 @@
-import React, { useContext } from "react";
-import Listing from "./listing";
+import React, { useState, useContext, useEffect } from "react";
 import { ListingContext } from "../Context/listingContext";
+import Listing from "./listing";
 
 function ListingContainer(): JSX.Element {
-  // used to display items based on current page.
   const {
     allListings,
     currentPage,
     productsPerPage,
-    category,
+    categoryList,
     setNumPages,
     setNumResults,
+    setCurrentPage,
   } = useContext(ListingContext);
 
-  const filteredListings =
-    category !== "All"
-      ? allListings.filter(
-          (listing) =>
-            listing.sex === category ||
-            listing.listingname.includes(category) ||
-            listing.description.includes(category)
-        )
-      : allListings;
+  const [filteredListings, setFilteredListings] = useState(allListings);
 
-  setNumPages(Math.ceil(filteredListings.length / productsPerPage));
-  setNumResults(filteredListings.length);
+  useEffect(() => {
+    let filtered = [...allListings];
+    if (categoryList[0] !== "All") {
+      categoryList.forEach((category) => {
+        filtered = filtered.filter(
+          (listing) =>
+            listing.sex.includes(category) ||
+            listing.listingname
+              .toLowerCase()
+              .includes(category.toLowerCase()) ||
+            listing.description
+              .toLowerCase()
+              .includes(category.toLowerCase()) ||
+            listing.brand.toLowerCase().includes(category.toLowerCase()) ||
+            listing.category.toLowerCase().includes(category.toLowerCase()) ||
+            (listing.color &&
+              listing.color.toLowerCase().includes(category.toLowerCase()))
+        );
+      });
+    }
+
+    setFilteredListings(filtered);
+
+    // Everytime the category is changed we want to set the page to 1
+    setCurrentPage(1);
+    // Setting the number of pages for the filtered listings
+    setNumPages(Math.ceil(filtered.length / productsPerPage));
+    // Setting the number of results for the filtered listings
+    setNumResults(filtered.length);
+  }, [
+    categoryList,
+    allListings,
+    productsPerPage,
+    setNumPages,
+    setNumResults,
+    setCurrentPage,
+  ]);
+
+  // Setting the start index of the splice based on the current page and the number of prodects per page
   const startIndex = (currentPage - 1) * productsPerPage;
+  // Setting the end index of the splice based on the start index and the products per page.
   const endIndex = startIndex + productsPerPage;
+
+  // Products being displayed currently
   const currentProducts = filteredListings.slice(startIndex, endIndex);
 
   return (

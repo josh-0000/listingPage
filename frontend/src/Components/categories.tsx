@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ListingContext } from "src/Context/listingContext";
 
 function Categories(): JSX.Element {
-  const { setCategory, setCurrentPage } = useContext(ListingContext);
+  const { setCategoryCategories } = useContext(ListingContext);
   const categories = [
     "All",
     "Men",
@@ -19,9 +19,7 @@ function Categories(): JSX.Element {
   ];
 
   function sortByCategory(category: string) {
-    setCategory(category);
-    setCurrentPage(1);
-    console.log(category);
+    setCategoryCategories(category);
   }
 
   return (
