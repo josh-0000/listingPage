@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Sort from "./sort";
-import Filter from "./filter";
-import Results from "./results";
+import Sort from "./SortDropdown";
+import Filter from "./FilterDropDown";
+import Results from "./LCHResults";
 
 function ListingContainerHeader(): JSX.Element {
   return (

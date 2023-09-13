@@ -37,7 +37,7 @@ img.home {
 }
 
 .custom-search {
-  width: 100px;
+  min-width: 200px;
 }
 .custom-navbar {
   padding: 1px 1rem !important;  /* Adjust the first value (20px) to set the desired thickness */
@@ -74,7 +74,6 @@ img.home {
   padding-inline: 40px !important;
 }
 .listingsContainer {
-  min-height: 2300px;
   width: 100%;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -94,17 +93,20 @@ img.home {
 }
 .searchList {
   position: absolute;
-  width: 40%;
+  width: 47%;
   z-index: 1000;
-  top: 90px;
+  top: 80px;
   left: 90px;
 }
 
-.listingPageCol {
-  min-height: 1700px;
+.cartSize {
+  position: absolute;
+  z-index: 1000 !important;
+  top:50px;
+  right:59px;
 }
+
 .listingColumn {
-  min-height: 2200px;
   margin-top: 30px;
 }
 .hide {
@@ -151,7 +153,16 @@ img.home {
 }
 
 .listing-card-body {
-  height:200px;
+  height: 200px;
+}
+
+.addToCart {
+  padding-inline: 10px !important;
+  width: 75% !important;
+}
+
+.addToCart:hover {
+  background-color: rgb(222, 222, 222) !important;
 }
  
 .listing-card-title {

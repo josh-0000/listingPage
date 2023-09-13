@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
-import { ListingContext } from "../Context/listingContext";
-import Listing from "./listing";
+import { ListingContext } from "../Context/ListingContext";
+import Listing from "./Listing";
+import ListingContainerFilters from "./LIstingContainerFilters";
+import ListingPageSwitcher from "./ListingPageSwitcher";
 
 function ListingContainer(): JSX.Element {
   const {
@@ -62,7 +64,8 @@ function ListingContainer(): JSX.Element {
   const currentProducts = filteredListings.slice(startIndex, endIndex);
 
   return (
-    <div className="col listingPageCol m-5">
+    <div className="col listingPageCol m-2 mb-5">
+      <ListingContainerFilters />
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4 listingRow noPaddingOrMargins">
         {currentProducts.map((product, index) => (
           <div key={index} className="col px-1 mt-2">
@@ -70,6 +73,7 @@ function ListingContainer(): JSX.Element {
           </div>
         ))}
       </div>
+      <ListingPageSwitcher />
     </div>
   );
 }

@@ -1,21 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ListingContext } from "src/Context/ListingContext";
 
 function Filter(): JSX.Element {
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const { selectedFilters, toggleFilter } = useContext(ListingContext);
   const allFilters = ["Price", "Rating", "Size", "Color", "Brand"]; // Example filters
-
-  const toggleFilter = (filter: string) => {
-    setSelectedFilters((prevFilters) => {
-      if (prevFilters.includes(filter)) {
-        // Remove the filter from the list
-        return prevFilters.filter((f) => f !== filter);
-      } else {
-        // Add the filter to the list
-        return [...prevFilters, filter];
-      }
-    });
-  };
-
   return (
     <div className="dropdown filterDropDown">
       <button

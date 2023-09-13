@@ -17,14 +17,18 @@ const defaultContextValues = {
     console.error("setNumPages function not yet implemented");
   },
   setNumResults: (_value: number) => {
-    console.error("setNumPages function not yet implemented");
+    console.error("setNumResults function not yet implemented");
   },
   setCategoryCategories: (_value: string) => {
-    console.error("setCategory function not yet implemented");
+    console.error("setCategoryCategories function not yet implemented");
   },
   setCategorySearch: (_value: string) => {
-    console.error("setCategory function not yet implemented");
+    console.error("setCategorySearch function not yet implemented");
   },
+  toggleFilter: (_value: string) => {
+    console.error("toggleFilter function not yet implemented");
+  },
+  selectedFilters: [] as string[],
   allListings: [] as ListingInterface[],
   numPages: 1,
   productsPerPage: 20,
@@ -39,6 +43,19 @@ export function ListingContextProvider({ children }: any) {
   const [numPages, setNumPages] = useState(0);
   const [numResults, setNumResults] = useState(0);
   const [categoryList, setCategoryList] = useState(["All"]);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+
+  const toggleFilter = (filter: string) => {
+    setSelectedFilters((prevFilters) => {
+      if (prevFilters.includes(filter)) {
+        // Remove the filter from the list
+        return prevFilters.filter((f) => f !== filter);
+      } else {
+        // Add the filter to the list
+        return [...prevFilters, filter];
+      }
+    });
+  };
 
   const setCategorySearch = (category: string) => {
     const splitCategory = category.split(/\s+/);
@@ -72,6 +89,8 @@ export function ListingContextProvider({ children }: any) {
   }, []);
 
   const contextData = {
+    toggleFilter,
+    selectedFilters,
     setCategoryCategories,
     setCategorySearch,
     categoryList,

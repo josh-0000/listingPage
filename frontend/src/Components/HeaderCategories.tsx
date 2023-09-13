@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ListingContext } from "src/Context/listingContext";
+import { ListingContext } from "src/Context/ListingContext";
 
 function Categories(): JSX.Element {
   const { setCategoryCategories } = useContext(ListingContext);

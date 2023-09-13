@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { ListingContext } from "src/Context/listingContext";
+import { ListingContext } from "src/Context/ListingContext";
 
 function Featured(): JSX.Element {
   return (

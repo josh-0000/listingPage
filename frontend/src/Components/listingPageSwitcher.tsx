@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ListingContext } from "../Context/listingContext";
+import { ListingContext } from "../Context/ListingContext";
 
 function ListingPageSwitcher(): JSX.Element {
   // use state for the currernt page
@@ -105,7 +105,7 @@ function ListingPageSwitcher(): JSX.Element {
   }
 
   return (
-    <div className="row bg-light p-0 m-0">
+    <div className="row bg-light p-0 m-5">
       <div className="col bg-light d-flex justify-content-center align-items-center">
         <div className="btn-group" role="group" aria-label="Basic example">
           <button

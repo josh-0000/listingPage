@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
-import { ListingContext } from "src/Context/listingContext";
+import { ListingContext } from "src/Context/ListingContext";
 
 function Search() {
   const { allListings, setCategorySearch } = useContext(ListingContext);
@@ -56,9 +56,9 @@ function Search() {
   }, []);
 
   return (
-    <div className="d-flex me-auto align-items-center" ref={searchContainerRef}>
+    <div className="d-flex w-100" ref={searchContainerRef}>
       <form
-        className="d-flex me-auto w-100 align-items-center custom-search"
+        className="d-flex w-75 align-items-center custom-search"
         role="search"
         onSubmit={(e) => e.preventDefault()}
       >
