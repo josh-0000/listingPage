@@ -1,0 +1,183 @@
+.noPadding {
+  padding-left: -10px;
+}
+.noMargins {
+  margin: 0px;
+}
+.listing {
+  width: 100% !important;
+  border: none !important;
+}
+
+.listingRow {
+  width: 100% !important;
+}
+
+.footer {
+  height: 200px;
+}
+
+img.cart {
+  width:80px;
+  height: 80px;
+}
+
+img.profile {
+  width:45px;
+  height: 45px;
+}
+
+.white-icon {
+  filter: brightness(0) invert(1) !important;
+}
+
+img.home {
+  width:50px;
+  height: 50px;
+}
+
+.custom-search {
+  min-width: 200px;
+}
+.custom-navbar {
+  padding: 1px 1rem !important;  /* Adjust the first value (20px) to set the desired thickness */
+}
+
+.ListingContainerHeader {
+  border-bottom: 1px solid #dee2e6;
+  height: 60px;
+}
+
+.featured-row {
+  height: 350px;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.listingPageSwitcherContainer {
+  height: 100px;
+}
+
+.listingPageSwitcher {
+  width: 40%;
+}
+.category {
+  border-radius: 0px !important;
+  font-size: 1rem !important;
+}
+
+.listingContainersCol {
+  margin:0px !important;
+  padding-top: 0px !important;
+  padding-inline: 40px !important;
+}
+.listingsContainer {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-inline: 100px !important;
+  margin-right: 0px !important;
+}
+.no-style-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.searchList {
+  position: absolute;
+  width: 47%;
+  z-index: 1000;
+  top: 80px;
+  left: 90px;
+}
+
+.cartSize {
+  position: absolute;
+  z-index: 1000 !important;
+  top:50px;
+  right:59px;
+}
+
+.listingColumn {
+  margin-top: 30px;
+}
+.hide {
+  display: none !important;
+}
+.categoriesContainer {
+  height:40px;
+  padding-bottom: 40px;
+  background-color: skyblue !important;
+}
+
+.filterDropDown {
+  float: right;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+
+.sortDropDown {
+  float: right;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.results {
+  margin-top:8px;
+  font-size: 12pt;
+}
+
+.noPaddingOrMargins {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.featured-card {
+  width: 100%; /* Adjust width to your preference */
+}
+
+.featured-card .card-img {
+  height: 300px;
+}
+
+.featured-card .card-body {
+  padding: 10px; /* Adjust padding to your preference */
+}
+
+.listing-card-body {
+  height: 200px;
+}
+
+.addToCart {
+  padding-inline: 10px !important;
+  width: 75% !important;
+}
+
+.addToCart:hover {
+  background-color: rgb(222, 222, 222) !important;
+}
+ 
+.listing-card-title {
+  font-size: 15pt;
+}
+
+.bold {
+  font-weight:bold;
+}
+
+.description {
+  font-size: 10pt;
+}
+
+.price {
+  font-size: 13pt;
+}
+

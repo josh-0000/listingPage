@@ -20,6 +20,7 @@ services:
       - ./backend:/app
     depends_on:
       - database
+    command: sh -c "sleep 10 && npm start"
 
   frontend:
     build: ./frontend
@@ -28,7 +29,5 @@ services:
     volumes:
       - ./frontend:/app
     depends_on:
-      - backend 
-
-
- 
+      - backend
+    command: sh -c "sleep 10 && npm start"

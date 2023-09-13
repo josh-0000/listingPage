@@ -1,23 +1,32 @@
 -- Create Listings Table
 CREATE TABLE Listings (
-  ListingID SERIAL PRIMARY KEY,     -- Primary key, auto-increment
-  ListingName VARCHAR(255) NOT NULL,-- Product name, required
-  Price NUMERIC(10, 2) NOT NULL,    -- Product price, required
-  Color VARCHAR(50) NULL,           -- Product color, optional
-  Brand VARCHAR(100) NOT NULL,      -- Brand name, required
-  Size VARCHAR(50) NOT NULL,        -- Product size, required
-  Sex VARCHAR(50) NOT NULL,         -- Target sex, required
-  Category VARCHAR(100) NOT NULL,   -- Product category, required
-  Description TEXT NOT NULL,        -- Product description, required
-  ShippingAddress VARCHAR(255) NOT NULL, -- Shipping address, required
-  Discount NUMERIC(5, 2) NOT NULL   -- Discount rate, required
+  ListingID SERIAL PRIMARY KEY,         -- Primary key, auto-increment
+  ListingName VARCHAR(255) NOT NULL,    -- Product name, required
+  Price NUMERIC(10, 2) NOT NULL,        -- Product price, required
+  Color VARCHAR(50) NULL,               -- Product color, optional
+  Brand VARCHAR(100) NOT NULL,          -- Brand name, required
+  Size VARCHAR(50) NOT NULL,            -- Product size, required
+  Sex VARCHAR(50) NOT NULL,             -- Target sex, required
+  Category VARCHAR(100) NOT NULL,       -- Product category, required
+  Description TEXT NOT NULL,            -- Product description, required
+  ShippingAddress VARCHAR(255) NOT NULL,-- Shipping address, required
+  Discount NUMERIC(5, 2) NOT NULL,      -- Discount rate, required
+  ImageIDs INT[]                        -- Array of image IDs, optional
+);
+
+CREATE TABLE Images (
+  ImageID SERIAL PRIMARY KEY,        -- Primary key, auto-increment
+  ListingID INT NOT NULL,            -- Foreign key to Listings table
+  ImageData BYTEA NOT NULL,          -- Image data, required
+  FOREIGN KEY (ListingID) REFERENCES Listings(ListingID)
 );
 
 -- Create Users Table
 CREATE TABLE Users (
   UserID SERIAL PRIMARY KEY,        -- Primary key, auto-increment
   Name VARCHAR(255) NOT NULL,       -- User name, required
-  Email VARCHAR(255) NOT NULL UNIQUE-- User email, required and unique
+  Email VARCHAR(255) NOT NULL UNIQUE,-- User email, required and unique
+  Password VARCHAR(255) NOT NULL    -- User password, required
 );
 
 -- Create Addresses Table
