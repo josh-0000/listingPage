@@ -6,18 +6,14 @@ import ListingContainer from "./Components/listingContainer";
 import Footer from "./Components/footer";
 import ListingPageSwitcher from "./Components/listingPageSwitcher";
 import { ListingContextProvider } from "./Context/listingContext";
-
+import LoginPage from "./Components/loginPage";
+import AccountCreationPage from "./Components/accountCreationPage";
 function App() {
   return (
     <div className="container-fluid">
       <ListingContextProvider>
         <Navbar />
-        <Categories />
-        <div className="row listingsContainer bg-light">
-          <ListingContainer />
-        </div>
-        <ListingPageSwitcher />
-        <Footer />
+        <AccountCreationPage />
       </ListingContextProvider>
     </div>
   );
