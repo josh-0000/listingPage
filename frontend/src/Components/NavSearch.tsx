@@ -58,7 +58,7 @@ function Search() {
   return (
     <div className="d-flex w-100" ref={searchContainerRef}>
       <form
-        className="d-flex w-75 align-items-center custom-search"
+        className="d-flex w-50 align-items-center custom-search"
         role="search"
         onSubmit={(e) => e.preventDefault()}
       >

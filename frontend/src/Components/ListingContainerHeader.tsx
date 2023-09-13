@@ -5,7 +5,7 @@ import Results from "./LCHResults";
 
 function ListingContainerHeader(): JSX.Element {
   return (
-    <div className="row ListingContainerHeader noPaddingOrMargins bg-light">
+    <div className="row ListingContainerHeader noPaddingOrMargins bg-white border">
       <div className="col d-flex flex-column">
         <Results />
       </div>

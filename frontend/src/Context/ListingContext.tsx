@@ -14,7 +14,7 @@ const defaultContextValues = {
     console.error("setCurrentPage function not yet implemented");
   },
   setNumPages: (_value: number) => {
-    console.error("setNumPages function not yet implemented");
+    console.error("setNum Pages function not yet implemented");
   },
   setNumResults: (_value: number) => {
     console.error("setNumResults function not yet implemented");

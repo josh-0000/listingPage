@@ -1,30 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Styles/App.css";
-import HeaderCategories from "./Components/HeaderCategories";
 import Navbar from "./Components/Navbar";
-import ListingContainer from "./Components/ListingContainer";
 import Footer from "./Components/Footer";
-import ListingPageSwitcher from "./Components/ListingPageSwitcher";
 import { ListingContextProvider } from "./Context/ListingContext";
-import ListingContainerHeader from "./Components/ListingContainerHeader";
-import FeaturedCard from "./Components/FeaturedCard";
-import ListingContainerFilters from "./Components/LIstingContainerFilters";
-import { AppContextProvider } from "./Context/AppContext";
+import { UserContextProvider } from "./Context/UserContext";
+import MainPage from "./Pages/MainPage";
+import { ViewContext } from "./Context/ViewContext";
+import LoginPage from "./Pages/LoginPage";
+import AccountCreationPage from "./Pages/AccountCreationPage";
 
 function App() {
+  const { currentPage } = useContext(ViewContext);
+
+  let content;
+  switch (currentPage) {
+    case "HOME":
+      content = <MainPage />;
+      break;
+    case "LOGIN":
+      content = <LoginPage />;
+      break;
+    case "ACCOUNT CREATION":
+      content = <AccountCreationPage />;
+      break;
+  }
+
   return (
     <div className="container-fluid bg-light">
       <ListingContextProvider>
-        <AppContextProvider>
+        <UserContextProvider>
           <Navbar />
-          <HeaderCategories />
-          <div className="row listingsContainer bg-light p-10 m-2">
-            <FeaturedCard />
-            <ListingContainerHeader />
-            <ListingContainer />
-          </div>
+          {content}
           <Footer />
-        </AppContextProvider>
+        </UserContextProvider>
       </ListingContextProvider>
     </div>
   );

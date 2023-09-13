@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ViewContext } from "src/Context/ViewContext";
 
 function AccountCreationPage(): JSX.Element {
+  const { changePage } = useContext(ViewContext);
   return (
     <div className="container text-center account-information-container">
       <div className="row m-4 justify-content-center">
@@ -74,7 +76,14 @@ function AccountCreationPage(): JSX.Element {
           </div>
         </div>
         <div id="passwordHelpBlock" className="form-text">
-          Have an Account? <a href="#">Sign In</a>
+          Have an Account?
+          <button
+            type="button"
+            onClick={() => changePage("LOGIN")}
+            className="link-button m-1"
+          >
+            Sign In
+          </button>
         </div>
         <a href="#" className="row justify-content-center mt-2">
           Help

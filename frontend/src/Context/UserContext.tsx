@@ -15,9 +15,9 @@ const defaultContextValues = {
   },
 };
 
-export const AppContext = createContext(defaultContextValues);
+export const UserContext = createContext(defaultContextValues);
 
-export function AppContextProvider({ children }: any) {
+export function UserContextProvider({ children }: any) {
   const [cartList, setCartList] = useState([] as ListingInterface[]);
   const [cartSize, setCartSize] = useState(0);
 
@@ -36,6 +36,6 @@ export function AppContextProvider({ children }: any) {
   };
 
   return (
-    <AppContext.Provider value={contextData}>{children}</AppContext.Provider>
+    <UserContext.Provider value={contextData}>{children}</UserContext.Provider>
   );
 }

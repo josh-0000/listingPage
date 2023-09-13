@@ -66,9 +66,9 @@ function ListingContainer(): JSX.Element {
   return (
     <div className="col listingPageCol m-2 mb-5">
       <ListingContainerFilters />
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4 listingRow noPaddingOrMargins">
+      <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 listingRow noPaddingOrMargins">
         {currentProducts.map((product, index) => (
-          <div key={index} className="col px-1 mt-2">
+          <div key={index} className="col p-1 mt-1">
             <Listing product={product} />
           </div>
         ))}
