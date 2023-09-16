@@ -1,6 +1,8 @@
 const express = require('express');
-const { client } = require('./connection.js');
-const cors = require('cors'); // Import the cors middleware
+const { Client } = require('pg'); // Import Client from 'pg' for PostgreSQL
+const cors = require('cors');
+const dbConfig = require('./dbConfig'); // Assuming you have a separate file for database configuration
+const winston = require('winston');
 
 const app = express();
 
@@ -9,30 +11,52 @@ app.use(express.json());
 // Use the cors middleware to enable CORS
 app.use(cors());
 
+const client = new Client(dbConfig);
+
+// Create a Winston logger
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.colorize(),
+    winston.format.timestamp(),
+    winston.format.printf(({ timestamp, level, message }) => {
+      return `${timestamp} [${level}] - ${message}`;
+    })
+  ),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+  ],
+});
+
+client.connect() // Connect to the database
+  .then(() => {
+    logger.info('Connected to PostgreSQL database');
+  })
+  .catch((err) => {
+    logger.error('Database connection error:', err);
+  });
+
 app.get('/', (req, res) => {
   res.send('Connected to database');
 });
 
 app.get('/listings', async (req, res) => {
-  console.log("Received request for /listings");
+  logger.info('Received request for /listings');
   try {
     const result = await client.query('SELECT * FROM listings');
     res.json(result.rows);
   } catch (err) {
-    console.error("Database query failed:", err);
+    logger.error('Database query failed:', err);
     res.status(500).json({ error: err.message });
   }
 });
 
 app.post('/login', async (req, res) => {
+  logger.info('Received request for /login');
   const { email, password } = req.body; // Assuming JSON request body with "email" and "password"
 
-  // Create a PostgreSQL client
-  const client = new Client(dbConfig);
-
   try {
-    await client.connect(); // Connect to the database
-
     // Query to select user based on email and password
     const query = {
       text: 'SELECT * FROM users WHERE email = $1 AND password = $2',
@@ -49,14 +73,31 @@ app.post('/login', async (req, res) => {
       res.status(401).json({ message: 'Invalid credentials' });
     }
   } catch (error) {
-    console.error('Database query failed:', error);
+    logger.error('Database query failed:', error);
     res.status(500).json({ error: 'Internal server error' });
-  } finally {
-    // Close the database connection
-    await client.end();
   }
 });
 
-app.listen(3001, () => {
-  console.log("Server running on http://localhost:3001/");
+app.post('/register', async (req, res) => {
+  logger.info('Received request for /register');
+  const { email, username, password } = req.body;
+
+  try {
+    // Insert user registration data into the database
+    const insertQuery = `
+      INSERT INTO users (email, username, password)
+      VALUES ($1, $2, $3)
+    `;
+    await client.query(insertQuery, [email, username, password]);
+    res.status(201).json({ message: 'Account created successfully' });
+    logger.info('Success');
+  } catch (error) {
+    logger.error('Error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+  logger.info(`Server running on http://localhost:${port}/`);
 });

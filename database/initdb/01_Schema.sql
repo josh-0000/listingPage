@@ -24,8 +24,8 @@ CREATE TABLE Images (
 -- Create Users Table
 CREATE TABLE Users (
   UserID SERIAL PRIMARY KEY,        -- Primary key, auto-increment
-  Name VARCHAR(255) NOT NULL,       -- User name, required
-  Email VARCHAR(255) NOT NULL UNIQUE,-- User email, required and unique
+  Username VARCHAR(255) NOT NULL,       -- User name, required
+  Email VARCHAR(255) NOT NULL UNIQUE, -- User email, required and unique
   Password VARCHAR(255) NOT NULL    -- User password, required
 );
 

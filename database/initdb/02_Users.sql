@@ -1,5 +1,5 @@
 -- Insert Users
-INSERT INTO Users (Name, Email, Password)
+INSERT INTO Users (Username, Email, Password)
 VALUES 
 ('Josh', 'josh@example.com', 'josh'),
 ('Justin', 'justin@example.com','justin')
