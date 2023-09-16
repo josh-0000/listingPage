@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ListingContext } from "src/Context/ListingContext";
+import { Row, Col, Button } from "react-bootstrap";
 
 function ListingContainerFilters(): JSX.Element {
   const { selectedFilters, toggleFilter } = useContext(ListingContext);
@@ -7,21 +8,23 @@ function ListingContainerFilters(): JSX.Element {
   if (selectedFilters.length > 0) {
     element = <p className="d-inline-block me-1 bold">Filters:</p>;
   }
+
   return (
-    <div className="row mb-3 mt-3">
-      <div className="col">
+    <Row className="mb-3 mt-3">
+      <Col>
         {element}
         {selectedFilters.map((filter, index) => (
-          <button
+          <Button
             key={index}
-            className="btn btn-secondary m-2 d-inline-block me-1"
+            variant="secondary"
+            className="m-2 d-inline-block me-1"
             onClick={() => toggleFilter(filter)}
           >
             {filter} x
-          </button>
+          </Button>
         ))}
-      </div>
-    </div>
+      </Col>
+    </Row>
   );
 }
 

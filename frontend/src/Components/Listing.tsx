@@ -1,20 +1,24 @@
 import React from "react";
 import logo from "../Assets/logo192.png";
+import { Card } from "react-bootstrap";
 import { ListingInterface } from "../Interfaces/Interfaces";
 import AddToCart from "./AddToCart";
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-function Listing(props: { product: ListingInterface }) {
-  const { product } = props;
+
+interface ListingProps {
+  product: ListingInterface;
+}
+
+function Listing({ product }: ListingProps): JSX.Element {
   return (
-    <div className="card text-center flex-column border m-0 listing">
-      <img className="card-img-top" alt="alt" src={logo} />
-      <div className="card-body d-flex flex-column listing-card-body">
-        <h5 className="card-title bold">{product.listingname}</h5>
-        <p className="card-text">{product.description}</p>
-        <p className="card-text bold">${product.price}</p>
+    <Card className="text-center flex-column border m-0 listing">
+      <Card.Img variant="top" src={logo} alt="alt" />
+      <Card.Body className="d-flex flex-column listing-card-body">
+        <Card.Title className="bold">{product.listingname}</Card.Title>
+        <Card.Text>{product.description}</Card.Text>
+        <Card.Text className="bold">${product.price}</Card.Text>
         <AddToCart listing={product} />
-      </div>
-    </div>
+      </Card.Body>
+    </Card>
   );
 }
 

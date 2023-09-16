@@ -1,7 +1,8 @@
 import React from "react";
+import { Row } from "react-bootstrap";
 
 function Footer(): JSX.Element {
-  return <div className="row footer bg-dark"></div>;
+  return <Row className="mt-auto footer bg-dark" />;
 }
 
 export default Footer;

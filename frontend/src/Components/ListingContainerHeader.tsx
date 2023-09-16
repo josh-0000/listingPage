@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
+import { Row, Col } from "react-bootstrap";
 import Sort from "./SortDropdown";
 import Filter from "./FilterDropDown";
 import Results from "./LCHResults";
 
 function ListingContainerHeader(): JSX.Element {
   return (
-    <div className="row ListingContainerHeader noPaddingOrMargins bg-white border">
-      <div className="col d-flex flex-column">
+    <Row className="ListingContainerHeader border-bottom m-0">
+      <Col className="d-flex flex-column">
         <Results />
-      </div>
-      <div className="col d-flex flex-column">
+      </Col>
+      <Col className="d-flex flex-column">
         <div className="mt-auto">
           <Sort />
           <Filter />
         </div>
-      </div>
-    </div>
+      </Col>
+    </Row>
   );
 }
 

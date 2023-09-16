@@ -8,6 +8,8 @@ import MainPage from "./Pages/MainPage";
 import { ViewContext } from "./Context/ViewContext";
 import LoginPage from "./Pages/LoginPage";
 import AccountCreationPage from "./Pages/AccountCreationPage";
+import CartPage from "./Pages/CartPage";
+import { Container } from "react-bootstrap";
 
 function App() {
   const { currentPage } = useContext(ViewContext);
@@ -23,10 +25,13 @@ function App() {
     case "ACCOUNT CREATION":
       content = <AccountCreationPage />;
       break;
+    case "CART":
+      content = <CartPage />;
+      break;
   }
 
   return (
-    <div className="container-fluid bg-light">
+    <Container fluid className="v-100 bg-light">
       <ListingContextProvider>
         <UserContextProvider>
           <Navbar />
@@ -34,7 +39,7 @@ function App() {
           <Footer />
         </UserContextProvider>
       </ListingContextProvider>
-    </div>
+    </Container>
   );
 }
 

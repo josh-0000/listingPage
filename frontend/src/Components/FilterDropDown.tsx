@@ -1,34 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { ListingContext } from "src/Context/ListingContext";
+import { Dropdown } from "react-bootstrap";
 
 function Filter(): JSX.Element {
   const { selectedFilters, toggleFilter } = useContext(ListingContext);
-  const allFilters = ["Price", "Rating", "Size", "Color", "Brand"]; // Example filters
+  const allFilters = ["Price", "Rating", "Size", "Color", "Brand"];
   return (
-    <div className="dropdown filterDropDown">
-      <button
-        className="btn btn-primary dropdown-toggle"
-        type="button"
-        id="filterDropdown"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
+    <Dropdown className="filterDropDown">
+      <Dropdown.Toggle variant="primary" id="filterDropdown">
         Filter
-      </button>
-      <ul className="dropdown-menu" aria-labelledby="filterDropdown">
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
         {allFilters.map((filter) => (
-          <li key={filter}>
-            <button
-              className={`dropdown-item
-              ${selectedFilters.includes(filter) ? "active" : ""}`}
-              onClick={() => toggleFilter(filter)}
-            >
-              {filter}
-            </button>
-          </li>
+          <Dropdown.Item
+            key={filter}
+            onClick={() => toggleFilter(filter)}
+            active={selectedFilters.includes(filter)}
+          >
+            {filter}
+          </Dropdown.Item>
         ))}
-      </ul>
-    </div>
+      </Dropdown.Menu>
+    </Dropdown>
   );
 }
 

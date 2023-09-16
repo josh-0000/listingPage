@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Row, Button } from "react-bootstrap";
 import { ListingContext } from "src/Context/ListingContext";
 
 function Categories(): JSX.Element {
@@ -23,18 +24,18 @@ function Categories(): JSX.Element {
   }
 
   return (
-    <div className="row categoriesContainer bg-primary">
+    <Row className="categoriesContainer bg-primary no-gutters">
       {categories.map((category) => (
-        <button
+        <Button
           key={category}
-          type="button"
-          className="btn btn-primary col-1 category"
+          variant="primary"
+          className="category col-1"
           onClick={() => sortByCategory(category)}
         >
           {category}
-        </button>
+        </Button>
       ))}
-    </div>
+    </Row>
   );
 }
 

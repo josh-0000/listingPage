@@ -1,19 +1,19 @@
-import React, { useContext, useState } from "react";
-import { ListingContext } from "src/Context/ListingContext";
+import React from "react";
+import { Row, Col, Card } from "react-bootstrap";
 
 function Featured(): JSX.Element {
   return (
-    <div className="row noPaddingOrMargins featured-row mb-5">
-      <div className="col">
-        <div className="card text-bg-dark featured-card">
-          <img className="card-img" />
-          <div className="card-img-overlay">
-            <h5 className="card-title">Featured</h5>
-            <p className="card-text">Description</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Row className="noPaddingOrMargins featured-row mb-5">
+      <Col>
+        <Card className="text-bg-dark featured-card">
+          <Card.Img variant="top" className="card-img" />
+          <Card.ImgOverlay>
+            <Card.Title>Featured</Card.Title>
+            <Card.Text>Description</Card.Text>
+          </Card.ImgOverlay>
+        </Card>
+      </Col>
+    </Row>
   );
 }
 

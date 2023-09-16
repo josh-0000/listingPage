@@ -1,5 +1,5 @@
-// LCHCategory.tsx
 import React, { useContext } from "react";
+import { Badge } from "react-bootstrap";
 import { ListingContext } from "src/Context/ListingContext";
 
 function LCHCategory(): JSX.Element {
@@ -8,9 +8,9 @@ function LCHCategory(): JSX.Element {
   return (
     <>
       {categoryList.map((category, index) => (
-        <span key={index} className="d-inline-block me-1">
+        <Badge key={index} className="d-inline-block me-1">
           {category}
-        </span>
+        </Badge>
       ))}
     </>
   );

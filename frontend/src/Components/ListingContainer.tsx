@@ -3,6 +3,7 @@ import { ListingContext } from "../Context/ListingContext";
 import Listing from "./Listing";
 import ListingContainerFilters from "./LIstingContainerFilters";
 import ListingPageSwitcher from "./ListingPageSwitcher";
+import { Col, Row, Container } from "react-bootstrap";
 
 function ListingContainer(): JSX.Element {
   const {
@@ -64,17 +65,25 @@ function ListingContainer(): JSX.Element {
   const currentProducts = filteredListings.slice(startIndex, endIndex);
 
   return (
-    <div className="col listingPageCol m-2 mb-5">
+    <Container as={Col} className="listingPageCol m-2 mb-5">
       <ListingContainerFilters />
-      <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 listingRow noPaddingOrMargins">
+      <Row className="g-4 listingRow noPaddingOrMargins">
         {currentProducts.map((product, index) => (
-          <div key={index} className="col p-1 mt-1">
+          <Col
+            key={index}
+            xs={12}
+            sm={12}
+            md={6}
+            lg={4}
+            xl={3}
+            className="p-1 mt-1"
+          >
             <Listing product={product} />
-          </div>
+          </Col>
         ))}
-      </div>
+      </Row>
       <ListingPageSwitcher />
-    </div>
+    </Container>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
+import { Form, InputGroup, Button, ListGroup } from "react-bootstrap";
 import { ListingContext } from "src/Context/ListingContext";
 
 function Search() {
@@ -6,7 +7,6 @@ function Search() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
-  // Type the ref for the search container
   const searchContainerRef = useRef<HTMLDivElement | null>(null);
 
   const filteredItems = allListings
@@ -37,7 +37,6 @@ function Search() {
     setIsFocused(false);
   };
 
-  // Click listener to detect outside clicks
   const handleClickOutside = (event: globalThis.MouseEvent) => {
     if (
       searchContainerRef.current &&
@@ -47,7 +46,6 @@ function Search() {
     }
   };
 
-  // Attach and clean up outside click listener
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -57,50 +55,49 @@ function Search() {
 
   return (
     <div className="d-flex w-100" ref={searchContainerRef}>
-      <form
+      <Form
         className="d-flex w-50 align-items-center custom-search"
         role="search"
         onSubmit={(e) => e.preventDefault()}
       >
-        <input
-          className="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-        />
-
-        {isFocused && (
-          <div className="searchList">
-            <div className="list-group">
-              {filteredItems.map((item) => (
-                <button
-                  type="button"
-                  className="list-group-item list-group-item-action"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    sort(item.listingname);
-                    setIsFocused(false);
-                  }}
-                  key={item.listingid}
-                >
-                  {item.listingname}
-                </button>
-              ))}
+        <InputGroup>
+          <Form.Control
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+          />
+          {isFocused && (
+            <div className="searchList">
+              <ListGroup as="div">
+                {filteredItems.map((item) => (
+                  <ListGroup.Item
+                    as="button"
+                    action
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      sort(item.listingname);
+                      setIsFocused(false);
+                    }}
+                    key={item.listingid}
+                  >
+                    {item.listingname}
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
             </div>
-          </div>
-        )}
-
-        <button
-          className="btn btn-outline-success"
-          type="submit"
-          onClick={printResults}
-        >
-          Search
-        </button>
-      </form>
+          )}
+          <Button
+            variant="outline-success"
+            type="submit"
+            onClick={printResults}
+          >
+            Search
+          </Button>
+        </InputGroup>
+      </Form>
     </div>
   );
 }

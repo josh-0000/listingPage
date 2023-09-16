@@ -7,7 +7,7 @@ function Results(): JSX.Element {
   return (
     <div className="mt-auto">
       <p className="results bold">
-        {currentPage}-{numPages} of {numResults} results for " <LCHCategory />"
+        {currentPage}-{numPages} of {numResults} results for <LCHCategory />
       </p>
     </div>
   );

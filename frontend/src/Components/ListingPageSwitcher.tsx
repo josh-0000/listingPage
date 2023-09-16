@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ListingContext } from "../Context/ListingContext";
+import { Button, ButtonGroup, Col, Row } from "react-bootstrap";
 
 function ListingPageSwitcher(): JSX.Element {
   // use state for the currernt page
@@ -105,61 +106,42 @@ function ListingPageSwitcher(): JSX.Element {
   }
 
   return (
-    <div className="row bg-light p-0 m-5">
-      <div className="col bg-light d-flex justify-content-center align-items-center">
-        <div className="btn-group" role="group" aria-label="Basic example">
-          <button
-            type="button"
-            className="btn btn-outline-dark"
-            onClick={firstPage}
-          >
+    <Row className="bg-light p-0 m-5">
+      <Col className="d-flex justify-content-center align-items-center">
+        <ButtonGroup>
+          <Button variant="outline-dark" onClick={firstPage}>
             First
-          </button>
-          <button
-            type="button"
-            className="btn btn-outline-dark"
-            onClick={previousPage}
-          >
+          </Button>
+          <Button variant="outline-dark" onClick={previousPage}>
             Prev
-          </button>
-          <button
-            type="button"
-            className={buttonOneCss}
+          </Button>
+          <Button
+            variant={currentPage === buttonOne ? "dark" : "outline-dark"}
             onClick={currentPageOptionOne}
           >
             {buttonOne <= numPages ? buttonOne : "."}
-          </button>
-          <button
-            type="button"
-            className={buttonTwoCss}
+          </Button>
+          <Button
+            variant={currentPage === buttonTwo ? "dark" : "outline-dark"}
             onClick={currentPageOptionTwo}
           >
             {buttonTwo <= numPages ? buttonTwo : "."}
-          </button>
-          <button
-            type="button"
-            className={buttonThreeCss}
+          </Button>
+          <Button
+            variant={currentPage === buttonThree ? "dark" : "outline-dark"}
             onClick={currentPageOptionThree}
           >
             {buttonThree <= numPages ? buttonThree : "."}
-          </button>
-          <button
-            type="button"
-            className="btn btn-outline-dark"
-            onClick={nextPage}
-          >
+          </Button>
+          <Button variant="outline-dark" onClick={nextPage}>
             Next
-          </button>
-          <button
-            type="button"
-            className="btn btn-outline-dark"
-            onClick={lastPage}
-          >
+          </Button>
+          <Button variant="outline-dark" onClick={lastPage}>
             Last
-          </button>
-        </div>
-      </div>
-    </div>
+          </Button>
+        </ButtonGroup>
+      </Col>
+    </Row>
   );
 }
 
