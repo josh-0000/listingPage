@@ -5,3 +5,6 @@
 2023-09-15T03:40:09.451Z [[31merror[39m] - Error: duplicate key value violates unique constraint "users_email_key"
 2023-09-15T03:41:04.437Z [[31merror[39m] - Error: duplicate key value violates unique constraint "users_email_key"
 2023-09-15T03:41:23.516Z [[31merror[39m] - Error: duplicate key value violates unique constraint "users_email_key"
+2023-09-18T23:45:13.420Z [[31merror[39m] - Error: duplicate key value violates unique constraint "users_email_key"
+2023-09-18T23:45:13.617Z [[31merror[39m] - Error: duplicate key value violates unique constraint "users_email_key"
+2023-09-18T23:45:19.082Z [[31merror[39m] - Error: duplicate key value violates unique constraint "users_email_key"

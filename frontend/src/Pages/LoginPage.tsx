@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { ViewContext } from "src/Context/ViewContext";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { UserContext } from "src/Context/UserContext";
 
 function LoginPage(): JSX.Element {
   const { changePage } = useContext(ViewContext);
-
+  const { setUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invalidLogin, setInvalidLogin] = useState(false);
@@ -36,8 +37,9 @@ function LoginPage(): JSX.Element {
         if (response.status === 200 && result.message === "Login successful") {
           // Successfully logged in
           // Here you can handle successful login, maybe set some user state or redirect to a dashboard, etc.
-          console.log("Successfully logged in:", result.user);
+          setUser(result.user);
           setInvalidLogin(false);
+          changePage("HOME");
         } else {
           setInvalidLogin(true);
         }
