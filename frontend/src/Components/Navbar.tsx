@@ -14,9 +14,8 @@ import { UserContext } from "src/Context/UserContext";
 import { ViewContext } from "src/Context/ViewContext";
 
 function Navbar(): JSX.Element {
-  const { cartSize } = useContext(UserContext);
+  const { cartSize, isLoggedIn } = useContext(UserContext);
   const { changePage } = useContext(ViewContext);
-
   return (
     <Row>
       <BootstrapNavbar
@@ -45,7 +44,7 @@ function Navbar(): JSX.Element {
                 <Button
                   variant="link"
                   className="nav-link active text-white white-icon w-100"
-                  onClick={() => changePage("LOGIN")}
+                  onClick={() => changePage(isLoggedIn ? "PROFILE" : "LOGIN")}
                 >
                   <img src={profileImg} className="profile" alt="Profile" />
                 </Button>

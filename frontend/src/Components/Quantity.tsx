@@ -3,16 +3,7 @@ import { ListingInterface } from "src/Interfaces/Interfaces";
 import { UserContext } from "src/Context/UserContext";
 import Button from "react-bootstrap/Button";
 
-function AddToCart(props: { listing: ListingInterface }) {
-  const { addListingToCart } = useContext(UserContext);
-  const [text, setText] = useState("Add to Cart");
-  const changeText = () => {
-    setText("Added");
-    setTimeout(() => {
-      setText("Add to cart");
-    }, 1000);
-  };
-
+function Quantity(props: { listing: ListingInterface }) {
   const { listing } = props;
   return (
     <div className="mt-auto">
@@ -20,15 +11,11 @@ function AddToCart(props: { listing: ListingInterface }) {
       <Button
         variant="outline-primary"
         className="rounded-pill p-2"
-        onClick={() => {
-          addListingToCart(listing);
-          changeText();
-        }}
       >
-        {text}
+        0
       </Button>
     </div>
   );
 }
 
-export default AddToCart;
+export default Quantity;

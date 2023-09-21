@@ -99,7 +99,14 @@ img.home {
   top: 40px;
 
 }
-
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profilePageRow {
+  min-height: 400px;
+}
 .cartSize {
   position: absolute;
   z-index: 1000 !important;
