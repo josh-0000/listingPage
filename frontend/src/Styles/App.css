@@ -217,3 +217,14 @@ img.home {
   border-width: 2px !important;
 }
 
+.featured-card-title {
+  z-index: 100;
+  left: 10%;
+  top: 10%;
+  color: rgb(177, 177, 177);
+  font-weight: 450;
+  font-size: 28px;
+  position: absolute; 
+}
+
+
