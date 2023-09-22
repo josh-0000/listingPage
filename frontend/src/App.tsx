@@ -10,6 +10,7 @@ import LoginPage from "./Pages/LoginPage";
 import AccountCreationPage from "./Pages/AccountCreationPage";
 import CartPage from "./Pages/CartPage";
 import { Container } from "react-bootstrap";
+import ProfilePage from "./Pages/ProfilePage";
 
 function App() {
   const { currentPage } = useContext(ViewContext);
@@ -28,6 +29,8 @@ function App() {
     case "CART":
       content = <CartPage />;
       break;
+    case "PROFILE":
+      content = <ProfilePage />;
   }
 
   return (

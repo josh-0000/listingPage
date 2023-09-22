@@ -3,15 +3,8 @@ import { ListingInterface } from "src/Interfaces/Interfaces";
 import { UserContext } from "src/Context/UserContext";
 import Button from "react-bootstrap/Button";
 
-function AddToCart(props: { listing: ListingInterface }) {
-  const { addListingToCart } = useContext(UserContext);
-  const [text, setText] = useState("Add to Cart");
-  const changeText = () => {
-    setText("Added");
-    setTimeout(() => {
-      setText("Add to cart");
-    }, 1000);
-  };
+function RemoveFromCart(props: { listing: ListingInterface }) {
+  const { removeListingFromCart } = useContext(UserContext);
 
   const { listing } = props;
   return (
@@ -21,14 +14,13 @@ function AddToCart(props: { listing: ListingInterface }) {
         variant="outline-primary"
         className="rounded-pill p-2"
         onClick={() => {
-          addListingToCart(listing);
-          changeText();
+          removeListingFromCart(listing);
         }}
       >
-        {text}
+        Remove
       </Button>
     </div>
   );
 }
 
-export default AddToCart;
+export default RemoveFromCart;

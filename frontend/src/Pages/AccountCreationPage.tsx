@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { ViewContext } from "src/Context/ViewContext";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { UserContext } from "src/Context/UserContext";
 
 function AccountCreationPage(): JSX.Element {
   const { changePage } = useContext(ViewContext);
+  const { setUser } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -48,7 +50,8 @@ function AccountCreationPage(): JSX.Element {
 
         if (response.ok) {
           const data = await response.json();
-          console.log("Registration was successful:", data);
+          setUser(data.user);
+          changePage("HOME");
         } else {
           const data = await response.json();
           console.error("Error registering:", data);

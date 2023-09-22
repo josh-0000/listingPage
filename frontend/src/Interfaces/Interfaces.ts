@@ -22,7 +22,7 @@ export interface ImageInterface {
 
 export interface UserInterface {
   userid: number;
-  name: string;
+  username: string;
   email: string;
   password: string;
 }
