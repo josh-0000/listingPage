@@ -29,11 +29,11 @@ function ProfilePage(): JSX.Element {
                 <span className="bold m-3">Name </span> {user.username}
               </p>
               <p>
-                <span className="bold m-3">Email </span> {user.username}
+                <span className="bold m-3">Email </span> {user.email}
               </p>
               <Button
                 variant="primary"
-                className="mt-3"
+                className="m-3"
                 onClick={() => logout()}
               >
                 Logout

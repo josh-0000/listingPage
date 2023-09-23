@@ -36,8 +36,8 @@ function CartPage(): JSX.Element {
   });
   return (
     <Container>
-      <Row>
-        <Col xs={12} sm={12} md={12} lg={7} className="p-5">
+      <Row className="mb-5">
+        <Col xs={12} sm={12} md={12} lg={7} className="p-4 mt-5">
           <Row className="bg-dark rounded mb-3">
             <h1 className="text-light">Cart</h1>
           </Row>
@@ -47,13 +47,13 @@ function CartPage(): JSX.Element {
             </Row>
           ))}
         </Col>
-        <Col xs={12} sm={12} md={12} lg={5} className="p-5">
+        <Col xs={12} sm={12} md={12} lg={5} className="p-4 mt-5">
           <Row className="bg-dark rounded">
             <h1 className="text-light">Checkout</h1>
           </Row>
           <Row>
             <Col className="m-0 p-0">
-              <Card className="d-flex mt-3 listing p-5">
+              <Card className="d-flex mt-3 listing p-4">
                 <Card.Text className="flex-space-between">
                   Subtotal:
                   <span>{subtotalFormatted}</span>
