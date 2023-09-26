@@ -24,7 +24,6 @@ export interface UserInterface {
   userid: number;
   username: string;
   email: string;
-  password: string;
 }
 
 export interface AddressInterface {

@@ -1,19 +1,17 @@
 const express = require('express');
-const { Client } = require('pg'); // Import Client from 'pg' for PostgreSQL
+const { Client } = require('pg');
 const cors = require('cors');
-const dbConfig = require('./dbConfig'); // Assuming you have a separate file for database configuration
+const dbConfig = require('./dbConfig');
 const winston = require('winston');
 
 const app = express();
 
 app.use(express.json());
 
-// Use the cors middleware to enable CORS
 app.use(cors());
 
 const client = new Client(dbConfig);
 
-// Create a Winston logger
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
@@ -29,7 +27,7 @@ const logger = winston.createLogger({
   ],
 });
 
-client.connect() // Connect to the database
+client.connect()
   .then(() => {
     logger.info('Connected to PostgreSQL database');
   })
@@ -54,10 +52,9 @@ app.get('/listings', async (req, res) => {
 
 app.post('/login', async (req, res) => {
   logger.info('Received request for /login');
-  const { email, password } = req.body; // Assuming JSON request body with "email" and "password"
+  const { email, password } = req.body;
 
   try {
-    // Query to select user based on email and password
     const query = {
       text: 'SELECT * FROM users WHERE email = $1 AND password = $2',
       values: [email, password],
@@ -66,10 +63,15 @@ app.post('/login', async (req, res) => {
     const result = await client.query(query);
 
     if (result.rows.length === 1) {
-      // User with matching credentials found
-      res.json({ message: 'Login successful', user: result.rows[0] });
+      res.json({ 
+        message: 'Login successful', 
+        user: {
+          id: result.rows[0].userid,
+          email: result.rows[0].email,
+          username: result.rows[0].username,
+        }
+      });
     } else {
-      // No matching user found
       res.status(401).json({ message: 'Invalid credentials' });
     }
   } catch (error) {
@@ -83,14 +85,20 @@ app.post('/register', async (req, res) => {
   const { email, username, password } = req.body;
 
   try {
-    // Insert user registration data into the database
     const insertQuery = `
       INSERT INTO users (email, username, password)
       VALUES ($1, $2, $3)
+      RETURNING userid, email, username
     `;
-    await client.query(insertQuery, [email, username, password]);
-    res.status(201).json({ message: 'Account created successfully' });
-    logger.info('Success');
+    const result = await client.query(insertQuery, [email, username, password]);
+
+    const newUser = result.rows[0];
+    res.status(201).json({ 
+      message: 'Account created successfully',
+      user: newUser
+     });
+    
+    logger.info('Success', newUser);
   } catch (error) {
     logger.error('Error:', error);
     res.status(500).json({ message: 'Internal server error' });
