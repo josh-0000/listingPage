@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../Assets/logo192.png";
+import logo from "../Assets/shirts.jpg";
 import { Card } from "react-bootstrap";
 import { ListingInterface } from "../Interfaces/Interfaces";
 import AddToCart from "./AddToCart";
@@ -13,7 +13,10 @@ function Listing({ product }: ListingProps): JSX.Element {
     <Card className="text-center flex-column m-0 listing">
       <Card.Img variant="top" src={logo} alt="alt" />
       <Card.Body className="d-flex flex-column listing-card-body">
-        <Card.Title className="bold">{product.listingname}</Card.Title>
+        <Card.Title className="bold">
+          {product.listingname + " "}
+          {product.listingid}
+        </Card.Title>
         <Card.Text>{product.description}</Card.Text>
         <Card.Text className="bold">${product.price}</Card.Text>
         <AddToCart listing={product} />

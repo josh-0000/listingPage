@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import photo1 from "../Assets/slide1.svg";
-import photo2 from "../Assets/slide2.svg";
-import photo3 from "../Assets/slide3.svg";
+import photo1 from "../Assets/PremiumBrands.svg";
+import photo2 from "../Assets/nike.svg";
+import photo3 from "../Assets/adidas.svg";
 import { Container } from "react-bootstrap";
 import "../Styles/App.css";
 
@@ -18,12 +18,11 @@ function FeatureCard(): JSX.Element {
       style={{ maxWidth: "1500px" }}
       className="mb-5 position-relative"
     >
-      <h3 className="position-absolute featured-card-title">Featured</h3>
       <Carousel
         activeIndex={index}
         onSelect={handleSelect}
         controls={false}
-        className="position-relative"
+        className="position-relative featured-card"
       >
         <Carousel.Item>
           <img
@@ -31,9 +30,6 @@ function FeatureCard(): JSX.Element {
             src={photo1}
             alt="First slide"
           />
-          <Carousel.Caption>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
@@ -41,9 +37,6 @@ function FeatureCard(): JSX.Element {
             src={photo2}
             alt="Second slide"
           />
-          <Carousel.Caption>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
@@ -51,9 +44,6 @@ function FeatureCard(): JSX.Element {
             src={photo3}
             alt="Third slide"
           />
-          <Carousel.Caption>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
     </Container>
