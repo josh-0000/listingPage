@@ -10,7 +10,7 @@ function AddToCart(props: { listing: ListingInterface }) {
     setText("Added");
     setTimeout(() => {
       setText("Add to cart");
-    }, 1000);
+    }, 500);
   };
 
   const { listing } = props;
@@ -21,7 +21,7 @@ function AddToCart(props: { listing: ListingInterface }) {
         variant="outline-primary"
         className="rounded-pill p-2"
         onClick={() => {
-          addListingToCart(listing);
+          addListingToCart(listing.listingid);
           changeText();
         }}
       >

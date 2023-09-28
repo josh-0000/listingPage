@@ -161,6 +161,15 @@ img.home {
   margin: 0px !important;
 }
 
+.profileWidgetContainers {
+  width: 50%;
+}
+
+.profilePageImage {
+  width: 100%;
+  height: 300px;
+}
+
 .featured-card {
   width: 100%;
 }

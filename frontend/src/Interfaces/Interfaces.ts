@@ -50,9 +50,8 @@ export interface ReceiptInterface {
 }
 
 export interface CartInterface {
-  cartid: number;
-  userid: number;
   listingid: number;
+  quantity: number;
 }
 
 export interface ReviewInterface {

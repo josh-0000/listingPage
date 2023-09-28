@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../Assets/shirts.jpg";
 import { Card } from "react-bootstrap";
 import { ListingInterface } from "../Interfaces/Interfaces";
 import AddToCart from "./AddToCart";
 import RemoveFromCart from "./RemoveFromCart";
 import QuantityControl from "./QuantityControl";
+import { UserContext } from "src/Context/UserContext";
 
 interface ListingProps {
   product: ListingInterface;
@@ -21,8 +22,8 @@ function CartItem({ product }: ListingProps): JSX.Element {
         </Card.Title>
         <Card.Text className="bold text-center">${product.price}</Card.Text>
         <div className="d-flex justify-content-center mt-4">
-          <QuantityControl />
-          <RemoveFromCart listing={product} />
+          <QuantityControl listingid={product.listingid} />
+          <RemoveFromCart listingid={product.listingid} />
         </div>
       </Card.Body>
     </Card>
