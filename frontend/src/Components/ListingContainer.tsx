@@ -3,6 +3,7 @@ import { ListingContext } from "../Context/ListingContext";
 import Listing from "./Listing";
 import ListingContainerFilters from "./LIstingContainerFilters";
 import ListingPageSwitcher from "./ListingPageSwitcher";
+import NoResultsFound from "./NoResultsFound";
 import { Col, Row, Container } from "react-bootstrap";
 
 function ListingContainer(): JSX.Element {
@@ -81,6 +82,7 @@ function ListingContainer(): JSX.Element {
             <Listing product={product} />
           </Col>
         ))}
+        {currentProducts.length === 0 ? <NoResultsFound /> : null};
       </Row>
       <ListingPageSwitcher />
     </Container>

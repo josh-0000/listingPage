@@ -4,6 +4,8 @@ import { UserContext } from "src/Context/UserContext";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import CartItem from "src/Components/CartItem";
 import RemoveFromCart from "src/Components/RemoveFromCart";
+import NoResultsFound from "src/Components/NoResultsFound";
+import CartEmpty from "src/Components/CartEmpty";
 
 function CartPage(): JSX.Element {
   const { cartList } = useContext(UserContext);
@@ -41,11 +43,15 @@ function CartPage(): JSX.Element {
           <Row className="bg-dark rounded mb-3">
             <h1 className="text-light">Cart</h1>
           </Row>
-          {cartList.map((product, index) => (
-            <Row key={index} className="mb-2">
-              <CartItem product={product} />
-            </Row>
-          ))}
+          {cartList.length == 0 ? (
+            <CartEmpty />
+          ) : (
+            cartList.map((product, index) => (
+              <Row key={index} className="mb-2">
+                <CartItem product={product} />
+              </Row>
+            ))
+          )}
         </Col>
         <Col xs={12} sm={12} md={12} lg={5} className="p-5">
           <Row className="bg-dark rounded">
