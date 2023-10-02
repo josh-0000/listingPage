@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ListingContext } from "src/Context/ListingContext";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button, CloseButton } from "react-bootstrap";
 
 function ListingContainerFilters(): JSX.Element {
   const { selectedFilters, toggleFilter } = useContext(ListingContext);
@@ -20,7 +20,8 @@ function ListingContainerFilters(): JSX.Element {
             className="m-2 d-inline-block me-1"
             onClick={() => toggleFilter(filter)}
           >
-            {filter} x
+            <div className="d-inline-block bold px-1">{filter}</div>
+            <CloseButton />
           </Button>
         ))}
       </Col>

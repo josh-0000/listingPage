@@ -1,5 +1,5 @@
 const dbConfig = {
-  host: "database", // Use service name as hostname
+  host: "database",
   port: 5432,
   user: "jg",
   password: "03asd3wsada",

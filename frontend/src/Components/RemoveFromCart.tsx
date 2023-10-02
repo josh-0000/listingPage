@@ -3,10 +3,10 @@ import { ListingInterface } from "src/Interfaces/Interfaces";
 import { UserContext } from "src/Context/UserContext";
 import Button from "react-bootstrap/Button";
 
-function RemoveFromCart(props: { listing: ListingInterface }) {
+function RemoveFromCart(props: { listingid: number }) {
   const { removeListingFromCart } = useContext(UserContext);
 
-  const { listing } = props;
+  const { listingid } = props;
   return (
     <div className="mt-auto">
       {/* Using React Bootstrap's Button component */}
@@ -14,7 +14,7 @@ function RemoveFromCart(props: { listing: ListingInterface }) {
         variant="outline-primary"
         className="rounded-pill p-2"
         onClick={() => {
-          removeListingFromCart(listing);
+          removeListingFromCart(listingid);
         }}
       >
         Remove

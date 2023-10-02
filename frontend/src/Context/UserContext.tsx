@@ -5,20 +5,27 @@ import React, {
   useContext,
   useMemo,
 } from "react";
-import { ListingInterface, UserInterface } from "src/Interfaces/Interfaces";
+import {
+  CartInterface,
+  ListingInterface,
+  UserInterface,
+} from "src/Interfaces/Interfaces";
 
 const defaultContextValues = {
   user: {} as UserInterface,
   setUser: (_value: UserInterface) => {
     console.error("setUser function not yet implemented");
   },
-  cartList: [] as ListingInterface[],
+  cartList: [] as CartInterface[],
   cartSize: 0,
-  addListingToCart: (_value: ListingInterface) => {
+  addListingToCart: (_value: number) => {
     console.error("toggleFilter function not yet implemented");
   },
   isLoggedIn: false,
-  removeListingFromCart: (_value: ListingInterface) => {
+  removeListingFromCart: (_value: number) => {
+    console.error("toggleFilter function not yet implemented");
+  },
+  removeOneFromCart: (_value: number) => {
     console.error("toggleFilter function not yet implemented");
   },
 };
@@ -28,12 +35,11 @@ export const UserContext = createContext(defaultContextValues);
 export function UserContextProvider({ children }: any) {
   const savedUser = JSON.parse(localStorage.getItem("user") || "{}");
   const savedCartList = JSON.parse(localStorage.getItem("cartList") || "[]");
-  const [cartList, setCartList] = useState(savedCartList as ListingInterface[]);
+  const [cartList, setCartList] = useState(savedCartList as CartInterface[]);
   const [cartSize, setCartSize] = useState(0);
   const [user, setUser] = useState(savedUser as UserInterface);
 
   const isLoggedIn = !!Object.keys(user).length;
-
   useEffect(() => {
     // Persist user data in localStorage
     localStorage.setItem("user", JSON.stringify(user));
@@ -43,14 +49,46 @@ export function UserContextProvider({ children }: any) {
     // Persist cartList data in localStorage
     localStorage.setItem("cartList", JSON.stringify(cartList));
   }, [cartList]);
-  console.log(user);
-  console.log(isLoggedIn);
-  const addListingToCart = (listing: ListingInterface) => {
-    setCartList([...cartList, listing]);
+
+  const addListingToCart = (listingid: number) => {
+    const listing = cartList.find((l) => l.listingid === listingid);
+    if (listing) {
+      const newItem = {
+        listingid: listing.listingid,
+        quantity: listing.quantity + 1,
+      };
+      setCartList([
+        ...cartList.map((l) => (l.listingid === listingid ? newItem : l)),
+      ]);
+    } else {
+      const newItem = {
+        listingid: listingid,
+        quantity: 1,
+      };
+      setCartList([...cartList, newItem]);
+    }
   };
 
-  const removeListingFromCart = (listing: ListingInterface) => {
-    setCartList(cartList.filter((l) => l.listingid !== listing.listingid));
+  const removeOneFromCart = (listingid: number) => {
+    const listing = cartList.find((l) => l.listingid === listingid);
+    if (listing) {
+      if (listing.quantity > 1) {
+        const updatedItem = {
+          listingid: listing.listingid,
+          quantity: listing.quantity - 1,
+        };
+        setCartList([
+          ...cartList.map((l) => (l.listingid === listingid ? updatedItem : l)),
+        ]);
+      } else {
+        const filteredCart = cartList.filter((l) => l.listingid !== listingid);
+        setCartList(filteredCart);
+      }
+    }
+  };
+
+  const removeListingFromCart = (listingid: number) => {
+    setCartList(cartList.filter((l) => l.listingid !== listingid));
   };
 
   useEffect(() => {
@@ -65,6 +103,7 @@ export function UserContextProvider({ children }: any) {
     cartSize,
     addListingToCart,
     removeListingFromCart,
+    removeOneFromCart,
   };
 
   return (

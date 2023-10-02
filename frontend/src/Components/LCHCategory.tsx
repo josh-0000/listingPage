@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Badge } from "react-bootstrap";
+import { Badge, Breadcrumb, BreadcrumbItem } from "react-bootstrap";
 import { ListingContext } from "src/Context/ListingContext";
 
 function LCHCategory(): JSX.Element {
@@ -8,9 +8,9 @@ function LCHCategory(): JSX.Element {
   return (
     <>
       {categoryList.map((category, index) => (
-        <Badge key={index} className="d-inline-block me-1">
-          {category}
-        </Badge>
+        <Breadcrumb key={index} className="d-inline-block me-1">
+          <Breadcrumb.Item>{category}</Breadcrumb.Item>
+        </Breadcrumb>
       ))}
     </>
   );
