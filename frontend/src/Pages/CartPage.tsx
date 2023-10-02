@@ -4,6 +4,8 @@ import { UserContext } from "src/Context/UserContext";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import CartItem from "src/Components/CartItem";
 import RemoveFromCart from "src/Components/RemoveFromCart";
+import NoResultsFound from "src/Components/NoResultsFound";
+import CartEmpty from "src/Components/CartEmpty";
 import { ListingContext } from "src/Context/ListingContext";
 import { ListingInterface } from "src/Interfaces/Interfaces";
 
@@ -46,14 +48,18 @@ function CartPage(): JSX.Element {
     currency: "USD",
   });
   return (
-    <Container>
-      <Row className="mb-5">
+    <Container className="mb-5">
+      <Row className="mb-5 cartContainerRow">
         <Col xs={12} sm={12} md={12} lg={7} className="p-4 mt-5">
-          {cartListings.map((product, index) => (
-            <Row key={index} className="mb-2">
-              <CartItem product={product} />
-            </Row>
-          ))}
+          {cartListings.length == 0 ? (
+            <CartEmpty />
+          ) : (
+            cartListings.map((product, index) => (
+              <Row key={index} className="mb-2">
+                <CartItem product={product} />
+              </Row>
+            ))
+          )}
         </Col>
         <Col xs={12} sm={12} md={12} lg={5} className="p-4 mt-5">
           <Row>

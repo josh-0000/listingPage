@@ -27,6 +27,9 @@ img.profile {
   margin-top: 2px;
 }
 
+.cartContainerRow {
+  min-height: 800px;
+}
 .white-icon {
   filter: brightness(0) invert(1) !important;
 }
@@ -104,7 +107,7 @@ img.home {
   justify-content: space-between;
   align-items: center;
 }
-.profilePageRow {
+.cartPageRow {
   min-height: 400px;
 }
 .cartSize {
@@ -251,5 +254,6 @@ img.home {
   font-size: 28px;
   position: absolute; 
 }
+
 
 
