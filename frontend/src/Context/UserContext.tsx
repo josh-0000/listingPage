@@ -28,18 +28,32 @@ const defaultContextValues = {
   removeOneFromCart: (_value: number) => {
     console.error("toggleFilter function not yet implemented");
   },
+  guestUser: {} as UserInterface,
 };
 
 export const UserContext = createContext(defaultContextValues);
 
 export function UserContextProvider({ children }: any) {
-  const savedUser = JSON.parse(localStorage.getItem("user") || "{}");
-  const savedCartList = JSON.parse(localStorage.getItem("cartList") || "[]");
-  const [cartList, setCartList] = useState(savedCartList as CartInterface[]);
-  const [cartSize, setCartSize] = useState(0);
+  const guestUser = {
+    userid: 0,
+    username: "Guest",
+    email: "",
+    cart: [] as CartInterface[],
+  } as UserInterface;
+
+  let savedUser = JSON.parse(localStorage.getItem("user") || "{}");
+
+  savedUser = savedUser.username !== undefined ? savedUser : guestUser;
+
+  savedUser.cart = savedUser.cart || [];
+
   const [user, setUser] = useState(savedUser as UserInterface);
 
-  const isLoggedIn = !!Object.keys(user).length;
+  const [cartList, setCartList] = useState(user.cart as CartInterface[]);
+  console.log(cartList);
+  console.log(user);
+  const [cartSize, setCartSize] = useState(0);
+  const isLoggedIn = user.username === "Guest" ? false : true;
   useEffect(() => {
     // Persist user data in localStorage
     localStorage.setItem("user", JSON.stringify(user));
@@ -48,6 +62,7 @@ export function UserContextProvider({ children }: any) {
   useEffect(() => {
     // Persist cartList data in localStorage
     localStorage.setItem("cartList", JSON.stringify(cartList));
+    user.cart = cartList;
   }, [cartList]);
 
   const addListingToCart = (listingid: number) => {
@@ -91,12 +106,17 @@ export function UserContextProvider({ children }: any) {
     setCartList(cartList.filter((l) => l.listingid !== listingid));
   };
 
+  const resetCartList = () => {
+    setCartList([]);
+  };
+
   useEffect(() => {
     setCartSize(cartList.length);
   }, [cartList]);
 
   const contextData = {
     user,
+    guestUser,
     isLoggedIn,
     setUser,
     cartList,

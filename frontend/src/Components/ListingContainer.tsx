@@ -65,7 +65,7 @@ function ListingContainer(): JSX.Element {
   const currentProducts = filteredListings.slice(startIndex, endIndex);
 
   return (
-    <Container as={Col} className="listingPageCol m-2 mb-5">
+    <Container as={Col} className="listingPageCol border-top m-2 mb-5">
       <ListingContainerFilters />
       <Row className="g-4 listingRow noPaddingOrMargins">
         {currentProducts.map((product, index) => (

@@ -6,12 +6,12 @@ import Results from "./LCHResults";
 
 function ListingContainerHeader(): JSX.Element {
   return (
-    <Row className="ListingContainerHeader border-bottom m-0">
-      <Col className="d-flex flex-column">
+    <Row className="ListingContainerHeader m-0 rounded">
+      <Col className="d-flex flex-column justify-content-center ListingContainerHeaderCol pt-4">
         <Results />
       </Col>
-      <Col className="d-flex flex-column">
-        <div className="mt-auto">
+      <Col className="d-flex flex-column justify-content-center ListingContainerHeaderCol pt-2">
+        <div>
           <Sort />
           <Filter />
         </div>

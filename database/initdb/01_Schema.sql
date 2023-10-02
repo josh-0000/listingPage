@@ -1,72 +1,78 @@
--- Create Listings Table
 CREATE TABLE Listings (
-  ListingID SERIAL PRIMARY KEY,         -- Primary key, auto-increment
-  ListingName VARCHAR(255) NOT NULL,    -- Product name, required
-  Price NUMERIC(10, 2) NOT NULL,        -- Product price, required
-  Color VARCHAR(50) NULL,               -- Product color, optional
-  Brand VARCHAR(100) NOT NULL,          -- Brand name, required
-  Size VARCHAR(50) NOT NULL,            -- Product size, required
-  Sex VARCHAR(50) NOT NULL,             -- Target sex, required
-  Category VARCHAR(100) NOT NULL,       -- Product category, required
-  Description TEXT NOT NULL,            -- Product description, required
-  ShippingAddress VARCHAR(255) NOT NULL,-- Shipping address, required
-  Discount NUMERIC(5, 2) NOT NULL,      -- Discount rate, required
-  ImageIDs INT[]                        -- Array of image IDs, optional
+  ListingID SERIAL PRIMARY KEY,
+  ListingName VARCHAR(255) NOT NULL,
+  Price NUMERIC(10, 2) NOT NULL,
+  Color VARCHAR(50) NULL,
+  Brand VARCHAR(100) NOT NULL,
+  Size VARCHAR(50) NOT NULL,
+  Sex VARCHAR(50) NOT NULL,
+  Category VARCHAR(100) NOT NULL,
+  Description TEXT NOT NULL,
+  ShippingAddress VARCHAR(255) NOT NULL,
+  Discount NUMERIC(5, 2) NULL,
+  NumAvailable INT NULL
 );
 
-CREATE TABLE Images (
-  ImageID SERIAL PRIMARY KEY,        -- Primary key, auto-increment
-  ListingID INT NOT NULL,            -- Foreign key to Listings table
-  ImageData BYTEA NOT NULL,          -- Image data, required
-  FOREIGN KEY (ListingID) REFERENCES Listings(ListingID)
+CREATE TABLE ListingImages (
+  ImageID SERIAL PRIMARY KEY,
+  ListingID INT NOT NULL REFERENCES Listings(ListingID),
+  ImageData BYTEA NOT NULL
 );
 
--- Create Users Table
 CREATE TABLE Users (
-  UserID SERIAL PRIMARY KEY,        -- Primary key, auto-increment
-  Username VARCHAR(255) NOT NULL,       -- User name, required
-  Email VARCHAR(255) NOT NULL UNIQUE, -- User email, required and unique
-  Password VARCHAR(255) NOT NULL    -- User password, required
+  UserID SERIAL PRIMARY KEY,
+  Username VARCHAR(255) NOT NULL,
+  Email VARCHAR(255) NOT NULL UNIQUE,
+  ImageData BYTEA NULL,
+  Password VARCHAR(255) NOT NULL
 );
 
--- Create Addresses Table
 CREATE TABLE Addresses (
-  AddressID SERIAL PRIMARY KEY,     -- Primary key, auto-increment
-  UserID INT REFERENCES Users(UserID), -- Foreign key to Users table
-  Address VARCHAR(255) NOT NULL     -- User address, required
+  AddressID SERIAL PRIMARY KEY,
+  UserID INT REFERENCES Users(UserID),
+  Address VARCHAR(255) NOT NULL
 );
 
--- Create Cards Table
 CREATE TABLE Cards (
-  CardID SERIAL PRIMARY KEY,        -- Primary key, auto-increment
-  UserID INT REFERENCES Users(UserID), -- Foreign key to Users table
-  Card BYTEA NOT NULL               -- Encrypted card data, required
+  CardID SERIAL PRIMARY KEY,
+  UserID INT REFERENCES Users(UserID),
+  Card BYTEA NOT NULL
 );
 
--- Create Reciept Table
-CREATE TABLE Reciept (
-  RecieptID SERIAL PRIMARY KEY,       -- Primary key, auto-increment
-  UserID INT REFERENCES Users(UserID), -- Foreign key to Users table
-  ListingID INT REFERENCES Listings(ListingID), -- Foreign key to Listings table
-  Card BYTEA NOT NULL,              -- Encrypted card data, required
-  Email VARCHAR(255) NOT NULL,      -- User email, required
-  TimeOfPurchase TIMESTAMPTZ NOT NULL, -- Time of purchase, required
-  DateOfPurchase DATE NOT NULL,     -- Date of purchase, required
-  DeliveryAddress VARCHAR(255) NOT NULL -- Delivery address, required
+CREATE TABLE Transactions (
+  TransactionID SERIAL PRIMARY KEY,
+  UserID INT REFERENCES Users(UserID),
+  ListingID INT REFERENCES Listings(ListingID),
+  CardToken BYTEA NOT NULL,
+  TimeOfPurchase TIMESTAMPTZ NOT NULL,
+  DeliveryAddress VARCHAR(255) NOT NULL,
+  TotalPrice NUMERIC(10, 2) NOT NULL,
+  UnitPrice NUMERIC(10, 2) NOT NULL,
+  Quantity INT NOT NULL,
+  OrderStatus VARCHAR(50) NOT NULL,
+  ShippingMethod VARCHAR(50) NOT NULL,
+  ShippingCost NUMERIC(10, 2) NOT NULL,
+  Discount NUMERIC(5, 2) NOT NULL,
+  Tax NUMERIC(5, 2) NOT NULL
 );
 
--- Create Cart Table
-CREATE TABLE Cart (
-  CartID SERIAL PRIMARY KEY,        -- Primary key, auto-increment
-  UserID INT REFERENCES Users(UserID), -- Foreign key to Users table
-  ListingID INT REFERENCES Listings(ListingID) -- Foreign key to Listings table
+CREATE TABLE Carts (
+  CartID SERIAL PRIMARY KEY,
+  UserID INT REFERENCES Users(UserID),
+  ListingID INT REFERENCES Listings(ListingID)
+);
+
+CREATE TABLE WishLists (
+  WishListID SERIAL PRIMARY KEY,
+  UserID INT REFERENCES Users(UserID),
+  ListingID INT REFERENCES Listings(ListingID)
 );
 
 CREATE TABLE Reviews (
-  ReviewID SERIAL PRIMARY KEY,      -- Primary key, auto-increment
-  UserID INT REFERENCES Users(UserID), -- Foreign key to Users table
-  ListingID INT REFERENCES Listings(ListingID), -- Foreign key to Listings table
-  Rating INT NOT NULL CHECK (Rating >= 1 AND Rating <= 5), -- Rating between 1 and 5, required
-  Comment TEXT NULL,                -- Review comment, optional
-  ReviewDate TIMESTAMPTZ NOT NULL   -- Date and time when the review was made, required
+  ReviewID SERIAL PRIMARY KEY,
+  UserID INT REFERENCES Users(UserID),
+  ListingID INT REFERENCES Listings(ListingID),
+  Rating INT NOT NULL CHECK (Rating >= 1 AND Rating <= 5),
+  Comment TEXT NULL,
+  ReviewDate TIMESTAMPTZ NOT NULL
 );

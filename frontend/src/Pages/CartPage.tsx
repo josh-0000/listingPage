@@ -58,7 +58,7 @@ function CartPage(): JSX.Element {
         <Col xs={12} sm={12} md={12} lg={5} className="p-4 mt-5">
           <Row>
             <Col className="m-0 p-0">
-              <Card className="d-flex listing p-4">
+              <Card className="d-flex listing p-4 shadow">
                 <Card.Text className="flex-space-between">
                   Subtotal:
                   <span>{subtotalFormatted}</span>

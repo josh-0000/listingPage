@@ -13,7 +13,7 @@ interface ListingProps {
 
 function CartItem({ product }: ListingProps): JSX.Element {
   return (
-    <Card className="d-flex flex-row m-0 listing">
+    <Card className="d-flex flex-row m-0 listing shadow">
       <Card.Img variant="top" src={logo} alt="alt" style={{ width: "200px" }} />
       <Card.Body className="d-flex flex-column justify-content-center listing-card-body">
         <Card.Title className="bold text-center">

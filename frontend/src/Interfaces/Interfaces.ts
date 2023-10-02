@@ -12,53 +12,21 @@ export interface ListingInterface {
   description: string;
   shippingaddress: string;
   discount: string;
-}
-
-export interface ImageInterface {
-  listingid: number;
-  imageid: number;
-  imagedata: string; // Assuming binary image data is stored as a Base64 string
+  images: any[] | null;
+  reviews: any[] | null;
 }
 
 export interface UserInterface {
   userid: number;
   username: string;
   email: string;
-}
-
-export interface AddressInterface {
-  addressid: number;
-  userid: number;
-  address: string;
-}
-
-export interface CardInterface {
-  cardid: number;
-  userid: number;
-  carddata: string; // Assuming encrypted card data is stored as a Base64 string
-}
-
-export interface ReceiptInterface {
-  receiptid: number;
-  userid: number;
-  listingid: number;
-  carddata: string; // Assuming encrypted card data is stored as a Base64 string
-  email: string;
-  timeofpurchase: string; // This should be parsed to a Date in your code
-  dateofpurchase: string; // This should be parsed to a Date in your code
-  deliveryaddress: string;
+  addresses: any[] | null;
+  cards: any[] | null;
+  reviews: any[] | null;
+  cart: any[] | null;
 }
 
 export interface CartInterface {
   listingid: number;
   quantity: number;
-}
-
-export interface ReviewInterface {
-  reviewid: number;
-  userid: number;
-  listingid: number;
-  rating: number; // Should be between 1 and 5
-  comment?: string | null; // Optional review comment
-  reviewdate: string; // This should be parsed to a Date in your code
 }

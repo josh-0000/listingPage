@@ -52,7 +52,7 @@ function LoginPage(): JSX.Element {
     }
   };
   return (
-    <Container className="text-center account-information-container">
+    <Container className="text-center account-information-container shadow">
       <Row className="m-4 justify-content-center">
         <h1>Account Login</h1>
       </Row>

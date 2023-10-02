@@ -161,7 +161,7 @@ function AccountCreationPage(): JSX.Element {
   };
 
   return (
-    <Container className="text-center account-information-container">
+    <Container className="text-center account-information-container shadow">
       <Row className="m-4 justify-content-center">
         <h1>Create Account</h1>
       </Row>

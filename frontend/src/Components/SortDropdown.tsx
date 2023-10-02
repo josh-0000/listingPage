@@ -7,7 +7,7 @@ function Sort(): JSX.Element {
   return (
     <Dropdown className="sortDropDown">
       <Dropdown.Toggle variant="primary" id="sortDropdown">
-        Sort by: {sortOrder}
+        Sort by {sortOrder}
       </Dropdown.Toggle>
       <Dropdown.Menu>
         <Dropdown.Item onClick={() => setSortOrder("Featured")}>

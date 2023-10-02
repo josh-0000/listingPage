@@ -10,7 +10,7 @@ interface ListingProps {
 
 function Listing({ product }: ListingProps): JSX.Element {
   return (
-    <Card className="text-center flex-column m-0 listing">
+    <Card className="text-center flex-column m-0 listing shadow-sm">
       <Card.Img variant="top" src={logo} alt="alt" />
       <Card.Body className="d-flex flex-column listing-card-body">
         <Card.Title className="bold">
