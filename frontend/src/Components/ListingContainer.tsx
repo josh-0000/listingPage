@@ -82,7 +82,7 @@ function ListingContainer(): JSX.Element {
             <Listing product={product} />
           </Col>
         ))}
-        {currentProducts.length === 0 ? <NoResultsFound /> : null};
+        {currentProducts.length === 0 ? <NoResultsFound /> : null}
       </Row>
       <ListingPageSwitcher />
     </Container>

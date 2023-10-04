@@ -20,10 +20,12 @@ export interface UserInterface {
   userid: number;
   username: string;
   email: string;
+  image: string | null;
   addresses: any[] | null;
   cards: any[] | null;
   reviews: any[] | null;
   cart: any[] | null;
+  wishlists: any[] | null;
 }
 
 export interface CartInterface {

@@ -49,18 +49,19 @@ export function UserContextProvider({ children }: any) {
 
   const [user, setUser] = useState(savedUser as UserInterface);
 
+  console.log("User", user);
   const [cartList, setCartList] = useState(user.cart as CartInterface[]);
-  console.log(cartList);
-  console.log(user);
+
   const [cartSize, setCartSize] = useState(0);
   const isLoggedIn = user.username === "Guest" ? false : true;
   useEffect(() => {
-    // Persist user data in localStorage
     localStorage.setItem("user", JSON.stringify(user));
+    if (user.cart) {
+      setCartList(user.cart);
+    }
   }, [user]);
 
   useEffect(() => {
-    // Persist cartList data in localStorage
     localStorage.setItem("cartList", JSON.stringify(cartList));
     user.cart = cartList;
   }, [cartList]);

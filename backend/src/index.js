@@ -60,15 +60,28 @@ app.post('/login', async (req, res) => {
       values: [email, password],
     };
 
-    const result = await client.query(query);
+    const userResult = await client.query(query);
 
-    if (result.rows.length === 1) {
+    if (userResult.rows.length === 1) {
+      const userID = userResult.rows[0].userid;
+      const userAddresses = await client.query('SELECT * FROM addresses WHERE userid = $1', [userID]);
+      const userCards = await client.query('SELECT * FROM cards WHERE userid = $1', [userID]);
+      const userCarts = await client.query('SELECT * FROM carts WHERE userid = $1', [userID]);
+      const userWishLists = await client.query('SELECT * FROM wishlists WHERE userid = $1', [userID]);
+
       res.json({ 
         message: 'Login successful', 
         user: {
-          id: result.rows[0].userid,
-          email: result.rows[0].email,
-          username: result.rows[0].username,
+          userid: userID,
+          email: userResult.rows[0].email,
+          username: userResult.rows[0].username,
+          addresses: userAddresses.rows,
+          cards: userCards.rows,
+          cart: userCarts.rows.map(cartItem => ({
+            listingid: cartItem.listingid,
+            quantity: cartItem.quantity
+          })),
+          wishlists: userWishLists.rows
         }
       });
     } else {
@@ -79,6 +92,7 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 app.post('/register', async (req, res) => {
   logger.info('Received request for /register');

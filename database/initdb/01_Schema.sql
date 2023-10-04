@@ -59,7 +59,8 @@ CREATE TABLE Transactions (
 CREATE TABLE Carts (
   CartID SERIAL PRIMARY KEY,
   UserID INT REFERENCES Users(UserID),
-  ListingID INT REFERENCES Listings(ListingID)
+  ListingID INT REFERENCES Listings(ListingID),
+  Quantity INT NOT NULL
 );
 
 CREATE TABLE WishLists (
