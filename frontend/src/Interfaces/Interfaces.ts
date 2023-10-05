@@ -22,13 +22,22 @@ export interface UserInterface {
   email: string;
   image: string | null;
   addresses: any[] | null;
-  cards: any[] | null;
+  cards: any[]| null;
   reviews: any[] | null;
   cart: any[] | null;
   wishlists: any[] | null;
+  stripeid: string | null;
 }
 
 export interface CartInterface {
   listingid: number;
   quantity: number;
 }
+
+export interface CardInterface {
+  id: string | null;
+  brand: string | null;
+  last4: string | null;
+  funding: string | null;
+}
+

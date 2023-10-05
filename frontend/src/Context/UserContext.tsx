@@ -9,6 +9,7 @@ import {
   CartInterface,
   ListingInterface,
   UserInterface,
+  CardInterface,
 } from "src/Interfaces/Interfaces";
 
 const defaultContextValues = {
@@ -29,6 +30,10 @@ const defaultContextValues = {
     console.error("toggleFilter function not yet implemented");
   },
   guestUser: {} as UserInterface,
+  cardList: [] as CardInterface[],
+  addCardToList: (_value: CardInterface) => {
+    console.error("toggleFilter function not yet implemented");
+  },
 };
 
 export const UserContext = createContext(defaultContextValues);
@@ -49,11 +54,17 @@ export function UserContextProvider({ children }: any) {
 
   const [user, setUser] = useState(savedUser as UserInterface);
 
-  console.log("User", user);
   const [cartList, setCartList] = useState(user.cart as CartInterface[]);
 
+  const [cardList, setCardList] = useState(user.cards as CardInterface[]);
+
+  console.log("cardList", cardList);
   const [cartSize, setCartSize] = useState(0);
   const isLoggedIn = user.username === "Guest" ? false : true;
+  const addCardToList = (card: CardInterface) => {
+    setCardList([...cardList, card]);
+  };
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
     if (user.cart) {
@@ -125,6 +136,8 @@ export function UserContextProvider({ children }: any) {
     addListingToCart,
     removeListingFromCart,
     removeOneFromCart,
+    cardList,
+    addCardToList,
   };
 
   return (

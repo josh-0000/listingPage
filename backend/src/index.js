@@ -3,6 +3,8 @@ const { Client } = require('pg');
 const cors = require('cors');
 const dbConfig = require('./dbConfig');
 const winston = require('winston');
+const Stripe = require('stripe');
+const stripe = new Stripe('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');
 
 const app = express();
 
@@ -64,8 +66,8 @@ app.post('/login', async (req, res) => {
 
     if (userResult.rows.length === 1) {
       const userID = userResult.rows[0].userid;
+      const stripeID = userResult.rows[0].stripeid;
       const userAddresses = await client.query('SELECT * FROM addresses WHERE userid = $1', [userID]);
-      const userCards = await client.query('SELECT * FROM cards WHERE userid = $1', [userID]);
       const userCarts = await client.query('SELECT * FROM carts WHERE userid = $1', [userID]);
       const userWishLists = await client.query('SELECT * FROM wishlists WHERE userid = $1', [userID]);
 
@@ -73,10 +75,10 @@ app.post('/login', async (req, res) => {
         message: 'Login successful', 
         user: {
           userid: userID,
+          stripeid: stripeID,
           email: userResult.rows[0].email,
           username: userResult.rows[0].username,
           addresses: userAddresses.rows,
-          cards: userCards.rows,
           cart: userCarts.rows.map(cartItem => ({
             listingid: cartItem.listingid,
             quantity: cartItem.quantity
@@ -116,6 +118,81 @@ app.post('/register', async (req, res) => {
   } catch (error) {
     logger.error('Error:', error);
     res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+app.post('/save-card', async (req, res) => {
+  const saveStripeCustomerIdForUser = async (userId, stripeCustomerId) => {
+    const queryText = 'UPDATE users SET stripeid = $1 WHERE userid = $2';
+    await client.query(queryText, [stripeCustomerId, userId]);
+  };
+
+  console.log("received request for /save-card");
+  try {
+    const tokenId = req.body.tokenId; // This should now be paymentMethodId
+    const userId = req.body.userId;
+    let stripeId = req.body.stripeId;
+
+    if (!tokenId || !userId) {
+      return res.status(400).send('Missing required parameters');
+    }
+
+    let addedCard;
+
+    if (stripeId) {
+      console.log("stripeId exists");
+      
+      // Convert the token to a PaymentMethod
+      const paymentMethod = await stripe.paymentMethods.create({
+        type: 'card',
+        card: { token: tokenId }
+      });
+    
+      // Attach the new payment method to the customer
+      await stripe.paymentMethods.attach(paymentMethod.id, { customer: stripeId });
+
+      addedCard = paymentMethod;
+    
+    } else {
+      console.log("stripeId does not exist");
+      
+      // Convert the token to a PaymentMethod before creating a new customer
+      const paymentMethod = await stripe.paymentMethods.create({
+        type: 'card',
+        card: { token: tokenId }
+      });
+      
+      // Create a new customer with the PaymentMethod
+      const customer = await stripe.customers.create({
+        payment_method: paymentMethod.id,
+      });
+      
+      // Save the customer.id as stripeId
+      stripeId = customer.id;
+
+      // Save the customer.id as stripeId in the database
+      await saveStripeCustomerIdForUser(userId, stripeId);
+
+      addedCard = paymentMethod;
+    }
+
+    const cardDetails = {
+      id: addedCard.id,
+      brand: addedCard.card.brand,
+      last4: addedCard.card.last4,
+      funding: addedCard.card.funding,
+    };
+
+    // Send the card details back to the client
+    console.log(cardDetails);
+    res.status(200).json({
+      message: 'Card saved successfully',
+      card: cardDetails,
+      stripeId: stripeId
+    });
+  } catch (error) {
+    console.error("Error saving card:", error);
+    res.status(500).send('An error occurred while processing your request');
   }
 });
 

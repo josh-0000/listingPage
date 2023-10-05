@@ -1,17 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "src/Context/UserContext";
 import { Container, Row, Col, Card, ListGroup, Button } from "react-bootstrap";
-import { UserInterface } from "src/Interfaces/Interfaces";
 import { ViewContext } from "src/Context/ViewContext";
 import profileImg from "../Assets/profile.png";
+import PaymentContainer from "src/Components/PaymentContainer";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 function ProfilePage(): JSX.Element {
   const { user, setUser, guestUser } = useContext(UserContext);
   const { changePage } = useContext(ViewContext);
+  const stripePromise = loadStripe(
+    "pk_live_51NxXILJlUUh6gNa3PgCJfTXLHKU86CvV48xdfnecTbygWkFTceOcPsb1pjvOBJrwLb86lQiC4odXy2Zo0UFypTQI00iauJpMd0"
+  );
+
   const logout = () => {
     setUser(guestUser);
     changePage("HOME");
   };
+
   return (
     <Container>
       <Row className="profilePageRow mt-5 mb-5">
@@ -58,20 +65,9 @@ function ProfilePage(): JSX.Element {
         </Row>
         <Row>
           <Col>
-            <Card className="profileWidgetContainers mx-auto mt-5 border-0 shadow">
-              <Card.Body className="p-5">
-                <Card className="p-5 bg-light border mx-auto">
-                  <Card.Title>Payment 1</Card.Title>
-                  <Card.Text>
-                    Visa ending in 1234
-                    <br />
-                  </Card.Text>
-                </Card>
-                <Button variant="primary" className="mt-5">
-                  Add Payment
-                </Button>
-              </Card.Body>
-            </Card>
+            <Elements stripe={stripePromise}>
+              <PaymentContainer />
+            </Elements>
           </Col>
         </Row>
         <Row>

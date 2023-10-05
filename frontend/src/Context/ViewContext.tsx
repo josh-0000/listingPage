@@ -12,13 +12,17 @@ const defaultContextValues = {
   changePage: (_value: string) => {
     console.error("toggleFilter function not yet implemented");
   },
+  addPayment: false,
+  setAddPayment: (_value: boolean) => {
+    console.error("toggleFilter function not yet implemented");
+  },
 };
 
 export const ViewContext = createContext(defaultContextValues);
 
 export function ViewContextProvider({ children }: any) {
   const [currentPage, setCurrentPage] = useState("HOME");
-
+  const [addPayment, setAddPayment] = useState(false);
   const changePage = (page: string) => {
     setCurrentPage(page);
   };
@@ -26,6 +30,8 @@ export function ViewContextProvider({ children }: any) {
   const contextData = {
     currentPage,
     changePage,
+    addPayment,
+    setAddPayment,
   };
 
   return (
