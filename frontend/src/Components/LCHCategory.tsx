@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Badge, Breadcrumb, BreadcrumbItem } from "react-bootstrap";
+import { useContext } from "react";
+import { Breadcrumb } from "react-bootstrap";
 import { ListingContext } from "src/Context/ListingContext";
 
 function LCHCategory(): JSX.Element {

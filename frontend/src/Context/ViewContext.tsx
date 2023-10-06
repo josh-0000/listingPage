@@ -1,11 +1,5 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-  useContext,
-  useMemo,
-} from "react";
-import { ListingInterface } from "src/Interfaces/Interfaces";
+import { createContext, useState } from "react";
+import { ContextProviderProps } from "../Interfaces/Interfaces";
 
 const defaultContextValues = {
   currentPage: "HOME",
@@ -20,7 +14,9 @@ const defaultContextValues = {
 
 export const ViewContext = createContext(defaultContextValues);
 
-export function ViewContextProvider({ children }: any) {
+export function ViewContextProvider({
+  children,
+}: ContextProviderProps): JSX.Element {
   const [currentPage, setCurrentPage] = useState("HOME");
   const [addPayment, setAddPayment] = useState(false);
   const changePage = (page: string) => {

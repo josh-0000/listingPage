@@ -1,15 +1,9 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-  useContext,
-  useMemo,
-} from "react";
+import { createContext, useState, useEffect } from "react";
 import {
   CartInterface,
-  ListingInterface,
   UserInterface,
   CardInterface,
+  ContextProviderProps,
 } from "src/Interfaces/Interfaces";
 
 const defaultContextValues = {
@@ -38,7 +32,9 @@ const defaultContextValues = {
 
 export const UserContext = createContext(defaultContextValues);
 
-export function UserContextProvider({ children }: any) {
+export function UserContextProvider({
+  children,
+}: ContextProviderProps): JSX.Element {
   const guestUser = {
     userid: 0,
     username: "Guest",
@@ -70,7 +66,6 @@ export function UserContextProvider({ children }: any) {
 
   useEffect(() => {
     localStorage.setItem("cartList", JSON.stringify(cartList));
-    user.cart = cartList;
   }, [cartList]);
 
   const addListingToCart = (listingid: number) => {
@@ -112,10 +107,6 @@ export function UserContextProvider({ children }: any) {
 
   const removeListingFromCart = (listingid: number) => {
     setCartList(cartList.filter((l) => l.listingid !== listingid));
-  };
-
-  const resetCartList = () => {
-    setCartList([]);
   };
 
   const addCardToList = (card: CardInterface) => {

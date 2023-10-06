@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import { Button, InputGroup, FormControl } from "react-bootstrap";
 import { UserContext } from "src/Context/UserContext";
 
-function QuantityControl(props: { listingid: number }) {
+function QuantityControl(props: { listingid: number }): JSX.Element {
   const { listingid } = props;
   const { cartList, addListingToCart, removeOneFromCart } =
     useContext(UserContext);

@@ -1,11 +1,13 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { ListingInterface } from "src/Interfaces/Interfaces";
 import { UserContext } from "src/Context/UserContext";
 import Button from "react-bootstrap/Button";
 
-function AddToCart(props: { listing: ListingInterface }) {
+function AddToCart(props: { listing: ListingInterface }): JSX.Element {
+  const { listing } = props;
   const { addListingToCart } = useContext(UserContext);
   const [text, setText] = useState("Add to Cart");
+
   const changeText = () => {
     setText("Added");
     setTimeout(() => {
@@ -13,7 +15,6 @@ function AddToCart(props: { listing: ListingInterface }) {
     }, 500);
   };
 
-  const { listing } = props;
   return (
     <div className="mt-auto">
       {/* Using React Bootstrap's Button component */}

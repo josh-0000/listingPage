@@ -260,7 +260,7 @@ function AccountCreationPage(): JSX.Element {
         </Row>
 
         <Row className="justify-content-center mt-2">
-          <a href="#">Help</a>
+          <Button variant="link">Help</Button>
         </Row>
       </Form>
     </Container>

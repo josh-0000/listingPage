@@ -1,4 +1,3 @@
-import React from "react";
 import { Row, Col } from "react-bootstrap";
 import Sort from "./SortDropdown";
 import Filter from "./FilterDropDown";

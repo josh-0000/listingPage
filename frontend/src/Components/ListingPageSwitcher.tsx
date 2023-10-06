@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ListingContext } from "../Context/ListingContext";
 import { Button, ButtonGroup, Col, Row } from "react-bootstrap";
 
@@ -92,18 +92,6 @@ function ListingPageSwitcher(): JSX.Element {
       resetOptions();
     }
   }, [currentPage]);
-
-  // Below is css switching for the button of the page the user is currently on
-  let buttonOneCss = "btn btn-outline-dark";
-  let buttonTwoCss = "btn btn-outline-dark";
-  let buttonThreeCss = "btn btn-outline-dark";
-  if (currentPage === buttonOne) {
-    buttonOneCss = "btn btn-dark";
-  } else if (currentPage === buttonTwo) {
-    buttonTwoCss = "btn btn-dark";
-  } else if (currentPage === buttonThree) {
-    buttonThreeCss = "btn btn-dark";
-  }
 
   return (
     <Row className="bg-light p-0 m-5">

@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { useContext } from "react";
+import { Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { ViewContext } from "src/Context/ViewContext";
-import CartPage from "src/Pages/CartPage";
+
 function CartEmpty(): JSX.Element {
   const { changePage } = useContext(ViewContext);
   return (

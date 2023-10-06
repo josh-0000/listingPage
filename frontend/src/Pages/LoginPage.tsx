@@ -117,7 +117,7 @@ function LoginPage(): JSX.Element {
         </Row>
 
         <Row className="justify-content-center mt-2">
-          <a href="#">Forgot Password</a>
+          <Button variant="link">Forgot Password</Button>
         </Row>
       </Form>
     </Container>

@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
-import { ListingInterface } from "src/Interfaces/Interfaces";
+import { useContext } from "react";
 import { UserContext } from "src/Context/UserContext";
 import Button from "react-bootstrap/Button";
 
-function RemoveFromCart(props: { listingid: number }) {
+function RemoveFromCart(props: { listingid: number }): JSX.Element {
   const { removeListingFromCart } = useContext(UserContext);
 
   const { listingid } = props;

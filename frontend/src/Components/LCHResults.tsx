@@ -1,14 +1,12 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import { ListingContext } from "src/Context/ListingContext";
 import LCHCategory from "./LCHCategory";
 
 function Results(): JSX.Element {
   const { numPages, currentPage, numResults } = useContext(ListingContext);
   return (
-    <div>
-      <p className="results bold">
-        {currentPage}-{numPages} of {numResults} results for <LCHCategory />
-      </p>
+    <div className="results bold">
+      {currentPage}-{numPages} of {numResults} results for <LCHCategory />
     </div>
   );
 }

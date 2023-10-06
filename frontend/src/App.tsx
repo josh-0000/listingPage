@@ -12,7 +12,7 @@ import CartPage from "./Pages/CartPage";
 import { Container } from "react-bootstrap";
 import ProfilePage from "./Pages/ProfilePage";
 
-function App() {
+function App(): JSX.Element {
   const { currentPage } = useContext(ViewContext);
 
   let content;

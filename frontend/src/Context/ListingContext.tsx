@@ -1,11 +1,8 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-  useContext,
-  useMemo,
-} from "react";
-import { ListingInterface } from "../Interfaces/Interfaces";
+import { createContext, useState, useEffect } from "react";
+import {
+  ListingInterface,
+  ContextProviderProps,
+} from "../Interfaces/Interfaces";
 
 const defaultContextValues = {
   categoryList: ["All"],
@@ -37,7 +34,9 @@ const defaultContextValues = {
 
 export const ListingContext = createContext(defaultContextValues);
 
-export function ListingContextProvider({ children }: any) {
+export function ListingContextProvider({
+  children,
+}: ContextProviderProps): JSX.Element {
   const [currentPage, setCurrentPage] = useState(1);
   const [allListings, setallListings] = useState([] as ListingInterface[]);
   const [numPages, setNumPages] = useState(0);

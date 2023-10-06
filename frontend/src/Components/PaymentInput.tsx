@@ -5,7 +5,7 @@ import { UserContext } from "src/Context/UserContext";
 import { ViewContext } from "src/Context/ViewContext";
 import { CardInterface } from "src/Interfaces/Interfaces";
 
-function PaymentInput() {
+function PaymentInput(): JSX.Element {
   const stripe = useStripe();
   const elements = useElements();
   const { addCardToList, user } = useContext(UserContext);
@@ -18,7 +18,10 @@ function PaymentInput() {
     }
 
     const cardElement = elements.getElement(CardElement);
-    const { token, error } = await stripe.createToken(cardElement!);
+    if (!cardElement) {
+      return;
+    }
+    const { token, error } = await stripe.createToken(cardElement);
 
     if (error) {
       console.error("Stripe Error:", error);

@@ -1,12 +1,11 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { Form, InputGroup, Button, ListGroup } from "react-bootstrap";
 import { ListingContext } from "src/Context/ListingContext";
 
-function Search() {
+function Search(): JSX.Element {
   const { allListings, setCategorySearch } = useContext(ListingContext);
   const [searchQuery, setSearchQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-
   const searchContainerRef = useRef<HTMLDivElement | null>(null);
 
   const filteredItems = allListings

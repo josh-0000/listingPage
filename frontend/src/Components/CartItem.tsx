@@ -1,17 +1,10 @@
-import React, { useContext } from "react";
 import logo from "../Assets/shirts.jpg";
 import { Card } from "react-bootstrap";
 import { ListingInterface } from "../Interfaces/Interfaces";
-import AddToCart from "./AddToCart";
 import RemoveFromCart from "./RemoveFromCart";
 import QuantityControl from "./QuantityControl";
-import { UserContext } from "src/Context/UserContext";
 
-interface ListingProps {
-  product: ListingInterface;
-}
-
-function CartItem({ product }: ListingProps): JSX.Element {
+function CartItem({ product }: { product: ListingInterface }): JSX.Element {
   return (
     <Card className="d-flex flex-row m-0 listing shadow">
       <Card.Img variant="top" src={logo} alt="alt" style={{ width: "200px" }} />

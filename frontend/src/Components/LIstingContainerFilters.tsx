@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { ListingContext } from "src/Context/ListingContext";
 import { Row, Col, Button, CloseButton } from "react-bootstrap";
 

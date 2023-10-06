@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "../Assets/shirts.jpg";
 import { Card } from "react-bootstrap";
 import { ListingInterface } from "../Interfaces/Interfaces";

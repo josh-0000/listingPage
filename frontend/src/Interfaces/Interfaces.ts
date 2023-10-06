@@ -31,7 +31,7 @@ export interface UserInterface {
 
 export interface CartInterface {
   listingid: number | null;
-  quantity: number | null;
+  quantity: number;
 }
 
 export interface CardInterface {
@@ -39,5 +39,9 @@ export interface CardInterface {
   brand: string | null;
   last4: string | null;
   funding: string | null;
+}
+
+export interface ContextProviderProps {
+  children: React.ReactNode;
 }
 
