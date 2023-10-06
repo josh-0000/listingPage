@@ -22,16 +22,16 @@ export interface UserInterface {
   email: string;
   image: string | null;
   addresses: any[] | null;
-  cards: any[]| null;
+  cards: any[];
   reviews: any[] | null;
-  cart: any[] | null;
+  cart: any[];
   wishlists: any[] | null;
   stripeid: string | null;
 }
 
 export interface CartInterface {
-  listingid: number;
-  quantity: number;
+  listingid: number | null;
+  quantity: number | null;
 }
 
 export interface CardInterface {

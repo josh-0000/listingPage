@@ -43,27 +43,23 @@ export function UserContextProvider({ children }: any) {
     userid: 0,
     username: "Guest",
     email: "",
-    cart: [] as CartInterface[],
   } as UserInterface;
 
   let savedUser = JSON.parse(localStorage.getItem("user") || "{}");
-
   savedUser = savedUser.username !== undefined ? savedUser : guestUser;
-
-  savedUser.cart = savedUser.cart || [];
+  savedUser.cart = savedUser.cart || ([] as CartInterface[]);
+  savedUser.cards = savedUser.cards || ([] as CardInterface[]);
 
   const [user, setUser] = useState(savedUser as UserInterface);
-
-  const [cartList, setCartList] = useState(user.cart as CartInterface[]);
-
-  const [cardList, setCardList] = useState(user.cards as CardInterface[]);
-
-  console.log("cardList", cardList);
+  const [cartList, setCartList] = useState(user.cart);
+  const [cardList, setCardList] = useState(user.cards);
   const [cartSize, setCartSize] = useState(0);
+
   const isLoggedIn = user.username === "Guest" ? false : true;
-  const addCardToList = (card: CardInterface) => {
-    setCardList([...cardList, card]);
-  };
+
+  useEffect(() => {
+    setCartSize(cartList.length);
+  }, [cartList]);
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
@@ -122,9 +118,9 @@ export function UserContextProvider({ children }: any) {
     setCartList([]);
   };
 
-  useEffect(() => {
-    setCartSize(cartList.length);
-  }, [cartList]);
+  const addCardToList = (card: CardInterface) => {
+    setCardList([...cardList, card]);
+  };
 
   const contextData = {
     user,
