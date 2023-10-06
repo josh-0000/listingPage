@@ -3,8 +3,12 @@ const { Client } = require('pg');
 const cors = require('cors');
 const dbConfig = require('./dbConfig');
 const winston = require('winston');
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
 const Stripe = require('stripe');
-const stripe = new Stripe('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');
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 
@@ -196,7 +200,12 @@ app.post('/save-card', async (req, res) => {
   }
 });
 
-const port = process.env.PORT || 3001;
+const port = process.env.SERVER_PORT;
+if (!port) {
+  logger.error('No port specified in environment');
+  process.exit(1);
+}
+
 app.listen(port, () => {
   logger.info(`Server running on http://localhost:${port}/`);
 });
