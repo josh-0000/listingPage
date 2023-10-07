@@ -75,6 +75,21 @@ app.post('/login', async (req, res) => {
       const userCarts = await client.query('SELECT * FROM carts WHERE userid = $1', [userID]);
       const userWishLists = await client.query('SELECT * FROM wishlists WHERE userid = $1', [userID]);
 
+      let cards = [];
+
+      console.log("stripeID:", stripeID);
+      if (stripeID) {
+        const paymentMethods = await stripe.paymentMethods.list({
+          customer: stripeID,
+          type: 'card',
+        });
+        cards = paymentMethods.data.map((paymentMethod) => ({
+          id: paymentMethod.id,
+          brand: paymentMethod.card.brand,
+          last4: paymentMethod.card.last4,
+          funding: paymentMethod.card.funding,
+        }));
+      }
       res.json({ 
         message: 'Login successful', 
         user: {
@@ -87,7 +102,8 @@ app.post('/login', async (req, res) => {
             listingid: cartItem.listingid,
             quantity: cartItem.quantity
           })),
-          wishlists: userWishLists.rows
+          wishlists: userWishLists.rows,
+          cards: cards
         }
       });
     } else {

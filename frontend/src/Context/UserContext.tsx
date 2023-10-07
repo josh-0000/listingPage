@@ -58,15 +58,28 @@ export function UserContextProvider({
   }, [cartList]);
 
   useEffect(() => {
+    if (user.username === "Guest") {
+      resetCardList();
+      resetCartList();
+    }
     localStorage.setItem("user", JSON.stringify(user));
+    if (user.cards) {
+      setCardList(user.cards);
+    }
     if (user.cart) {
       setCartList(user.cart);
     }
   }, [user]);
 
-  useEffect(() => {
-    localStorage.setItem("cartList", JSON.stringify(cartList));
-  }, [cartList]);
+  const resetCardList = () => {
+    setCardList([] as CardInterface[]);
+  };
+
+  const resetCartList = () => {
+    setCartList([] as CartInterface[]);
+  };
+
+  console.log("user", user);
 
   const addListingToCart = (listingid: number) => {
     const listing = cartList.find((l) => l.listingid === listingid);

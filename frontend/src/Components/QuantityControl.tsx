@@ -19,7 +19,7 @@ function QuantityControl(props: { listingid: number }): JSX.Element {
       >
         -
       </Button>
-      <FormControl value={quantity} style={{ textAlign: "center" }} />
+      <FormControl value={quantity} style={{ textAlign: "center" }} readOnly />
       <Button
         size="sm"
         variant="outline-primary"

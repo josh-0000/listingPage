@@ -12,7 +12,9 @@ function PaymentContainer(): JSX.Element {
     <Card className="profileWidgetContainers mx-auto mt-5 border-0 shadow">
       <Card.Body className="p-5">
         {cardList?.map((card) => (
-          <Payment card={card} />
+          <div key={card.id}>
+            <Payment card={card} />
+          </div>
         ))}
         {addPayment && <PaymentInput />}
         {!addPayment && (
