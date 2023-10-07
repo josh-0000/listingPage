@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import homeImg from "../Assets/home.png";
-import profileImg from "../Assets/profile.png";
-import cartImg from "../Assets/cart.png";
+import homeImg from "../../Assets/home.png";
+import profileImg from "../../Assets/profile.png";
+import cartImg from "../../Assets/cart.png";
 import {
   Navbar as BootstrapNavbar,
   Nav,

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import photo1 from "../Assets/PremiumBrands.svg";
-import photo2 from "../Assets/nike.svg";
-import photo3 from "../Assets/adidas.svg";
+import photo1 from "../../Assets/PremiumBrands.svg";
+import photo2 from "../../Assets/nike.svg";
+import photo3 from "../../Assets/adidas.svg";
 import { Container } from "react-bootstrap";
-import "../Styles/App.css";
+import "../../Styles/App.css";
 
 function FeatureCard(): JSX.Element {
   const [index, setIndex] = useState(0);

@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
-import { ListingContext } from "../Context/ListingContext";
+import { ListingContext } from "../../../Context/ListingContext";
 import Listing from "./Listing";
-import ListingContainerFilters from "./LIstingContainerFilters";
+import ListingContainerFilters from "../ListingContainerFilters";
 import ListingPageSwitcher from "./ListingPageSwitcher";
 import NoResultsFound from "./NoResultsFound";
 import { Col, Row, Container } from "react-bootstrap";

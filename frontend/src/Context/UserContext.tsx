@@ -69,8 +69,19 @@ export function UserContextProvider({
     if (user.cart) {
       setCartList(user.cart);
     }
-  }, [user]);
+  }, [user.userid]);
 
+  useEffect(() => {
+    setUser({ ...user, cart: cartList });
+  }, [cartList]);
+
+  useEffect(() => {
+    setUser({ ...user, cards: cardList });
+  }, [cardList]);
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user.cards, user.cart]);
   const resetCardList = () => {
     setCardList([] as CardInterface[]);
   };

@@ -3,7 +3,7 @@ import { UserContext } from "src/Context/UserContext";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { ViewContext } from "src/Context/ViewContext";
 import profileImg from "../Assets/profile.png";
-import PaymentContainer from "src/Components/PaymentContainer";
+import PaymentContainer from "../Components/ProfilePage/Payment/PaymentContainer";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 

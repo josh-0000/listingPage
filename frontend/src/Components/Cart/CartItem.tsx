@@ -1,6 +1,6 @@
-import logo from "../Assets/shirts.jpg";
+import logo from "../../Assets/shirts.jpg";
 import { Card } from "react-bootstrap";
-import { ListingInterface } from "../Interfaces/Interfaces";
+import { ListingInterface } from "../../Interfaces/Interfaces";
 import RemoveFromCart from "./RemoveFromCart";
 import QuantityControl from "./QuantityControl";
 

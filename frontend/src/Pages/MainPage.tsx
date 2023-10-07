@@ -1,8 +1,7 @@
-import React from "react";
-import HeaderCategories from "../Components/HeaderCategories";
-import FeaturedCard from "src/Components/FeaturedCard";
-import ListingContainerHeader from "src/Components/ListingContainerHeader";
-import ListingContainer from "src/Components/ListingContainer";
+import HeaderCategories from "../Components/NavAndFooter/HeaderCategories";
+import FeaturedCard from "../Components/MainPage/FeaturedCard";
+import ListingContainerHeader from "../Components/MainPage/ListingContainerHeader";
+import ListingContainer from "../Components/MainPage/Listings/ListingContainer";
 import { Row } from "react-bootstrap";
 
 function MainPage(): JSX.Element {

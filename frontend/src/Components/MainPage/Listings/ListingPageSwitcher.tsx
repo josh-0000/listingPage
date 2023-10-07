@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { ListingContext } from "../Context/ListingContext";
+import { ListingContext } from "../../../Context/ListingContext";
 import { Button, ButtonGroup, Col, Row } from "react-bootstrap";
 
 function ListingPageSwitcher(): JSX.Element {

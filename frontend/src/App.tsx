@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import "./Styles/App.css";
-import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
+import Navbar from "./Components/NavAndFooter/Navbar";
+import Footer from "./Components/NavAndFooter/Footer";
 import { ListingContextProvider } from "./Context/ListingContext";
 import { UserContextProvider } from "./Context/UserContext";
 import MainPage from "./Pages/MainPage";

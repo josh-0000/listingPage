@@ -1,5 +1,5 @@
 import { Container, Row } from "react-bootstrap";
-import searchIcon from "../Assets/search.avif";
+import searchIcon from "../../../Assets/search.avif";
 
 function NoResultsFound(): JSX.Element {
   return (

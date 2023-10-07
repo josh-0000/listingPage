@@ -1,5 +1,3 @@
-import React from "react";
-
 function ListingPage(): JSX.Element {
   return <div><p>Listing Page</p></div>;
 }
