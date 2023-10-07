@@ -12,9 +12,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 
-app.use(express.json());
-
 app.use(cors());
+app.use(express.json());
 
 const client = new Client(dbConfig);
 
@@ -238,6 +237,37 @@ app.post('/delete-card', async (req, res) => {
   } catch (error) {
     console.error("Error deleting card:", error);
     res.status(500).send('An error occurred while processing your request');
+  }
+});
+
+app.post('/save-cart', async (req, res) => {
+  logger.info('Received request for /save-cart');
+  console.log("Received request for /save-cart");
+  const { userId, cart } = req.body;
+
+  console.log("cart:", cart);
+  try {
+    // Start transaction
+    await client.query('BEGIN');
+
+    const deleteQuery = 'DELETE FROM carts WHERE userid = $1';
+    await client.query(deleteQuery, [userId]);
+
+    const insertPromises = cart.map(cartItem => 
+      client.query('INSERT INTO carts (userid, listingid, quantity) VALUES ($1, $2, $3)', [userId, cartItem.listingid, cartItem.quantity])
+    );
+    await Promise.all(insertPromises);
+
+    // Commit transaction
+    await client.query('COMMIT');
+
+    res.status(200).json({ message: 'Cart saved successfully' });
+  } catch (error) {
+    // Rollback transaction
+    await client.query('ROLLBACK');
+    
+    logger.error('Error:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 

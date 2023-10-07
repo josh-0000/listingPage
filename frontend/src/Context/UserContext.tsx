@@ -53,8 +53,12 @@ export function UserContextProvider({
   const [cartList, setCartList] = useState(user.cart);
   const [cardList, setCardList] = useState(user.cards);
   const [cartSize, setCartSize] = useState(0);
-
+  const [shouldSaveCart, setShouldSaveCart] = useState(false);
   const isLoggedIn = user.username === "Guest" ? false : true;
+
+  useEffect(() => {
+    saveCartEffectively();
+  }, [cartList, shouldSaveCart]);
 
   useEffect(() => {
     setCartSize(cartList.length);
@@ -85,6 +89,7 @@ export function UserContextProvider({
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user.cards, user.cart]);
+
   const resetCardList = () => {
     setCardList([] as CardInterface[]);
   };
@@ -98,7 +103,36 @@ export function UserContextProvider({
     setCardList(newCardList);
   };
 
-  console.log("user", user);
+  const saveCart = async () => {
+    const userId = user.userid;
+    const cart = cartList;
+    console.log("cart", cart);
+    console.log("userId", userId);
+    console.log("Fetching");
+    const payload = {
+      userId: userId,
+      cart: cart,
+    };
+    const res = await fetch("http://localhost:3001/save-cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    console.log("data", data);
+  };
+
+  const saveCartEffectively = async () => {
+    if (!shouldSaveCart) return;
+
+    if (user.username !== "Guest") {
+      await saveCart();
+    }
+
+    setShouldSaveCart(false);
+  };
 
   const addListingToCart = (listingid: number) => {
     const listing = cartList.find((l) => l.listingid === listingid);
@@ -117,6 +151,7 @@ export function UserContextProvider({
       };
       setCartList([...cartList, newItem]);
     }
+    setShouldSaveCart(true);
   };
 
   const removeOneFromCart = (listingid: number) => {
@@ -135,10 +170,18 @@ export function UserContextProvider({
         setCartList(filteredCart);
       }
     }
+    if (user.username !== "Guest") {
+      saveCart();
+    }
+    setShouldSaveCart(true);
   };
 
   const removeListingFromCart = (listingid: number) => {
     setCartList(cartList.filter((l) => l.listingid !== listingid));
+    if (user.username !== "Guest") {
+      saveCart();
+    }
+    setShouldSaveCart(true);
   };
 
   const addCardToList = (card: CardInterface) => {
