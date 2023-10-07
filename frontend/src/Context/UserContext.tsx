@@ -28,6 +28,9 @@ const defaultContextValues = {
   addCardToList: (_value: CardInterface) => {
     console.error("toggleFilter function not yet implemented");
   },
+  removeCard: (_value: string) => {
+    console.error("toggleFilter function not yet implemented");
+  },
 };
 
 export const UserContext = createContext(defaultContextValues);
@@ -90,6 +93,11 @@ export function UserContextProvider({
     setCartList([] as CartInterface[]);
   };
 
+  const removeCard = (cardid: string) => {
+    const newCardList = cardList.filter((c) => c.id !== cardid);
+    setCardList(newCardList);
+  };
+
   console.log("user", user);
 
   const addListingToCart = (listingid: number) => {
@@ -149,6 +157,7 @@ export function UserContextProvider({
     removeOneFromCart,
     cardList,
     addCardToList,
+    removeCard,
   };
 
   return (

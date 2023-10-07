@@ -216,6 +216,31 @@ app.post('/save-card', async (req, res) => {
   }
 });
 
+app.post('/delete-card', async (req, res) => {
+  const deleteCard = async (cardId) => {
+    await stripe.paymentMethods.detach(cardId);
+  };
+
+  console.log("received request for /delete-card");
+  try {
+    const cardId = req.body.cardid;
+    const stripeId = req.body.stripeId;
+
+    if (!cardId || !stripeId) {
+      return res.status(400).send('Missing required parameters');
+    }
+
+    await deleteCard(cardId);
+
+    res.status(200).json({
+      message: 'Card deleted successfully',
+    });
+  } catch (error) {
+    console.error("Error deleting card:", error);
+    res.status(500).send('An error occurred while processing your request');
+  }
+});
+
 const port = process.env.SERVER_PORT;
 if (!port) {
   logger.error('No port specified in environment');
