@@ -1,17 +1,32 @@
 import React from "react";
 import logo from "../Assets/shirts.jpg";
 import { Card } from "react-bootstrap";
+import { ViewContext } from "src/Context/ViewContext";
+import { useContext } from "react";
+import { Button } from "react-bootstrap";
 import { ListingInterface } from "../Interfaces/Interfaces";
 import AddToCart from "./AddToCart";
+import Description from "./Description";
+import { ListingContext } from "src/Context/ListingContext";
 
 interface ListingProps {
   product: ListingInterface;
 }
 
 function Listing({ product }: ListingProps): JSX.Element {
+  const { changePage } = useContext(ViewContext);
+  const { setViewListingDescription } = useContext(ListingContext);
   return (
     <Card className="text-center flex-column m-0 listing">
-      <Card.Img variant="top" src={logo} alt="alt" />
+      <Card.Img
+        variant="top"
+        src={logo}
+        alt="alt"
+        onClick={() => {
+          setViewListingDescription(product);
+          changePage("DESCRIPTION");
+        }}
+      />
       <Card.Body className="d-flex flex-column listing-card-body">
         <Card.Title className="bold">
           {product.listingname + " "}

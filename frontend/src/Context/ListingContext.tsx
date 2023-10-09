@@ -13,6 +13,9 @@ const defaultContextValues = {
   setCurrentPage: (_value: number) => {
     console.error("setCurrentPage function not yet implemented");
   },
+  setViewListingDescription: (_value: ListingInterface) => {
+    console.error("setViewListingDescription function not yet implemented");
+  },
   setNumPages: (_value: number) => {
     console.error("setNum Pages function not yet implemented");
   },
@@ -30,6 +33,7 @@ const defaultContextValues = {
   },
   selectedFilters: [] as string[],
   allListings: [] as ListingInterface[],
+  viewListing: null as ListingInterface | null,
   numPages: 1,
   productsPerPage: 20,
   numResults: 0,
@@ -40,6 +44,9 @@ export const ListingContext = createContext(defaultContextValues);
 export function ListingContextProvider({ children }: any) {
   const [currentPage, setCurrentPage] = useState(1);
   const [allListings, setallListings] = useState([] as ListingInterface[]);
+  const [viewListing, setViewListings] = useState(
+    null as ListingInterface | null
+  );
   const [numPages, setNumPages] = useState(0);
   const [numResults, setNumResults] = useState(0);
   const [categoryList, setCategoryList] = useState(["All"]);
@@ -48,13 +55,17 @@ export function ListingContextProvider({ children }: any) {
   const toggleFilter = (filter: string) => {
     setSelectedFilters((prevFilters) => {
       if (prevFilters.includes(filter)) {
-        // Remove the filter from the list
+        // Remove the filter from the listproduct
         return prevFilters.filter((f) => f !== filter);
       } else {
         // Add the filter to the list
         return [...prevFilters, filter];
       }
     });
+  };
+
+  const setViewListingDescription = (product: ListingInterface) => {
+    setViewListings(product);
   };
 
   const setCategorySearch = (category: string) => {
@@ -89,6 +100,8 @@ export function ListingContextProvider({ children }: any) {
   }, []);
 
   const contextData = {
+    viewListing,
+    setViewListingDescription,
     toggleFilter,
     selectedFilters,
     setCategoryCategories,
