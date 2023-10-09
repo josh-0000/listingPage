@@ -16,6 +16,12 @@ import { ViewContext } from "src/Context/ViewContext";
 function Navbar(): JSX.Element {
   const { cartSize, isLoggedIn } = useContext(UserContext);
   const { changePage } = useContext(ViewContext);
+
+  const profileElement = isLoggedIn ? (
+    <img src={profileImg} className="profile" alt="Profile" />
+  ) : (
+    <div>Login</div>
+  );
   return (
     <Row>
       <BootstrapNavbar
@@ -31,34 +37,32 @@ function Navbar(): JSX.Element {
           <BootstrapNavbar.Collapse id="navbarSupportedContent">
             <Search />
             <Nav className="ml-auto">
-              <Nav.Item className="w-100">
+              <Nav.Item className="d-flex w-100 align-items-center justify-content-center">
                 <Button
-                  variant="link"
-                  className="nav-link active text-white white-icon w-100"
+                  variant="nav-link"
+                  className="white-icon W-100"
+                  onClick={() => changePage(isLoggedIn ? "PROFILE" : "LOGIN")}
+                >
+                  {profileElement}
+                </Button>
+              </Nav.Item>
+              <Nav.Item className="d-flex w-100 align-items-center justify-content-center">
+                <Button
+                  variant="nav-link"
+                  className="text-white white-icon w-100"
+                  onClick={() => changePage("CART")}
+                >
+                  <img src={cartImg} className="cart" alt="Cart" />
+                  <p className="cartSize">{cartSize}</p>
+                </Button>
+              </Nav.Item>
+              <Nav.Item className="d-flex w-100 align-items-center justify-content-center">
+                <Button
+                  variant="nav-link"
+                  className="text-white white-icon w-100"
                   onClick={() => changePage("HOME")}
                 >
                   <img src={homeImg} className="home" alt="Home" />
-                </Button>
-              </Nav.Item>
-              <Nav.Item className="w-100">
-                <Button
-                  variant="link"
-                  className="nav-link active text-white white-icon w-100"
-                  onClick={() => changePage(isLoggedIn ? "PROFILE" : "LOGIN")}
-                >
-                  <img src={profileImg} className="profile" alt="Profile" />
-                </Button>
-              </Nav.Item>
-              <Nav.Item className="d-flex align-items-center w-100">
-                <Button
-                  variant="link"
-                  className="nav-link active text-white white-icon w-100"
-                  onClick={() => changePage("CART")}
-                >
-                  <div className="d-flex flex-column align-items-center">
-                    <img src={cartImg} className="cart" alt="Cart" />
-                    <p className="cartSize mt-3">{cartSize}</p>
-                  </div>
                 </Button>
               </Nav.Item>
             </Nav>

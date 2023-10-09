@@ -48,8 +48,8 @@ function CartPage(): JSX.Element {
     currency: "USD",
   });
   return (
-    <Container>
-      <Row className="mb-5">
+    <Container className="mb-5">
+      <Row className="mb-5 cartContainerRow">
         <Col xs={12} sm={12} md={12} lg={7} className="p-4 mt-5">
           {cartListings.length == 0 ? (
             <CartEmpty />
@@ -64,7 +64,7 @@ function CartPage(): JSX.Element {
         <Col xs={12} sm={12} md={12} lg={5} className="p-4 mt-5">
           <Row>
             <Col className="m-0 p-0">
-              <Card className="d-flex listing p-4">
+              <Card className="d-flex listing p-4 shadow">
                 <Card.Text className="flex-space-between">
                   Subtotal:
                   <span>{subtotalFormatted}</span>

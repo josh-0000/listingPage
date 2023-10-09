@@ -17,7 +17,7 @@ function Listing({ product }: ListingProps): JSX.Element {
   const { changePage } = useContext(ViewContext);
   const { setViewListingDescription } = useContext(ListingContext);
   return (
-    <Card className="text-center flex-column m-0 listing">
+    <Card className="text-center flex-column m-0 listing shadow-sm">
       <Card.Img
         variant="top"
         src={logo}

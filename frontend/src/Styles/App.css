@@ -18,29 +18,32 @@
 }
 
 img.cart {
-  width: 2.6rem;
+  width: 34px;
 }
 
 img.profile {
-  width:40px;
-  height: 40px;
-  margin-top: 5px;
+  width:30px;
+  height: 30px;
+  margin-top: 2px;
 }
 
+.cartContainerRow {
+  min-height: 800px;
+}
 .white-icon {
   filter: brightness(0) invert(1) !important;
 }
 
 img.home {
-  width:47px;
-  height: 47px;
+  width:37px;
+  height: 37px;
 }
 
 .custom-search {
   min-width: 200px;
 }
 .custom-navbar {
-  padding: 1px 1rem !important;  /* Adjust the first value (20px) to set the desired thickness */
+  padding: 10px !important;  /* Adjust the first value (20px) to set the desired thickness */
 }
 
 .ListingContainerHeader {
@@ -104,14 +107,17 @@ img.home {
   justify-content: space-between;
   align-items: center;
 }
-.profilePageRow {
+.cartPageRow {
   min-height: 400px;
 }
 .cartSize {
   position: absolute;
   z-index: 1000 !important;
+  top: 29px;
+  right: 98px;
   font-size: 11pt;
 }
+
 
 .listingColumn {
   margin-top: 30px;
@@ -129,7 +135,7 @@ img.home {
 
 .link-button:hover {
   text-decoration: none; /* Remove underline on hover if desired */
-}
+} 
 .hide {
   display: none !important;
 }
@@ -143,19 +149,23 @@ img.home {
   float: right;
   margin-bottom: 5px;
   margin-right: 5px;
+  font-size: 12pt;
 }
 
 .sortDropDown {
   float: right;
   padding-bottom: 5px;
   margin-bottom: 5px;
-}
-
-.results {
-  margin-top:8px;
   font-size: 12pt;
 }
 
+.results {
+  font-size: 12pt;
+}
+
+.ListingContainerHeaderCol {
+  height:100%;
+}
 .noPaddingOrMargins {
   padding: 0px !important;
   margin: 0px !important;
@@ -163,6 +173,12 @@ img.home {
 
 .profileWidgetContainers {
   width: 50%;
+}
+
+.profilePageCol {
+  padding: 0px !important;
+  margin: 0px !important;
+  min-width: 300px !important;
 }
 
 .profilePageImage {
@@ -217,11 +233,7 @@ img.home {
   padding: 5px 0 35px 0;
   margin-top: 50px;
   margin-bottom: 200px;
-  border-style: solid;
   border-radius: 20px;
-  border-color: rgb(175, 175, 175);
-  border-width: 2px;
-  box-shadow: 2px 2px 4px 0px rgba(43, 43, 43, 0.5);
 }
 
 .account-input-field-container {

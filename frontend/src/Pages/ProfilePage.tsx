@@ -6,10 +6,10 @@ import { ViewContext } from "src/Context/ViewContext";
 import profileImg from "../Assets/profile.png";
 
 function ProfilePage(): JSX.Element {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, guestUser } = useContext(UserContext);
   const { changePage } = useContext(ViewContext);
   const logout = () => {
-    setUser({} as UserInterface);
+    setUser(guestUser);
     changePage("HOME");
   };
   return (
@@ -27,18 +27,18 @@ function ProfilePage(): JSX.Element {
         </Row>
         <Row>
           <Col>
-            <Card className="profileWidgetContainers mx-auto mt-1 border-0">
+            <Card className="profileWidgetContainers mx-auto mt-1 border-0 shadow">
               <Card.Body className="p-5">
                 <Container>
                   <Row>
-                    <Col className="m-0 p-0">
-                      <Card className="p-5 bg-light border-0">
+                    <Col className="m-0 p-0 mx-2">
+                      <Card className="p-3 bg-light border">
                         <Card.Title>Username</Card.Title>
                         <Card.Text>{user.username}</Card.Text>
                       </Card>
                     </Col>
                     <Col className="m-0 p-0 mx-2">
-                      <Card className="p-5 bg-light border-0">
+                      <Card className="p-3 bg-light border">
                         <Card.Title>Email</Card.Title>
                         <Card.Text>{user.email}</Card.Text>
                       </Card>
@@ -58,9 +58,9 @@ function ProfilePage(): JSX.Element {
         </Row>
         <Row>
           <Col>
-            <Card className="profileWidgetContainers mx-auto mt-5 border-0">
+            <Card className="profileWidgetContainers mx-auto mt-5 border-0 shadow">
               <Card.Body className="p-5">
-                <Card className="p-5 bg-light border-0 mx-auto">
+                <Card className="p-5 bg-light border mx-auto">
                   <Card.Title>Payment 1</Card.Title>
                   <Card.Text>
                     Visa ending in 1234
@@ -76,9 +76,9 @@ function ProfilePage(): JSX.Element {
         </Row>
         <Row>
           <Col>
-            <Card className="profileWidgetContainers mx-auto mt-5 border-0">
+            <Card className="profileWidgetContainers mx-auto mt-5 border-0 shadow">
               <Card.Body className="p-5">
-                <Card className="p-5 bg-light border-0 mx-auto">
+                <Card className="p-5 bg-light border mx-auto">
                   <Card.Title>Address 1</Card.Title>
                   <Card.Text>
                     1234 Main St
