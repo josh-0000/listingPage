@@ -11,6 +11,7 @@ import AccountCreationPage from "./Pages/AccountCreationPage";
 import CartPage from "./Pages/CartPage";
 import { Container } from "react-bootstrap";
 import ProfilePage from "./Pages/ProfilePage";
+import ListingDescriptionPage from "./Pages/ListingDescriptionPage";
 
 function App() {
   const { currentPage } = useContext(ViewContext);
@@ -31,6 +32,9 @@ function App() {
       break;
     case "PROFILE":
       content = <ProfilePage />;
+      break;
+    case "DESCRIPTION":
+      content = <ListingDescriptionPage />;
   }
 
   return (
