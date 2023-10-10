@@ -20,7 +20,6 @@ export interface UserInterface {
   userid: number;
   username: string;
   email: string;
-  phoneNumber: string | null;
   image: string | null;
   addresses: any[] | null;
   cards: any[];

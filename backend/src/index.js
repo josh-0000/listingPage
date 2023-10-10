@@ -75,9 +75,9 @@ app.post('/login', async (req, res) => {
       const userWishLists = await client.query('SELECT * FROM wishlists WHERE userid = $1', [userID]);
 
       let cards = [];
-      let stripeCustomer;
+
+      console.log("stripeID:", stripeID);
       if (stripeID) {
-        stripeCustomer = await stripe.customers.retrieve(stripeID); 
         const paymentMethods = await stripe.paymentMethods.list({
           customer: stripeID,
           type: 'card',
@@ -89,17 +89,13 @@ app.post('/login', async (req, res) => {
           funding: paymentMethod.card.funding,
         }));
       }
-
-      const username = stripeCustomer.name;
-      const phoneNumber = stripeCustomer.phone;
       res.json({ 
         message: 'Login successful', 
         user: {
           userid: userID,
           stripeid: stripeID,
-          email: email,
-          phoneNumber: phoneNumber,
-          username: username,
+          email: userResult.rows[0].email,
+          username: userResult.rows[0].username,
           addresses: userAddresses.rows,
           cart: userCarts.rows.map(cartItem => ({
             listingid: cartItem.listingid,
@@ -118,53 +114,26 @@ app.post('/login', async (req, res) => {
   }
 });
 
+
 app.post('/register', async (req, res) => {
   logger.info('Received request for /register');
-  const { email, password, firstName, lastName, phoneNumber } = req.body;
+  const { email, username, password } = req.body;
 
   try {
     const insertQuery = `
-      INSERT INTO users (email, password)
-      VALUES ($1, $2)
-      RETURNING userid
+      INSERT INTO users (email, username, password)
+      VALUES ($1, $2, $3)
+      RETURNING userid, email, username
     `;
-    const result = await client.query(insertQuery, [email, password]);
+    const result = await client.query(insertQuery, [email, username, password]);
+
     const newUser = result.rows[0];
-
-    const stripeCustomer = await stripe.customers.create({
-      name: `${firstName} ${lastName}`,
-      email: email,
-      phone: phoneNumber,
-      description: `Customer for user ID ${newUser.userid}`
-    });
-
-    if (!stripeCustomer || !stripeCustomer.id) {
-      throw new Error('Failed to create Stripe customer.');
-    }
-
-    const updateStripeIdQuery = `
-      UPDATE users
-      SET stripeid = $1
-      WHERE userid = $2
-    `;
-    await client.query(updateStripeIdQuery, [stripeCustomer.id, newUser.userid]);
-
-    const username = `${firstName} ${lastName}`;
     res.status(201).json({ 
-      message: 'Account and Stripe customer created successfully',
-      user: 
-        {
-          userid: newUser.userid,
-          stripeid: stripeCustomer.id,
-          email: email,
-          phoneNumber: phoneNumber,
-          username: username,
-          addresses: [],
-          cart: [],
-          wishlists: [],
-          cards: []
-        }
-    });
+      message: 'Account created successfully',
+      user: newUser
+     });
+    
+    logger.info('Success', newUser);
   } catch (error) {
     logger.error('Error:', error);
     res.status(500).json({ message: 'Internal server error' });
@@ -233,6 +202,8 @@ app.post('/save-card', async (req, res) => {
       funding: addedCard.card.funding,
     };
 
+    // Send the card details back to the client
+    console.log(cardDetails);
     res.status(200).json({
       message: 'Card saved successfully',
       card: cardDetails,
