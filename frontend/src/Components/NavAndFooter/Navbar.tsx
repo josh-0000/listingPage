@@ -63,7 +63,7 @@ function Navbar(): JSX.Element {
                   </div>
                 </Button>
               </Nav.Item>
-              <Nav.Item className="d-flex w-100 align-items-center justify-content-center">
+              <Nav.Item className="d-flex w-100 align-items-center justify-content-center mx-2">
                 <Button
                   variant="nav-link"
                   className="text-white white-icon w-100"
