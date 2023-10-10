@@ -52,8 +52,15 @@ function Navbar(): JSX.Element {
                   className="text-white white-icon w-100"
                   onClick={() => changePage("CART")}
                 >
-                  <img src={cartImg} className="cart" alt="Cart" />
-                  <p className="cartSize">{cartSize}</p>
+                  <div className="d-flex justify-content-center align-items-center">
+                    <img src={cartImg} className="cart" alt="Cart" />
+                    <span
+                      className="mt-2"
+                      style={{ marginLeft: "-50%", zIndex: 1 }}
+                    >
+                      {cartSize}
+                    </span>
+                  </div>
                 </Button>
               </Nav.Item>
               <Nav.Item className="d-flex w-100 align-items-center justify-content-center">
