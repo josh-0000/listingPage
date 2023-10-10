@@ -9,20 +9,27 @@ function AccountCreationPage(): JSX.Element {
 
   const [formData, setFormData] = useState({
     email: "",
-    username: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
     password: "",
     rePassword: "",
   });
+
   const [errors, setErrors] = useState({
     email: "",
-    username: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
     password: "",
     rePassword: "",
   });
 
   const [formDataValid, setFormDataValid] = useState({
     email: false,
-    username: false,
+    firstName: false,
+    lastName: false,
+    phoneNumber: false,
     password: false,
     rePassword: false,
   });
@@ -31,7 +38,9 @@ function AccountCreationPage(): JSX.Element {
     e.preventDefault();
     if (
       formDataValid.email &&
-      formDataValid.username &&
+      formDataValid.firstName &&
+      formDataValid.lastName &&
+      formDataValid.phoneNumber &&
       formDataValid.password &&
       formDataValid.rePassword
     ) {
@@ -43,13 +52,16 @@ function AccountCreationPage(): JSX.Element {
           },
           body: JSON.stringify({
             email: formData.email,
-            username: formData.username,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            phoneNumber: formData.phoneNumber,
             password: formData.password,
           }),
         });
 
         if (response.ok) {
           const data = await response.json();
+          console.log(data);
           setUser(data.user);
           changePage("HOME");
         } else {
@@ -84,19 +96,31 @@ function AccountCreationPage(): JSX.Element {
         }
         break;
 
-      case "username":
-        const usernameRegex = /^[a-zA-Z][a-zA-Z0-9_]*$/;
-        if (usernameRegex.test(value)) {
-          setFormDataValid((prev) => ({ ...prev, username: true }));
-          setErrors((prev) => ({ ...prev, username: "" }));
+      case "firstName":
+      case "lastName":
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        if (nameRegex.test(value)) {
+          setFormDataValid((prev) => ({ ...prev, [name]: true }));
+          setErrors((prev) => ({ ...prev, [name]: "" }));
         } else {
-          setFormDataValid((prev) => ({ ...prev, username: false }));
+          setFormDataValid((prev) => ({ ...prev, [name]: false }));
           setErrors((prev) => ({
             ...prev,
-            username:
-              value.length === 0
-                ? "Username is required"
-                : "Invalid username format",
+            [name]: "Names can only contain alphabets and spaces",
+          }));
+        }
+        break;
+
+      case "phoneNumber":
+        const phoneRegex = /^\d{10}$/;
+        if (phoneRegex.test(value)) {
+          setFormDataValid((prev) => ({ ...prev, phoneNumber: true }));
+          setErrors((prev) => ({ ...prev, phoneNumber: "" }));
+        } else {
+          setFormDataValid((prev) => ({ ...prev, phoneNumber: false }));
+          setErrors((prev) => ({
+            ...prev,
+            phoneNumber: "Phone number must be a 10-digit number",
           }));
         }
         break;
@@ -187,23 +211,58 @@ function AccountCreationPage(): JSX.Element {
 
         <Form.Group as={Row} className="justify-content-center">
           <Form.Label column sm="6" className="mt-2">
-            Username
+            First Name
           </Form.Label>
           <Col sm="6" className="mt-2 mb-2 account-input-field-container">
             <Form.Control
               type="text"
-              id="username"
-              name="username"
+              id="firstName"
+              name="firstName"
               required
               onChange={handleInputChange}
-              isInvalid={!!errors.username}
+              isInvalid={!!errors.firstName}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.username}
+              {errors.firstName}
             </Form.Control.Feedback>
           </Col>
         </Form.Group>
-
+        <Form.Group as={Row} className="justify-content-center">
+          <Form.Label column sm="6" className="mt-2">
+            Last Name
+          </Form.Label>
+          <Col sm="6" className="mt-2 mb-2 account-input-field-container">
+            <Form.Control
+              type="text"
+              id="lastName"
+              name="lastName"
+              required
+              onChange={handleInputChange}
+              isInvalid={!!errors.lastName}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.lastName}
+            </Form.Control.Feedback>
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="justify-content-center">
+          <Form.Label column sm="6" className="mt-2">
+            Phone Number
+          </Form.Label>
+          <Col sm="6" className="mt-2 mb-2 account-input-field-container">
+            <Form.Control
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+              required
+              onChange={handleInputChange}
+              isInvalid={!!errors.phoneNumber}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.phoneNumber}
+            </Form.Control.Feedback>
+          </Col>
+        </Form.Group>
         <Form.Group as={Row} className="justify-content-center">
           <Form.Label column sm="6" className="mt-2">
             Password
