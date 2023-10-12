@@ -1,5 +1,4 @@
 -- Insert Users
-INSERT INTO Users (Email, Password)
+INSERT INTO Users (Email, Password, StripeID)
 VALUES 
-('joshuagmys00@icloud.com', '1Buddydog1$'),
-('justin@example.com','justin');
+('joshuagmys71@gmail.com', '1Buddydog1$', 'cus_Oo4rjxCuTW6guV');

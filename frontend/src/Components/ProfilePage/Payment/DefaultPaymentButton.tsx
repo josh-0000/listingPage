@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Form } from "react-bootstrap";
-import { UserContext } from "src/Context/UserContext";
+import { UserContext } from "../../../Context/UserContext";
 
 function DefaultPaymentButton({ cardid }: { cardid: string }): JSX.Element {
   const { user, setDefaultCard, defaultCard } = useContext(UserContext);

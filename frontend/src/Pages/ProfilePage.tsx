@@ -6,6 +6,7 @@ import profileImg from "../Assets/profile.png";
 import PaymentContainer from "../Components/ProfilePage/Payment/PaymentContainer";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import AddressContainer from "src/Components/ProfilePage/Address/AddressContainer";
 
 function ProfilePage(): JSX.Element {
   const { user, setUser, guestUser } = useContext(UserContext);
@@ -39,13 +40,13 @@ function ProfilePage(): JSX.Element {
                 <Container>
                   <Row>
                     <Col className="m-0 p-0 mx-2">
-                      <Card className="p-3 bg-light shadow">
+                      <Card className="p-3 bg-light shadow-sm">
                         <Card.Title>Name</Card.Title>
                         <Card.Text>{user.username}</Card.Text>
                       </Card>
                     </Col>
                     <Col className="m-0 p-0 mx-2">
-                      <Card className="p-3 bg-light shadow">
+                      <Card className="p-3 bg-light shadow-sm">
                         <Card.Title>Email</Card.Title>
                         <Card.Text>{user.email}</Card.Text>
                       </Card>
@@ -53,7 +54,7 @@ function ProfilePage(): JSX.Element {
                   </Row>
                   <Row>
                     <Col className="m-0 p-0 mx-2 mt-3">
-                      <Card className="p-3 bg-light shadow">
+                      <Card className="p-3 bg-light shadow-sm">
                         <Card.Title>Phone Number</Card.Title>
                         <Card.Text>{user.phoneNumber}</Card.Text>
                       </Card>
@@ -80,21 +81,7 @@ function ProfilePage(): JSX.Element {
         </Row>
         <Row>
           <Col>
-            <Card className="profileWidgetContainers mx-auto mt-5 border-0 shadow">
-              <Card.Body className="p-5">
-                <Card className="p-5 bg-light border mx-auto">
-                  <Card.Title>Address 1</Card.Title>
-                  <Card.Text>
-                    1234 Main St
-                    <br />
-                    Anytown, USA 12345
-                  </Card.Text>
-                </Card>
-                <Button variant="primary" className="mt-5">
-                  Add Address
-                </Button>
-              </Card.Body>
-            </Card>
+            <AddressContainer />
           </Col>
         </Row>
       </Row>

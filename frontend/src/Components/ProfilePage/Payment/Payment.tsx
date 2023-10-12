@@ -6,7 +6,7 @@ import DefaultPaymentButton from "./DefaultPaymentButton";
 function Payment(card: { card: CardInterface }): JSX.Element {
   const cardid = card.card.id || "0";
   return (
-    <Card className="p-5 bg-light shadow mx-auto mt-3">
+    <Card className="p-5 bg-light shadow-sm mx-auto mt-3">
       <Card.Title className="mt-3 mb-3">{card.card.brand}</Card.Title>
       <Card.Text>
         {card.card.funding} card ending in {card.card.last4}

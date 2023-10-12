@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Button, Card } from "react-bootstrap";
-import { UserContext } from "src/Context/UserContext";
+import { UserContext } from "../../../Context/UserContext";
 import Payment from "./Payment";
 import PaymentInput from "./PaymentInput";
-import { ViewContext } from "src/Context/ViewContext";
+import { ViewContext } from "../../../Context/ViewContext";
 
 function PaymentContainer(): JSX.Element {
   const { cardList } = useContext(UserContext);

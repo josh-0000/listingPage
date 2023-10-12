@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Button } from "react-bootstrap";
-import { UserContext } from "src/Context/UserContext";
+import { UserContext } from "../../../Context/UserContext";
 
 function DeleteCard({ cardid }: { cardid: string }): JSX.Element {
   const { user, removeCard } = useContext(UserContext);

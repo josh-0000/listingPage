@@ -4,6 +4,7 @@ import {
   UserInterface,
   CardInterface,
   ContextProviderProps,
+  AddressInterface,
 } from "src/Interfaces/Interfaces";
 
 const defaultContextValues = {
@@ -35,6 +36,10 @@ const defaultContextValues = {
   setDefaultCard: (_value: string | null) => {
     console.error("toggleFilter function not yet implemented");
   },
+  addressList: [] as AddressInterface[],
+  setAddressList: (_value: AddressInterface[]) => {
+    console.error("toggleFilter function not yet implemented");
+  },
 };
 
 export const UserContext = createContext(defaultContextValues);
@@ -52,11 +57,14 @@ export function UserContextProvider({
   savedUser = savedUser.username !== undefined ? savedUser : guestUser;
   savedUser.cart = savedUser.cart || ([] as CartInterface[]);
   savedUser.cards = savedUser.cards || ([] as CardInterface[]);
+  savedUser.addresses = savedUser.addresses || ([] as AddressInterface[]);
   savedUser.defaultCard = savedUser.defaultCard || null;
   const [user, setUser] = useState(savedUser as UserInterface);
   const [cartList, setCartList] = useState(user.cart);
   const [cardList, setCardList] = useState(user.cards);
   const [cartSize, setCartSize] = useState(0);
+  const [addressList, setAddressList] = useState(user.addresses);
+
   const [defaultCard, setDefaultCard] = useState<string | null>(
     user.defaultCard
   );
@@ -215,6 +223,8 @@ export function UserContextProvider({
     removeCard,
     defaultCard,
     setDefaultCard,
+    addressList,
+    setAddressList,
   };
 
   return (

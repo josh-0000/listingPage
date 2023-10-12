@@ -73,7 +73,6 @@ app.post('/login', async (req, res) => {
       const userAddresses = await client.query('SELECT * FROM addresses WHERE userid = $1', [userID]);
       const userCarts = await client.query('SELECT * FROM carts WHERE userid = $1', [userID]);
       const userWishLists = await client.query('SELECT * FROM wishlists WHERE userid = $1', [userID]);
-
       let cards = [];
       let stripeCustomer;
       if (stripeID) {
@@ -101,7 +100,15 @@ app.post('/login', async (req, res) => {
           email: email,
           phoneNumber: phoneNumber,
           username: username,
-          addresses: userAddresses.rows,
+          addresses: userAddresses.rows.map(address => ({
+            addressid: address.addressid,
+            city: address.city,
+            country: address.country,
+            line1: address.line1,
+            line2: address.line2,
+            postalCode: address.zipcode,
+            state: address.state
+          })),
           cart: userCarts.rows.map(cartItem => ({
             listingid: cartItem.listingid,
             quantity: cartItem.quantity

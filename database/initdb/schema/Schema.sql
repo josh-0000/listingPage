@@ -30,7 +30,12 @@ CREATE TABLE Users (
 CREATE TABLE Addresses (
   AddressID SERIAL PRIMARY KEY,
   UserID INT REFERENCES Users(UserID),
-  Address VARCHAR(255) NOT NULL
+  City VARCHAR(255),
+  Country VARCHAR(255),
+  Line1 VARCHAR(255),
+  Line2 VARCHAR(255) DEFAULT NULL,
+  PostalCode VARCHAR(10),
+  State VARCHAR(50)
 );
 
 CREATE TABLE Transactions (
