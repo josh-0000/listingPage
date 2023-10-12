@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { Button } from "react-bootstrap";
 import { UserContext } from "src/Context/UserContext";
 
-function DeleteCard(cardid: { cardid: string }): JSX.Element {
+function DeleteCard({ cardid }: { cardid: string }): JSX.Element {
   const { user, removeCard } = useContext(UserContext);
   const stripeId = user.stripeid;
-  const deleteCard = async (cardid: any) => {
+  const deleteCard = async (cardid: string) => {
     try {
       const response = await fetch("http://localhost:3001/delete-card", {
         method: "POST",
@@ -29,7 +29,7 @@ function DeleteCard(cardid: { cardid: string }): JSX.Element {
       <Button
         className="mt-3"
         variant="primary"
-        onClick={() => deleteCard(cardid.cardid)}
+        onClick={() => deleteCard(cardid)}
       >
         Remove
       </Button>

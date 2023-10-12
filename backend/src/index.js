@@ -269,6 +269,47 @@ app.post('/delete-card', async (req, res) => {
   }
 });
 
+app.post('/default-card', async (req, res) => {
+  console.log("received request for /default-card");
+  try {
+      const cardId = req.body.cardid;
+      const stripeId = req.body.stripeId;
+
+      if (!cardId || !stripeId) {
+          return res.status(400).send('Missing required parameters');
+      }
+
+      const customer = await stripe.customers.retrieve(stripeId);
+      const defaultPaymentMethodId = customer.invoice_settings.default_payment_method;
+
+      if (cardId === defaultPaymentMethodId) {
+          await stripe.customers.update(stripeId, {
+              invoice_settings: {
+                  default_payment_method: null
+              }
+          });
+
+          return res.status(200).json({
+              message: 'The provided card was already the default payment. It has now been removed as the default.'
+          });
+      } else {
+          await stripe.customers.update(stripeId, {
+              invoice_settings: {
+                  default_payment_method: cardId
+              }
+          });
+
+          return res.status(200).json({
+              message: 'Default card set successfully'
+          });
+      }
+
+  } catch (error) {
+      console.error("Error setting default card:", error);
+      res.status(500).send('An error occurred while processing your request');
+  }
+});
+
 app.post('/save-cart', async (req, res) => {
   logger.info('Received request for /save-cart');
   console.log("Received request for /save-cart");

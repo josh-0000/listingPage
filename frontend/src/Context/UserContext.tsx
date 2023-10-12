@@ -31,6 +31,10 @@ const defaultContextValues = {
   removeCard: (_value: string) => {
     console.error("toggleFilter function not yet implemented");
   },
+  defaultCard: null as string | null,
+  setDefaultCard: (_value: string | null) => {
+    console.error("toggleFilter function not yet implemented");
+  },
 };
 
 export const UserContext = createContext(defaultContextValues);
@@ -53,6 +57,7 @@ export function UserContextProvider({
   const [cartList, setCartList] = useState(user.cart);
   const [cardList, setCardList] = useState(user.cards);
   const [cartSize, setCartSize] = useState(0);
+  const [defaultCard, setDefaultCard] = useState<string | null>(null);
   const [shouldSaveCart, setShouldSaveCart] = useState(false);
   const isLoggedIn = user.username === "Guest" ? false : true;
 
@@ -201,6 +206,8 @@ export function UserContextProvider({
     cardList,
     addCardToList,
     removeCard,
+    defaultCard,
+    setDefaultCard,
   };
 
   return (

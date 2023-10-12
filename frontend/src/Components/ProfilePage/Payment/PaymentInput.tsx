@@ -62,7 +62,7 @@ function PaymentInput(): JSX.Element {
   };
 
   return (
-    <Card className="p-5 bg-light border mx-auto mt-3">
+    <Card className="p-5 bg-light shadow mx-auto mt-3">
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label className="mt-3 mb-3">Card Information</Form.Label>

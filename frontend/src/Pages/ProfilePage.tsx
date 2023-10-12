@@ -39,13 +39,13 @@ function ProfilePage(): JSX.Element {
                 <Container>
                   <Row>
                     <Col className="m-0 p-0 mx-2">
-                      <Card className="p-3 bg-light border">
+                      <Card className="p-3 bg-light shadow">
                         <Card.Title>Name</Card.Title>
                         <Card.Text>{user.username}</Card.Text>
                       </Card>
                     </Col>
                     <Col className="m-0 p-0 mx-2">
-                      <Card className="p-3 bg-light border">
+                      <Card className="p-3 bg-light shadow">
                         <Card.Title>Email</Card.Title>
                         <Card.Text>{user.email}</Card.Text>
                       </Card>
@@ -53,7 +53,7 @@ function ProfilePage(): JSX.Element {
                   </Row>
                   <Row>
                     <Col className="m-0 p-0 mx-2 mt-3">
-                      <Card className="p-3 bg-light border">
+                      <Card className="p-3 bg-light shadow">
                         <Card.Title>Phone Number</Card.Title>
                         <Card.Text>{user.phoneNumber}</Card.Text>
                       </Card>
