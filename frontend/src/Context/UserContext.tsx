@@ -52,15 +52,18 @@ export function UserContextProvider({
   savedUser = savedUser.username !== undefined ? savedUser : guestUser;
   savedUser.cart = savedUser.cart || ([] as CartInterface[]);
   savedUser.cards = savedUser.cards || ([] as CardInterface[]);
-
+  savedUser.defaultCard = savedUser.defaultCard || null;
   const [user, setUser] = useState(savedUser as UserInterface);
   const [cartList, setCartList] = useState(user.cart);
   const [cardList, setCardList] = useState(user.cards);
   const [cartSize, setCartSize] = useState(0);
-  const [defaultCard, setDefaultCard] = useState<string | null>(null);
+  const [defaultCard, setDefaultCard] = useState<string | null>(
+    user.defaultCard
+  );
   const [shouldSaveCart, setShouldSaveCart] = useState(false);
   const isLoggedIn = user.username === "Guest" ? false : true;
 
+  console.log("user", user);
   useEffect(() => {
     saveCartEffectively();
   }, [cartList, shouldSaveCart]);
@@ -90,6 +93,10 @@ export function UserContextProvider({
   useEffect(() => {
     setUser({ ...user, cards: cardList });
   }, [cardList]);
+
+  useEffect(() => {
+    setUser({ ...user, defaultCard: defaultCard });
+  }, [defaultCard]);
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));

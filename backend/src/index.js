@@ -92,6 +92,7 @@ app.post('/login', async (req, res) => {
 
       const username = stripeCustomer.name;
       const phoneNumber = stripeCustomer.phone;
+      const defaultPaymentMethodId = stripeCustomer.invoice_settings.default_payment_method;
       res.json({ 
         message: 'Login successful', 
         user: {
@@ -106,7 +107,8 @@ app.post('/login', async (req, res) => {
             quantity: cartItem.quantity
           })),
           wishlists: userWishLists.rows,
-          cards: cards
+          cards: cards,
+          defaultCard: defaultPaymentMethodId
         }
       });
     } else {

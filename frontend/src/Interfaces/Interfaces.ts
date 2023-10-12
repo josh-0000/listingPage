@@ -28,6 +28,7 @@ export interface UserInterface {
   cart: any[];
   wishlists: any[] | null;
   stripeid: string | null;
+  defaultCard: string | null;
 }
 
 export interface CartInterface {
