@@ -3,21 +3,16 @@ import { ListingContext } from "../../../Context/ListingContext";
 import { Button, ButtonGroup, Col, Row } from "react-bootstrap";
 
 function ListingPageSwitcher(): JSX.Element {
-  // use state for the currernt page
   const { currentPage, setCurrentPage } = useContext(ListingContext);
-
-  // use states for the three numbers inside of the page switcher
   const [buttonOne, setButtonOne] = useState(1);
   const [buttonTwo, setButtonTwo] = useState(2);
   const [buttonThree, setButtonThree] = useState(3);
   const { numPages } = useContext(ListingContext);
 
-  // function for First button
   const firstPage = () => {
     setCurrentPage(1);
   };
 
-  // function for Previous button
   const previousPage = () => {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
@@ -29,7 +24,6 @@ function ListingPageSwitcher(): JSX.Element {
     }
   };
 
-  // function for the Next button
   const nextPage = () => {
     if (currentPage !== numPages) {
       setCurrentPage(currentPage + 1);
@@ -41,7 +35,6 @@ function ListingPageSwitcher(): JSX.Element {
     }
   };
 
-  // function for the Last button
   const lastPage = () => {
     const buttonToBeLast = numPages % 3;
     if (buttonToBeLast === 1) {
@@ -60,21 +53,18 @@ function ListingPageSwitcher(): JSX.Element {
     setCurrentPage(numPages);
   };
 
-  // function for first number slot
   const currentPageOptionOne = () => {
     if (buttonOne <= numPages) {
       setCurrentPage(buttonOne);
     }
   };
 
-  // function for second number slot
   const currentPageOptionTwo = () => {
     if (buttonTwo <= numPages) {
       setCurrentPage(buttonTwo);
     }
   };
 
-  // function for third number slot
   const currentPageOptionThree = () => {
     if (buttonThree <= numPages) {
       setCurrentPage(buttonThree);

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Button } from "react-bootstrap";
 import { UserContext } from "../../../Context/UserContext";
+import Notification from "../../../Components/Notification";
 
 function DeleteCard({ cardid }: { cardid: string }): JSX.Element {
   const { user, removeCard } = useContext(UserContext);
@@ -19,9 +20,11 @@ function DeleteCard({ cardid }: { cardid: string }): JSX.Element {
       if (result.message === "Card deleted successfully") {
         console.log("about to remove card from list");
         removeCard(cardid);
+        Notification("Card deleted successfully");
       }
     } catch {
       console.error("There was an error deleting the card");
+      Notification("There was an error deleting the card");
     }
   };
   return (

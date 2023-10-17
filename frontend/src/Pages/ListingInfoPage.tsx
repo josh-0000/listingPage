@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import Description from "src/Components/ListingInfoPage/Description";
+import Description from "../Components/ListingInfoPage/Description";
 
 function ListingInfoPage(): JSX.Element {
   return (

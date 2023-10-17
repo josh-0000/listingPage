@@ -17,7 +17,6 @@ function AddToCart(props: { listing: ListingInterface }): JSX.Element {
 
   return (
     <div className="mt-auto">
-      {/* Using React Bootstrap's Button component */}
       <Button
         variant="outline-primary"
         className="rounded-pill p-2"

@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
-import { ViewContext } from "src/Context/ViewContext";
+import { ViewContext } from "../Context/ViewContext";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { UserContext } from "src/Context/UserContext";
+import { UserContext } from "../Context/UserContext";
+import Notification from "../Components/Notification";
 
 function AccountCreationPage(): JSX.Element {
   const { changePage } = useContext(ViewContext);
@@ -61,9 +62,12 @@ function AccountCreationPage(): JSX.Element {
 
         if (response.ok) {
           const data = await response.json();
+
           console.log(data);
           setUser(data.user);
+          const message = "Welcome " + data.user.username + "!";
           changePage("HOME");
+          Notification(message);
         } else {
           const data = await response.json();
           console.error("Error registering:", data);

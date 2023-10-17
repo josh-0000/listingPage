@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
-import { ViewContext } from "src/Context/ViewContext";
+import { ViewContext } from "../Context/ViewContext";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { UserContext } from "src/Context/UserContext";
+import { UserContext } from "../Context/UserContext";
+import Notification from "../Components/Notification";
 
 function LoginPage(): JSX.Element {
   const { changePage } = useContext(ViewContext);
@@ -35,11 +36,12 @@ function LoginPage(): JSX.Element {
 
         const result = await response.json();
         if (response.status === 200 && result.message === "Login successful") {
-          // Successfully logged in
-          // Here you can handle successful login, maybe set some user state or redirect to a dashboard, etc.
-          setUser(result.user);
+          const user = result.user;
+          const message = "Welcome " + user.username + "!";
+          setUser(user);
           setInvalidLogin(false);
           changePage("HOME");
+          Notification(message);
         } else {
           setInvalidLogin(true);
         }

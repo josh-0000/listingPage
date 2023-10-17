@@ -1,5 +1,3 @@
-// dataInterfaces.ts
-
 export interface ListingInterface {
   listingid: number;
   listingname: string;

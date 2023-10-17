@@ -1,9 +1,10 @@
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useContext } from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { UserContext } from "src/Context/UserContext";
-import { ViewContext } from "src/Context/ViewContext";
-import { CardInterface } from "src/Interfaces/Interfaces";
+import { UserContext } from "../../../Context/UserContext";
+import { ViewContext } from "../../../Context/ViewContext";
+import { CardInterface } from "../../../Interfaces/Interfaces";
+import Notification from "../../../Components/Notification";
 
 function PaymentInput(): JSX.Element {
   const stripe = useStripe();
@@ -40,11 +41,13 @@ function PaymentInput(): JSX.Element {
         setAddPayment(false);
         try {
           addCardToList(card);
+          Notification("Card added successfully");
         } catch {
           console.error("There was an error adding the card to the list");
         }
       } catch {
         console.error("There was an error adding the card");
+        Notification("There was an error adding the card");
       }
     }
   };

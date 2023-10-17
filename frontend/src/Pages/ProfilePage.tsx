@@ -7,6 +7,7 @@ import PaymentContainer from "../Components/ProfilePage/Payment/PaymentContainer
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import AddressContainer from "../Components/ProfilePage/Address/AddressContainer";
+import Notification from "../Components/Notification";
 
 function ProfilePage(): JSX.Element {
   const { user, setUser, guestUser } = useContext(UserContext);
@@ -18,6 +19,7 @@ function ProfilePage(): JSX.Element {
   const logout = () => {
     setUser(guestUser);
     changePage("HOME");
+    Notification("Successfully Logged out");
   };
 
   return (

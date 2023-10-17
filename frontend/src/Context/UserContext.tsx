@@ -5,7 +5,7 @@ import {
   CardInterface,
   ContextProviderProps,
   AddressInterface,
-} from "src/Interfaces/Interfaces";
+} from "../Interfaces/Interfaces";
 
 const defaultContextValues = {
   user: {} as UserInterface,

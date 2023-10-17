@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { UserContext } from "src/Context/UserContext";
+import { UserContext } from "../Context/UserContext";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import CartItem from "src/Components/Cart/CartItem";
-import CartEmpty from "src/Components/Cart/CartEmpty";
-import { ListingContext } from "src/Context/ListingContext";
-import { ListingInterface } from "src/Interfaces/Interfaces";
+import CartItem from "../Components/Cart/CartItem";
+import CartEmpty from "../Components/Cart/CartEmpty";
+import { ListingContext } from "../Context/ListingContext";
+import { ListingInterface } from "../Interfaces/Interfaces";
 
 function CartPage(): JSX.Element {
   const { cartList } = useContext(UserContext);

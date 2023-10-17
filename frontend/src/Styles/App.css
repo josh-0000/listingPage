@@ -43,7 +43,7 @@ img.home {
   min-width: 200px;
 }
 .custom-navbar {
-  padding: 10px !important;  /* Adjust the first value (20px) to set the desired thickness */
+  padding: 10px !important;
 }
 
 .ListingContainerHeader {
@@ -126,15 +126,15 @@ img.home {
 .link-button {
   background: none;
   border: none;
-  color: blue; /* Set the color you want for links */
-  text-decoration: underline; /* Add underlines to mimic links */
-  cursor: pointer; /* Change cursor to a pointer to indicate interactivity */
-  padding: 0; /* Remove any padding or margin */
-  font: inherit; /* Inherit font styles from the parent */
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
 }
 
 .link-button:hover {
-  text-decoration: none; /* Remove underline on hover if desired */
+  text-decoration: none;
 } 
 .hide {
   display: none !important;
@@ -195,7 +195,7 @@ img.home {
 }
 
 .featured-card .card-body {
-  padding: 50px; /* Adjust padding to your preference */
+  padding: 50px;
 }
 
 .listing-card-body {
@@ -255,3 +255,14 @@ img.home {
   position: absolute; 
 }
 
+.toast-container {
+  position: fixed !important;
+  bottom: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.custom-toast-header {
+  display: flex;
+  justify-content: space-between;
+}

@@ -41,12 +41,8 @@ function ListingContainer(): JSX.Element {
     }
 
     setFilteredListings(filtered);
-
-    // Everytime the category is changed we want to set the page to 1
     setCurrentPage(1);
-    // Setting the number of pages for the filtered listings
     setNumPages(Math.ceil(filtered.length / productsPerPage));
-    // Setting the number of results for the filtered listings
     setNumResults(filtered.length);
   }, [
     categoryList,
@@ -57,12 +53,8 @@ function ListingContainer(): JSX.Element {
     setCurrentPage,
   ]);
 
-  // Setting the start index of the splice based on the current page and the number of prodects per page
   const startIndex = (currentPage - 1) * productsPerPage;
-  // Setting the end index of the splice based on the start index and the products per page.
   const endIndex = startIndex + productsPerPage;
-
-  // Products being displayed currently
   const currentProducts = filteredListings.slice(startIndex, endIndex);
 
   return (
