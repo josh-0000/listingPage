@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { ListingInterface } from "src/Interfaces/Interfaces";
-import { UserContext } from "src/Context/UserContext";
+import { ListingInterface } from "../../../Interfaces/Interfaces";
+import { UserContext } from "../../../Context/UserContext";
 import Button from "react-bootstrap/Button";
 
 function AddToCart(props: { listing: ListingInterface }): JSX.Element {

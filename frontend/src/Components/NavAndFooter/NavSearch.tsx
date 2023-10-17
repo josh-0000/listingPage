@@ -1,6 +1,6 @@
 import { useContext, useState, useRef, useEffect } from "react";
 import { Form, InputGroup, Button, ListGroup } from "react-bootstrap";
-import { ListingContext } from "src/Context/ListingContext";
+import { ListingContext } from "../../Context/ListingContext";
 
 function Search(): JSX.Element {
   const { allListings, setCategorySearch } = useContext(ListingContext);

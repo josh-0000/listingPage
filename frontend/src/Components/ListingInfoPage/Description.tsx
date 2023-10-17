@@ -2,7 +2,7 @@ import logo from "../../Assets/shirts.jpg";
 import { Card } from "react-bootstrap";
 import { useContext } from "react";
 import AddToCart from "../MainPage/Listings/AddToCart";
-import { ListingContext } from "src/Context/ListingContext";
+import { ListingContext } from "../../Context/ListingContext";
 
 function Description(): JSX.Element {
   const { viewListing } = useContext(ListingContext);

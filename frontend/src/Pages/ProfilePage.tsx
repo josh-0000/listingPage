@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { UserContext } from "src/Context/UserContext";
+import { UserContext } from "../Context/UserContext";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { ViewContext } from "src/Context/ViewContext";
+import { ViewContext } from "../Context/ViewContext";
 import profileImg from "../Assets/profile.png";
 import PaymentContainer from "../Components/ProfilePage/Payment/PaymentContainer";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import AddressContainer from "src/Components/ProfilePage/Address/AddressContainer";
+import AddressContainer from "../Components/ProfilePage/Address/AddressContainer";
 
 function ProfilePage(): JSX.Element {
   const { user, setUser, guestUser } = useContext(UserContext);

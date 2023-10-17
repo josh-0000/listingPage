@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { UserContext } from "src/Context/UserContext";
+import { UserContext } from "../../Context/UserContext";
 import Button from "react-bootstrap/Button";
 
 function RemoveFromCart(props: { listingid: number }): JSX.Element {
@@ -8,7 +8,6 @@ function RemoveFromCart(props: { listingid: number }): JSX.Element {
   const { listingid } = props;
   return (
     <div className="mt-auto">
-      {/* Using React Bootstrap's Button component */}
       <Button
         variant="outline-primary"
         className="rounded-pill p-2"

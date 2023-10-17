@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Row, Button } from "react-bootstrap";
-import { ListingContext } from "src/Context/ListingContext";
+import { ListingContext } from "../../Context/ListingContext";
 
 function Categories(): JSX.Element {
   const { setCategoryCategories } = useContext(ListingContext);

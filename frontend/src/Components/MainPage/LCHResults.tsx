@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ListingContext } from "src/Context/ListingContext";
+import { ListingContext } from "../../Context/ListingContext";
 import LCHCategory from "./LCHCategory";
 
 function Results(): JSX.Element {

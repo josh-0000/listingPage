@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Button, InputGroup, FormControl } from "react-bootstrap";
-import { UserContext } from "src/Context/UserContext";
+import { UserContext } from "../../Context/UserContext";
 
 function QuantityControl(props: { listingid: number }): JSX.Element {
   const { listingid } = props;

@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap";
-import { AddressInterface } from "src/Interfaces/Interfaces";
+import { AddressInterface } from "../../../Interfaces/Interfaces";
 
 function Address({ address }: { address: AddressInterface }): JSX.Element {
   return (

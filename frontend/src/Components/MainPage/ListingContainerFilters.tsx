@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ListingContext } from "src/Context/ListingContext";
+import { ListingContext } from "../../Context/ListingContext";
 import { Row, Col, Button, CloseButton } from "react-bootstrap";
 
 function ListingContainerFilters(): JSX.Element {

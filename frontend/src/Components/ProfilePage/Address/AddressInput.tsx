@@ -6,7 +6,7 @@ function AddressInput(): JSX.Element {
   const { setAddAddress } = useContext(ViewContext);
   return (
     <Card className="p-5 bg-light shadow-sm mx-auto mt-3">
-      <Card.Text>
+      <Card.Text className="p-3">
         <Form.Group>
           <Form.Control
             type="text"

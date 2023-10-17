@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Breadcrumb } from "react-bootstrap";
-import { ListingContext } from "src/Context/ListingContext";
+import { ListingContext } from "../../Context/ListingContext";
 
 function LCHCategory(): JSX.Element {
   const { categoryList } = useContext(ListingContext);
