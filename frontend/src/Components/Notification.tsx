@@ -16,7 +16,7 @@ const Notification = (message: string) => {
       }}
       show={true}
       delay={5000}
-      className="mb-2"
+      className="m-3"
       autohide
     >
       <ToastHeader className="custom-toast-header">

@@ -8,7 +8,7 @@ function DeleteCard({ cardid }: { cardid: string }): JSX.Element {
   const stripeId = user.stripeid;
   const deleteCard = async (cardid: string) => {
     try {
-      const response = await fetch("http://localhost:3001/delete-card", {
+      const response = await fetch("http://localhost:3001/user/delete-card", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cardid, stripeId }),

@@ -28,7 +28,7 @@ function LoginPage(): JSX.Element {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
     if (emailRegex.test(email) && passwordRegex.test(password)) {
       try {
-        const response = await fetch("http://localhost:3001/login", {
+        const response = await fetch("http://localhost:3001/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),

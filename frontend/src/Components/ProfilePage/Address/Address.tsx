@@ -3,7 +3,7 @@ import { AddressInterface } from "../../../Interfaces/Interfaces";
 
 function Address({ address }: { address: AddressInterface }): JSX.Element {
   return (
-    <Card className="p-5 bg-light shadow-sm mx-auto mt-3">
+    <Card className="p-4 bg-light shadow-sm mx-auto mt-3">
       <Card.Title className="mt-3 mb-3">
         {address.line1}
         <br />

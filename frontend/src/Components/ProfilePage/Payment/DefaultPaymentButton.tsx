@@ -8,7 +8,7 @@ function DefaultPaymentButton({ cardid }: { cardid: string }): JSX.Element {
   const stripeId = user.stripeid;
   const makeDefault = async (cardid: string) => {
     try {
-      const response = await fetch("http://localhost:3001/default-card", {
+      const response = await fetch("http://localhost:3001/user/default-card", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cardid, stripeId }),

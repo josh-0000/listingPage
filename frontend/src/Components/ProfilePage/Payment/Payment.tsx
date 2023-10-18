@@ -5,11 +5,16 @@ import DefaultPaymentButton from "./DefaultPaymentButton";
 
 function Payment(card: { card: CardInterface }): JSX.Element {
   const cardid = card.card.id || "0";
+  const funding = card.card.funding?.toUpperCase();
+  const brand = card.card.brand?.toUpperCase();
+  const last4 = card.card.last4;
   return (
     <Card className="p-5 bg-light shadow-sm mx-auto mt-3">
-      <Card.Title className="mt-3 mb-3">{card.card.brand}</Card.Title>
+      <Card.Title className="mt-3 mb-3">
+        {brand} {funding}
+      </Card.Title>
       <Card.Text>
-        {card.card.funding} card ending in {card.card.last4}
+        **** **** **** {last4}
         <br />
       </Card.Text>
       <Card.Body>

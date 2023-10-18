@@ -79,7 +79,7 @@ export function ListingContextProvider({
   const productsPerPage = 20;
 
   const fetchListings = () => {
-    fetch("http://localhost:3001/listings")
+    fetch("http://localhost:3001/listings/listings")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

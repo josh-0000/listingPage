@@ -31,7 +31,7 @@ function PaymentInput(): JSX.Element {
         const tokenId = token.id;
         const userId = user.userid;
         const stripeId = user.stripeid;
-        const response = await fetch("http://localhost:3001/save-card", {
+        const response = await fetch("http://localhost:3001/user/save-card", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ tokenId, userId, stripeId }),
@@ -55,17 +55,14 @@ function PaymentInput(): JSX.Element {
   const CARD_ELEMENT_OPTIONS = {
     style: {
       base: {
-        fontSize: "20px",
+        fontSize: "18px",
         lineHeight: "30px",
-        padding: "10px 12px",
-        border: "1px solid #b3b3b3",
-        borderRadius: "4px",
       },
     },
   };
 
   return (
-    <Card className="p-5 bg-light shadow mx-auto mt-3">
+    <Card className="p-4 bg-light shadow mx-auto mt-3">
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label className="mt-3 mb-3">Card Information</Form.Label>

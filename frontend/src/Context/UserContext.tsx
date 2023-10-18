@@ -133,7 +133,7 @@ export function UserContextProvider({
       userId: userId,
       cart: cart,
     };
-    const res = await fetch("http://localhost:3001/save-cart", {
+    const res = await fetch("http://localhost:3001/user/save-cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

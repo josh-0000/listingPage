@@ -21,3 +21,13 @@
 2023-10-07T16:01:49.592Z [[31merror[39m] - Database query failed: user is not defined
 2023-10-07T16:02:44.114Z [[31merror[39m] - Database query failed: user is not defined
 2023-10-07T16:03:39.172Z [[31merror[39m] - Database query failed: user is not defined
+2023-10-17T23:37:46.728Z [[31merror[39m] - Database query failed: connect ECONNREFUSED 127.0.0.1:5432
+2023-10-17T23:38:02.185Z [[31merror[39m] - Database query failed: connect ECONNREFUSED 127.0.0.1:5432
+2023-10-17T23:38:59.772Z [[31merror[39m] - Database query failed: connect ECONNREFUSED 127.0.0.1:5432
+2023-10-17T23:39:21.362Z [[31merror[39m] - Database query failed: connect ECONNREFUSED 127.0.0.1:5432
+2023-10-17T23:48:18.459Z [[31merror[39m] - Database query failed: connect ECONNREFUSED 127.0.0.1:5432
+2023-10-17T23:51:37.648Z [[31merror[39m] - Database query failed: connect ECONNREFUSED 127.0.0.1:5432
+2023-10-17T23:58:01.845Z [[31merror[39m] - Database query failed: connect ECONNREFUSED 127.0.0.1:5432
+2023-10-17T23:59:41.278Z [[31merror[39m] - Database query failed: connect ECONNREFUSED 127.0.0.1:5432
+2023-10-18T00:10:10.237Z [[31merror[39m] - Error: insert or update on table "carts" violates foreign key constraint "carts_userid_fkey"
+2023-10-18T00:10:36.129Z [[31merror[39m] - Error: insert or update on table "carts" violates foreign key constraint "carts_userid_fkey"
