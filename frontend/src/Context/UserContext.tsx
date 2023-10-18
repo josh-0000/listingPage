@@ -55,45 +55,45 @@ export function UserContextProvider({
 
   let savedUser = JSON.parse(localStorage.getItem("user") || "{}");
   savedUser = savedUser.username !== undefined ? savedUser : guestUser;
-  savedUser.cart = savedUser.cart || ([] as CartInterface[]);
-  savedUser.cards = savedUser.cards || ([] as CardInterface[]);
-  savedUser.addresses = savedUser.addresses || ([] as AddressInterface[]);
-  savedUser.defaultCard = savedUser.defaultCard || null;
-  const [user, setUser] = useState(savedUser as UserInterface);
-  const [cartList, setCartList] = useState(user.cart);
-  const [cardList, setCardList] = useState(user.cards);
-  const [cartSize, setCartSize] = useState(0);
-  const [addressList, setAddressList] = useState(user.addresses);
 
+  const [user, setUser] = useState(savedUser as UserInterface);
+  const [cartList, setCartList] = useState(user.cart as CartInterface[]);
+  const [cardList, setCardList] = useState(user.cards as CardInterface[]);
+  const [cartSize, setCartSize] = useState(0);
+  const [addressList, setAddressList] = useState(
+    user.addresses as AddressInterface[]
+  );
   const [defaultCard, setDefaultCard] = useState<string | null>(
     user.defaultCard
   );
   const [shouldSaveCart, setShouldSaveCart] = useState(false);
-  const isLoggedIn = user.username === "Guest" ? false : true;
 
-  console.log("user", user);
-  useEffect(() => {
-    saveCartEffectively();
-  }, [cartList, shouldSaveCart]);
-
-  useEffect(() => {
-    setCartSize(cartList.length);
-  }, [cartList]);
-
+  // setting useStates to user attributes
   useEffect(() => {
     if (user.username === "Guest") {
       resetCardList();
       resetCartList();
+      resetAddressList();
+      resetDefaultCard();
     }
+
     localStorage.setItem("user", JSON.stringify(user));
+
     if (user.cards) {
       setCardList(user.cards);
     }
     if (user.cart) {
       setCartList(user.cart);
     }
+    if (user.addresses) {
+      setAddressList(user.addresses);
+    }
+    if (user.defaultCard) {
+      setDefaultCard(user.defaultCard);
+    }
   }, [user.userid]);
 
+  // when these change we want to update the user object
   useEffect(() => {
     setUser({ ...user, cart: cartList });
   }, [cartList]);
@@ -106,10 +106,12 @@ export function UserContextProvider({
     setUser({ ...user, defaultCard: defaultCard });
   }, [defaultCard]);
 
+  // saving user to local storage each time a user attribute changes changes
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
-  }, [user.cards, user.cart]);
+  }, [user.cards, user.cart, user.addresses, user.defaultCard]);
 
+  // reset funcitons
   const resetCardList = () => {
     setCardList([] as CardInterface[]);
   };
@@ -118,10 +120,29 @@ export function UserContextProvider({
     setCartList([] as CartInterface[]);
   };
 
+  const resetAddressList = () => {
+    setAddressList([] as AddressInterface[]);
+  };
+
+  const resetDefaultCard = () => {
+    setDefaultCard(null);
+  };
+
+  // other
   const removeCard = (cardid: string) => {
     const newCardList = cardList.filter((c) => c.id !== cardid);
     setCardList(newCardList);
   };
+
+  const isLoggedIn = user.username === "Guest" ? false : true;
+
+  useEffect(() => {
+    saveCartEffectively();
+  }, [cartList, shouldSaveCart]);
+
+  useEffect(() => {
+    setCartSize(cartList.length);
+  }, [cartList]);
 
   const saveCart = async () => {
     const userId = user.userid;
