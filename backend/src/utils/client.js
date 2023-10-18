@@ -19,6 +19,11 @@ const client = {
   },
 };
 
+const getClientForTransaction = async () => {
+  const clientFromPool = await pool.connect();
+  return clientFromPool;
+};
+
 const handleError = (error, res) => {
   console.error(error);
   res.status(500).json({ message: 'Internal Server Error' });
@@ -27,4 +32,5 @@ const handleError = (error, res) => {
 module.exports = {
   client,
   handleError,
+  getClientForTransaction,
 };

@@ -1,5 +1,5 @@
 const express = require('express');
-const { client, handleError } = require('../utils/client');
+const { client, handleError, getClientForTransaction } = require('../utils/client');
 const logger = require('../utils/logger');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const router = express.Router();
@@ -144,23 +144,25 @@ router.post('/save-cart', async (req, res) => {
 
   console.log("cart:", cart);
   try {
-    await client.query('BEGIN');
+    const transactionClient = await getClientForTransaction();
+    await transactionClient.query('BEGIN');
 
     const deleteQuery = 'DELETE FROM carts WHERE userid = $1';
-    await client.query(deleteQuery, [userId]);
+    await transactionClient.query(deleteQuery, [userId]);
 
     const insertPromises = cart.map(cartItem => 
-      client.query('INSERT INTO carts (userid, listingid, quantity) VALUES ($1, $2, $3)', [userId, cartItem.listingid, cartItem.quantity])
+      transactionClient.query('INSERT INTO carts (userid, listingid, quantity) VALUES ($1, $2, $3)', [userId, cartItem.listingid, cartItem.quantity])
     );
     await Promise.all(insertPromises);
 
-    await client.query('COMMIT');
+    await transactionClient.query('COMMIT');
+    transactionClient.release();
     console.log("Cart saved successfully");
     res.status(200).json({ message: 'Cart saved successfully' });
   } catch (error) {
     console.log("Error saving cart: rolling back", error);
-    await client.query('ROLLBACK');
-    logger.error('Error:', error);
+    await transactionClient.query('ROLLBACK');
+    transactionClient.release();
     res.status(500).json({ message: 'Internal server error' });
   }
 });
