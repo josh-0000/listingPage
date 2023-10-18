@@ -106,6 +106,10 @@ export function UserContextProvider({
     setUser({ ...user, defaultCard: defaultCard });
   }, [defaultCard]);
 
+  useEffect(() => {
+    setUser({ ...user, addresses: addressList });
+  }, [addressList]);
+
   // saving user to local storage each time a user attribute changes changes
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
@@ -147,9 +151,6 @@ export function UserContextProvider({
   const saveCart = async () => {
     const userId = user.userid;
     const cart = cartList;
-    console.log("cart", cart);
-    console.log("userId", userId);
-    console.log("Fetching");
     const payload = {
       userId: userId,
       cart: cart,

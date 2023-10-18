@@ -15,14 +15,12 @@ function DefaultPaymentButton({ cardid }: { cardid: string }): JSX.Element {
       });
       const result = await response.json();
       if (result.message === "Default card set successfully") {
-        console.log("about to set card as default");
         setDefaultCard(cardid);
         Notification("Default card set successfully");
       } else if (
         result.message ===
         "The provided card was already the default payment. It has now been removed as the default."
       ) {
-        console.log("about to remove card from list");
         setDefaultCard(null);
         Notification(
           "The provided card was already the default payment. It has now been removed as the default."

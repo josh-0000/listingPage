@@ -2,10 +2,11 @@ import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { ViewContext } from "../../../Context/ViewContext";
 import { useContext, useState } from "react";
 import { UserContext } from "../../../Context/UserContext";
+import { AddressInterface } from "src/Interfaces/Interfaces";
 
 function AddressInput(): JSX.Element {
   const { setAddAddress } = useContext(ViewContext);
-  const { user } = useContext(UserContext);
+  const { user, setAddressList, addressList } = useContext(UserContext);
   const [line1, setLine1] = useState("");
   const [line2, setLine2] = useState("");
   const [city, setCity] = useState("");
@@ -24,7 +25,7 @@ function AddressInput(): JSX.Element {
       userId: user.userid,
     };
     try {
-      const response = await fetch("http://localhost:3001/save-address", {
+      const response = await fetch("http://localhost:3001/user/save-address", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,7 +35,9 @@ function AddressInput(): JSX.Element {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Address saved, ID: ", data.addressId);
+        const address = data.address;
+        setAddressList([...addressList, address as AddressInterface]);
+        setAddAddress(false);
       } else {
         console.error("Failed to save address");
       }

@@ -167,4 +167,40 @@ router.post('/save-cart', async (req, res) => {
   }
 });
 
+router.post('/save-address', async (req, res) => {
+  logger.info('Received request for /save-address');
+  console.log("Received request for /save-address");
+  const { line1, line2, city, state, postalCode, country, userId } = req.body;
+  
+  if (!line1 || !city || !state || !postalCode || !country || !userId) {
+    return res.status(400).send('Missing required parameters');
+  }
+
+  try { 
+    const queryText = 'INSERT INTO addresses (line1, line2, city, state, postalcode, country, userid) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING addressid';
+    const { rows } = await client.query(queryText, [line1, line2, city, state, postalCode, country, userId]);
+    console.log("rows:", rows);
+    const addressId = rows[0].id;
+    console.log("addressId:", addressId);
+    res.status(200).json({
+      message: 'Address saved successfully',
+      address:
+        {
+          id: addressId,
+          line1: line1,
+          line2: line2,
+          city: city,
+          state: state,
+          postalCode: postalCode,
+          country: country,
+          addressId: addressId,
+        }
+    });
+    console.log("Address saved successfully");
+  } catch (error) {
+    console.error("Error saving address:", error);
+    res.status(500).send('An error occurred while processing your request');
+  }
+});
+
 module.exports = router;

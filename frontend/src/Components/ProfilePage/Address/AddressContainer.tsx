@@ -7,7 +7,6 @@ import AddressInput from "./AddressInput";
 
 function AddressContainer(): JSX.Element {
   const { addressList } = useContext(UserContext);
-  console.log(addressList);
   const { addAddress, setAddAddress } = useContext(ViewContext);
   return (
     <Card className="profileWidgetContainers mx-auto mt-5 border-0 shadow">
