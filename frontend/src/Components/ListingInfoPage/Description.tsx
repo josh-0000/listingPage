@@ -1,27 +1,29 @@
 import logo from "../../Assets/shirts.jpg";
-import { Card } from "react-bootstrap";
 import { useContext } from "react";
-import AddToCart from "../MainPage/Listings/AddToCart";
 import { ListingContext } from "src/Context/ListingContext";
+import { Row, Col, Container } from "react-bootstrap";
+import { createLogicalOr } from "typescript";
+import Image from "react-bootstrap/Image";
+import Carousel from "react-bootstrap/Carousel";
 
 function Description(): JSX.Element {
   const { viewListing } = useContext(ListingContext);
+  const listingImages = [logo, logo, logo, logo];
   if (viewListing === null) {
     return <div></div>;
   }
   return (
-    <Card className="text-center flex-column m-0 listing">
-      <Card.Img variant="top" src={logo} alt="alt" />
-      <Card.Body className="d-flex flex-column listing-card-body">
-        <Card.Title className="bold">
-          {viewListing?.listingname + " "}
-          {viewListing?.listingid}
-        </Card.Title>
-        <Card.Text>{viewListing?.description}</Card.Text>
-        <Card.Text className="bold">${viewListing?.price}</Card.Text>
-        <AddToCart listing={viewListing} />
-      </Card.Body>
-    </Card>
+    <Container className="d-flex flex-column justify-content-center">
+      <Row>
+        <Carousel slide={false} interval={null}>
+          {listingImages.map((image, index) => (
+            <Carousel.Item key={index}>
+              <Image src={image} />
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </Row>
+    </Container>
   );
 }
 
