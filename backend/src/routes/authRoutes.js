@@ -19,6 +19,7 @@ router.post('/login', async (req, res) => {
     if (userResult.rows.length === 1) {
       const userID = userResult.rows[0].userid;
       const stripeID = userResult.rows[0].stripeid;
+      const defaultAddress = userResult.rows[0].defaultaddress;
       const userAddresses = await client.query('SELECT * FROM addresses WHERE userid = $1', [userID]);
       const userCarts = await client.query('SELECT * FROM carts WHERE userid = $1', [userID]);
       const userWishLists = await client.query('SELECT * FROM wishlists WHERE userid = $1', [userID]);
@@ -64,7 +65,8 @@ router.post('/login', async (req, res) => {
           })),
           wishlists: userWishLists.rows,
           cards: cards,
-          defaultCard: defaultPaymentMethodId
+          defaultCard: defaultPaymentMethodId,
+          defaultAddress: defaultAddress
         }
       });
     } else {

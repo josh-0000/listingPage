@@ -40,6 +40,10 @@ const defaultContextValues = {
   setAddressList: (_value: AddressInterface[]) => {
     console.error("toggleFilter function not yet implemented");
   },
+  defaultShipping: null as number | null,
+  setDefaultShipping: (_value: number | null) => {
+    console.error("toggleFilter function not yet implemented");
+  },
 };
 
 export const UserContext = createContext(defaultContextValues);
@@ -67,6 +71,9 @@ export function UserContextProvider({
     user.defaultCard
   );
   const [shouldSaveCart, setShouldSaveCart] = useState(false);
+  const [defaultShipping, setDefaultShipping] = useState<number | null>(
+    user.defaultAddress
+  );
 
   // setting useStates to user attributes
   useEffect(() => {
@@ -91,6 +98,9 @@ export function UserContextProvider({
     if (user.defaultCard) {
       setDefaultCard(user.defaultCard);
     }
+    if (user.defaultAddress) {
+      setDefaultShipping(user.defaultAddress);
+    }
   }, [user.userid]);
 
   // when these change we want to update the user object
@@ -109,6 +119,10 @@ export function UserContextProvider({
   useEffect(() => {
     setUser({ ...user, addresses: addressList });
   }, [addressList]);
+
+  useEffect(() => {
+    setUser({ ...user, defaultAddress: defaultShipping });
+  }, [defaultShipping]);
 
   // saving user to local storage each time a user attribute changes changes
   useEffect(() => {
@@ -230,6 +244,7 @@ export function UserContextProvider({
     setCardList([...cardList, card]);
   };
 
+  console.log("user", user);
   const contextData = {
     user,
     guestUser,
@@ -247,6 +262,8 @@ export function UserContextProvider({
     setDefaultCard,
     addressList,
     setAddressList,
+    setDefaultShipping,
+    defaultShipping,
   };
 
   return (

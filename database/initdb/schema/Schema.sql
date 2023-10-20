@@ -24,7 +24,8 @@ CREATE TABLE Users (
   Email VARCHAR(255) NOT NULL UNIQUE,
   ImageData BYTEA NULL,
   Password VARCHAR(255) NOT NULL,
-  StripeID VARCHAR(255) NULL
+  StripeID VARCHAR(255) NULL,
+  DefaultAddress INT NULL
 );
 
 CREATE TABLE Addresses (

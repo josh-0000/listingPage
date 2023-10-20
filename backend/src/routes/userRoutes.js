@@ -203,4 +203,36 @@ router.post('/save-address', async (req, res) => {
   }
 });
 
+router.post('/default-address', async (req, res) => {
+  console.log("Received request for /default-address");
+  try {
+    const userid = req.body.userid;
+    const addressid = req.body.addressid;
+    console.log("userid:", userid);
+    if (!userid || !addressid) {
+      return res.status(400).send('Missing required parameters');
+    }
+
+    const queryText = 'SELECT defaultaddress FROM users WHERE userid = $1';
+    const result = await client.query(queryText, [userid]);
+    const userAddressId = result.rows[0]?.defaultaddress;
+
+    console.log("userAddressId:", userAddressId);
+    if (userAddressId === addressid) {
+      await client.query('UPDATE users SET defaultaddress = null WHERE userid = $1', [userid]);
+      return res.status(200).json({
+        message: 'The provided address was already the default. It has now been removed.'
+      });
+    } else {
+      await client.query('UPDATE users SET defaultaddress = $1 WHERE userid = $2', [addressid, userid]);
+      return res.status(200).json({
+        message: 'Default address set successfully'
+      });
+    }
+  } catch (error) {
+    console.error("Error setting default address:", error);
+    res.status(500).send('An error occurred while processing your request');
+  }
+});
+
 module.exports = router;

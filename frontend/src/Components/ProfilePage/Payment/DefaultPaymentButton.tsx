@@ -51,14 +51,12 @@ function DefaultPaymentButton({ cardid }: { cardid: string }): JSX.Element {
 
   console.log("defaultcard", defaultCard);
   return (
-    <div>
-      <Form.Group className="mb-3">
-        <div className="d-flex align-items-center">
-          <Form.Label className="mb-0 me-2">Default Payment</Form.Label>
-          {defaultCard === cardid ? isDefault : notDefault}
-        </div>
-      </Form.Group>
-    </div>
+    <Form.Group className="mx-5">
+      <div className="d-flex align-items-center mx-5">
+        <Form.Label className="mb-0 ml-auto">Default</Form.Label>
+        {defaultCard === cardid ? isDefault : notDefault}
+      </div>
+    </Form.Group>
   );
 }
 
