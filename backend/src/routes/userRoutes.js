@@ -180,20 +180,19 @@ router.post('/save-address', async (req, res) => {
     const queryText = 'INSERT INTO addresses (line1, line2, city, state, postalcode, country, userid) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING addressid';
     const { rows } = await client.query(queryText, [line1, line2, city, state, postalCode, country, userId]);
     console.log("rows:", rows);
-    const addressId = rows[0].id;
+    const addressId = rows[0].addressid;
     console.log("addressId:", addressId);
     res.status(200).json({
       message: 'Address saved successfully',
       address:
         {
-          id: addressId,
+          addressid: addressId,
           line1: line1,
           line2: line2,
           city: city,
           state: state,
           postalCode: postalCode,
-          country: country,
-          addressId: addressId,
+          country: country
         }
     });
     console.log("Address saved successfully");
@@ -231,6 +230,35 @@ router.post('/default-address', async (req, res) => {
     }
   } catch (error) {
     console.error("Error setting default address:", error);
+    res.status(500).send('An error occurred while processing your request');
+  }
+});
+
+router.post('/delete-address', async (req, res) => {
+  console.log("received request for /delete-address");
+  try {
+    const addressid = req.body.addressid;
+    const userid = req.body.userid;
+
+    if (!addressid || !userid) {
+      return res.status(400).send('Missing required parameters');
+    }
+
+    const queryText1 = 'SELECT defaultaddress FROM users WHERE userid = $1';
+    const result = await client.query(queryText1, [userid]);
+    const userAddressId = result.rows[0]?.defaultaddress;
+
+    if (userAddressId === addressid) {
+      await client.query('UPDATE users SET defaultaddress = null WHERE userid = $1', [userid]);
+    }
+    const queryText2 = 'DELETE FROM addresses WHERE addressid = $1';
+    await client.query(queryText2, [addressid]);
+
+    res.status(200).json({
+      message: 'Address deleted successfully',
+    });
+  } catch (error) {
+    console.error("Error deleting address:", error);
     res.status(500).send('An error occurred while processing your request');
   }
 });

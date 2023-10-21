@@ -44,6 +44,9 @@ const defaultContextValues = {
   setDefaultShipping: (_value: number | null) => {
     console.error("toggleFilter function not yet implemented");
   },
+  removeAddress: (_value: number) => {
+    console.error("toggleFilter function not yet implemented");
+  },
 };
 
 export const UserContext = createContext(defaultContextValues);
@@ -82,6 +85,7 @@ export function UserContextProvider({
       resetCartList();
       resetAddressList();
       resetDefaultCard();
+      resetDefaultAddress();
     }
 
     localStorage.setItem("user", JSON.stringify(user));
@@ -127,7 +131,13 @@ export function UserContextProvider({
   // saving user to local storage each time a user attribute changes changes
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
-  }, [user.cards, user.cart, user.addresses, user.defaultCard]);
+  }, [
+    user.cards,
+    user.cart,
+    user.addresses,
+    user.defaultCard,
+    user.defaultAddress,
+  ]);
 
   // reset funcitons
   const resetCardList = () => {
@@ -146,10 +156,19 @@ export function UserContextProvider({
     setDefaultCard(null);
   };
 
+  const resetDefaultAddress = () => {
+    setDefaultShipping(null);
+  };
+
   // other
   const removeCard = (cardid: string) => {
     const newCardList = cardList.filter((c) => c.id !== cardid);
     setCardList(newCardList);
+  };
+
+  const removeAddress = (addressid: number) => {
+    const newAddressList = addressList.filter((a) => a.addressid !== addressid);
+    setAddressList(newAddressList);
   };
 
   const isLoggedIn = user.username === "Guest" ? false : true;
@@ -159,6 +178,7 @@ export function UserContextProvider({
   }, [cartList, shouldSaveCart]);
 
   useEffect(() => {
+    if (!cartList) return;
     setCartSize(cartList.length);
   }, [cartList]);
 
@@ -264,6 +284,7 @@ export function UserContextProvider({
     setAddressList,
     setDefaultShipping,
     defaultShipping,
+    removeAddress,
   };
 
   return (

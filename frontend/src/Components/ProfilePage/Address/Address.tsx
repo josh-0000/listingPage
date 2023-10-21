@@ -1,6 +1,7 @@
 import { Card, Col, Row } from "react-bootstrap";
 import { AddressInterface } from "../../../Interfaces/Interfaces";
 import DefaultShipping from "./DefautShipping";
+import RemoveAddress from "./RemoveAddress";
 function Address({ address }: { address: AddressInterface }): JSX.Element {
   const addressid = address.addressid || 0;
   return (
@@ -15,7 +16,9 @@ function Address({ address }: { address: AddressInterface }): JSX.Element {
       </Card.Text>
       <Card.Body>
         <Row className="align-items-center">
-          <Col xs={4}>remove</Col>
+          <Col xs={4}>
+            <RemoveAddress addressid={addressid} />
+          </Col>
           <Col xs={4}>Billing </Col>
           <Col xs={4} className="text-end pt-5">
             <DefaultShipping addressid={addressid} />

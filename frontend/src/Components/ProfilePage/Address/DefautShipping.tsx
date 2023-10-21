@@ -27,11 +27,11 @@ function DefaultShipping({ addressid }: { addressid: number }): JSX.Element {
       ) {
         setDefaultShipping(null);
         Notification(
-          "The provided Shipping was already the default. It has now been removed as the default."
+          "The provided Address was already the default. It has now been removed as the default."
         );
       }
     } catch {
-      console.error("There was an error deleting the Shipping");
+      console.error("There was an error deleting the Address");
     }
   };
 
@@ -57,7 +57,7 @@ function DefaultShipping({ addressid }: { addressid: number }): JSX.Element {
   return (
     <Form.Group>
       <div className="d-flex align-items-center">
-        <Form.Label className="mb-0 ml-auto">Default Shipping</Form.Label>
+        <Form.Label className="mb-0 ml-auto">Default</Form.Label>
         {defaultShipping === addressid ? isDefault : notDefault}
       </div>
     </Form.Group>
