@@ -262,6 +262,10 @@ img.home {
   z-index: 9999;
 }
 
+.view-listing-card {
+  padding: 100px 20px 60px 20px;
+}
+
 .custom-toast-header {
   display: flex;
   justify-content: space-between;
