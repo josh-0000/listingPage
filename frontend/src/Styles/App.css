@@ -255,5 +255,9 @@ img.home {
   position: absolute; 
 }
 
+.view-listing-card {
+  padding: 100px 20px 60px 20px;
+}
+
 
 
