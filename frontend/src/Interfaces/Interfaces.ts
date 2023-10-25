@@ -28,6 +28,7 @@ export interface UserInterface {
   stripeid: string | null;
   defaultCard: string | null;
   defaultAddress: number | null;
+  defaultBilling: DefaultBillingInterface | null;
 }
 
 export interface CartInterface {
@@ -52,6 +53,14 @@ export interface AddressInterface {
   state: string | null;
 }
 
+export interface DefaultBillingInterface {
+  line1: string | null;
+  line2: string | null;
+  city: string | null;
+  state: string | null;
+  postal_code: string | null;
+  country: string | null;
+}
 export interface ContextProviderProps {
   children: React.ReactNode;
 }

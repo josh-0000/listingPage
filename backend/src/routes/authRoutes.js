@@ -38,7 +38,8 @@ router.post('/login', async (req, res) => {
           funding: paymentMethod.card.funding,
         }));
       }
-
+      const defaultBilling = stripeCustomer.address;
+      console.log(defaultBilling);
       const username = stripeCustomer.name;
       const phoneNumber = stripeCustomer.phone;
       const defaultPaymentMethodId = stripeCustomer.invoice_settings.default_payment_method;
@@ -56,7 +57,7 @@ router.post('/login', async (req, res) => {
             country: address.country,
             line1: address.line1,
             line2: address.line2,
-            postalCode: address.zipcode,
+            postalCode: address.postalcode,
             state: address.state
           })),
           cart: userCarts.rows.map(cartItem => ({
@@ -66,7 +67,8 @@ router.post('/login', async (req, res) => {
           wishlists: userWishLists.rows,
           cards: cards,
           defaultCard: defaultPaymentMethodId,
-          defaultAddress: defaultAddress
+          defaultAddress: defaultAddress,
+          defaultBilling: defaultBilling,
         }
       });
     } else {

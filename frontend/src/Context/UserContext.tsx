@@ -5,6 +5,7 @@ import {
   CardInterface,
   ContextProviderProps,
   AddressInterface,
+  DefaultBillingInterface,
 } from "../Interfaces/Interfaces";
 
 const defaultContextValues = {
@@ -47,6 +48,10 @@ const defaultContextValues = {
   removeAddress: (_value: number) => {
     console.error("toggleFilter function not yet implemented");
   },
+  defaultBilling: null as any | null,
+  setDefaultBilling: (_value: any | null) => {
+    console.error("toggleFilter function not yet implemented");
+  },
 };
 
 export const UserContext = createContext(defaultContextValues);
@@ -77,7 +82,11 @@ export function UserContextProvider({
   const [defaultShipping, setDefaultShipping] = useState<number | null>(
     user.defaultAddress
   );
+  const [defaultBilling, setDefaultBilling] =
+    useState<DefaultBillingInterface | null>(user.defaultBilling);
 
+  console.log("user", user);
+  console.log(defaultBilling);
   // setting useStates to user attributes
   useEffect(() => {
     if (user.username === "Guest") {
@@ -86,6 +95,7 @@ export function UserContextProvider({
       resetAddressList();
       resetDefaultCard();
       resetDefaultAddress();
+      resetDefaultBilling();
     }
 
     localStorage.setItem("user", JSON.stringify(user));
@@ -104,6 +114,9 @@ export function UserContextProvider({
     }
     if (user.defaultAddress) {
       setDefaultShipping(user.defaultAddress);
+    }
+    if (user.defaultBilling) {
+      setDefaultBilling(user.defaultBilling);
     }
   }, [user.userid]);
 
@@ -128,6 +141,10 @@ export function UserContextProvider({
     setUser({ ...user, defaultAddress: defaultShipping });
   }, [defaultShipping]);
 
+  useEffect(() => {
+    setUser({ ...user, defaultBilling: defaultBilling });
+  }, [defaultBilling]);
+
   // saving user to local storage each time a user attribute changes changes
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
@@ -137,6 +154,7 @@ export function UserContextProvider({
     user.addresses,
     user.defaultCard,
     user.defaultAddress,
+    user.defaultBilling,
   ]);
 
   // reset funcitons
@@ -158,6 +176,10 @@ export function UserContextProvider({
 
   const resetDefaultAddress = () => {
     setDefaultShipping(null);
+  };
+
+  const resetDefaultBilling = () => {
+    setDefaultBilling(null);
   };
 
   // other
@@ -285,6 +307,8 @@ export function UserContextProvider({
     setDefaultShipping,
     defaultShipping,
     removeAddress,
+    setDefaultBilling,
+    defaultBilling,
   };
 
   return (

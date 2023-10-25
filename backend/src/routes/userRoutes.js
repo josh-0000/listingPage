@@ -234,6 +234,55 @@ router.post('/default-address', async (req, res) => {
   }
 });
 
+router.post('/default-billing', async (req, res) => {
+  console.log("Received request for /default-billing");
+  try {
+    const stripeid = req.body.stripeid;
+    const address = req.body.address;
+    
+    if (!stripeid || !address) {
+      return res.status(400).send('Missing required parameters');
+    }
+
+    // Fetch the existing customer data from Stripe
+    const existingCustomer = await stripe.customers.retrieve(stripeid);
+
+    // Check if the new address matches the existing Stripe customer address
+    const isSameAddress = existingCustomer.address && (
+      existingCustomer.address.line1 === address.line1 &&
+      existingCustomer.address.city === address.city &&
+      existingCustomer.address.state === address.state &&
+      existingCustomer.address.postal_code === address.postalCode &&
+      existingCustomer.address.country === address.country
+    );
+
+    console.log("isSameAddress:", isSameAddress);
+    console.log("existingCustomer.address:", existingCustomer.address);
+    console.log("address:", address);
+    // If it's the same, set it to null; otherwise, update it
+    const newAddress = isSameAddress ? null : {
+      line1: address.line1,
+      line2: address.line2 || null,
+      city: address.city,
+      state: address.state,
+      postal_code: address.postalCode,
+      country: address.country
+    };
+
+    await stripe.customers.update(stripeid, {
+      address: newAddress,
+    });
+
+    res.status(200).json({
+      message: isSameAddress ? 'Billing address cleared' : 'Default billing address updated successfully',
+      address: newAddress
+    });
+  } catch (error) {
+    console.error("Error setting billing:", error);
+    res.status(500).send('An error occurred while processing your request');
+  }
+});
+
 router.post('/delete-address', async (req, res) => {
   console.log("received request for /delete-address");
   try {
@@ -262,5 +311,7 @@ router.post('/delete-address', async (req, res) => {
     res.status(500).send('An error occurred while processing your request');
   }
 });
+
+
 
 module.exports = router;
