@@ -3,10 +3,7 @@ import { UserContext } from "../Context/UserContext";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { ViewContext } from "../Context/ViewContext";
 import profileImg from "../Assets/profile.png";
-import PaymentContainer from "../Components/ProfilePage/Payment/PaymentContainer";
-import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import AddressContainer from "../Components/ProfilePage/Address/AddressContainer";
 import Notification from "../Components/Notification";
 
 function ProfilePage(): JSX.Element {

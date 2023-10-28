@@ -20,15 +20,10 @@ export interface UserInterface {
   email: string;
   phoneNumber: string | null;
   image: string | null;
-  addresses: any[];
-  cards: any[];
   reviews: any[] | null;
-  cart: any[];
+  cart: CartInterface[];
   wishlists: any[] | null;
   stripeid: string | null;
-  defaultCard: string | null;
-  defaultAddress: number | null;
-  defaultBilling: DefaultBillingInterface | null;
 }
 
 export interface CartInterface {
@@ -36,31 +31,6 @@ export interface CartInterface {
   quantity: number;
 }
 
-export interface CardInterface {
-  id: string | null;
-  brand: string | null;
-  last4: string | null;
-  funding: string | null;
-}
-
-export interface AddressInterface {
-  addressid: number | null;
-  city: string | null;
-  country: string | null;
-  line1: string | null;
-  line2: string | null;
-  postalCode: string | null;
-  state: string | null;
-}
-
-export interface DefaultBillingInterface {
-  line1: string | null;
-  line2: string | null;
-  city: string | null;
-  state: string | null;
-  postal_code: string | null;
-  country: string | null;
-}
 export interface ContextProviderProps {
   children: React.ReactNode;
 }

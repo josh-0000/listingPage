@@ -19,31 +19,16 @@ router.post('/login', async (req, res) => {
     if (userResult.rows.length === 1) {
       const userID = userResult.rows[0].userid;
       const stripeID = userResult.rows[0].stripeid;
-      const defaultAddress = userResult.rows[0].defaultaddress;
-      const userAddresses = await client.query('SELECT * FROM addresses WHERE userid = $1', [userID]);
       const userCarts = await client.query('SELECT * FROM carts WHERE userid = $1', [userID]);
       const userWishLists = await client.query('SELECT * FROM wishlists WHERE userid = $1', [userID]);
-      let cards = [];
+      
       let stripeCustomer;
       if (stripeID) {
         stripeCustomer = await stripe.customers.retrieve(stripeID); 
-        const paymentMethods = await stripe.paymentMethods.list({
-          customer: stripeID,
-          type: 'card',
-        });
-        cards = paymentMethods.data.map((paymentMethod) => ({
-          id: paymentMethod.id,
-          brand: paymentMethod.card.brand,
-          last4: paymentMethod.card.last4,
-          funding: paymentMethod.card.funding,
-        }));
       }
-      const defaultBilling = stripeCustomer.address;
-      console.log(defaultBilling);
       const username = stripeCustomer.name;
       const phoneNumber = stripeCustomer.phone;
-      const defaultPaymentMethodId = stripeCustomer.invoice_settings.default_payment_method;
-      res.json({ 
+      res.json({
         message: 'Login successful', 
         user: {
           userid: userID,
@@ -51,24 +36,11 @@ router.post('/login', async (req, res) => {
           email: email,
           phoneNumber: phoneNumber,
           username: username,
-          addresses: userAddresses.rows.map(address => ({
-            addressid: address.addressid,
-            city: address.city,
-            country: address.country,
-            line1: address.line1,
-            line2: address.line2,
-            postalCode: address.postalcode,
-            state: address.state
-          })),
           cart: userCarts.rows.map(cartItem => ({
             listingid: cartItem.listingid,
             quantity: cartItem.quantity
           })),
           wishlists: userWishLists.rows,
-          cards: cards,
-          defaultCard: defaultPaymentMethodId,
-          defaultAddress: defaultAddress,
-          defaultBilling: defaultBilling,
         }
       });
     } else {
@@ -120,10 +92,8 @@ router.post('/register', async (req, res) => {
           email: email,
           phoneNumber: phoneNumber,
           username: username,
-          addresses: [],
           cart: [],
           wishlists: [],
-          cards: []
         }
     });
   } catch (error) {

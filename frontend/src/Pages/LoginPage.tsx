@@ -3,6 +3,7 @@ import { ViewContext } from "../Context/ViewContext";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { UserContext } from "../Context/UserContext";
 import Notification from "../Components/Notification";
+import { UserInterface } from "src/Interfaces/Interfaces";
 
 function LoginPage(): JSX.Element {
   const { changePage } = useContext(ViewContext);
@@ -33,10 +34,10 @@ function LoginPage(): JSX.Element {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
         });
-
         const result = await response.json();
         if (response.status === 200 && result.message === "Login successful") {
-          const user = result.user;
+          const user: UserInterface = result.user;
+          console.log("user", user);
           const message = "Welcome " + user.username + "!";
           setUser(user);
           setInvalidLogin(false);

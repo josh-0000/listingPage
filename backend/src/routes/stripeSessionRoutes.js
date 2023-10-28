@@ -4,13 +4,33 @@ const logger = require('../utils/logger');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const router = express.Router();
 
+
+const createStripeSession = async (stripeid, line_items) => {
+  const sessionData = {
+    billing_address_collection: 'required',
+    payment_method_types: ['card'],
+    line_items,
+    mode: 'payment',
+    success_url: 'http://localhost:3000',
+    cancel_url: 'http://localhost:3000',
+    shipping_address_collection: {
+      allowed_countries: ['US', 'CA'],
+    },
+  };
+
+  if (stripeid !== "Guest") {
+    sessionData.customer = stripeid;
+  }
+
+  return await stripe.checkout.sessions.create(sessionData);
+};
+
 router.post('/create-checkout-session', async (req, res) => {
   try {
     const { products, stripeid } = req.body;
     console.log(products);
     console.log(stripeid);
     if (!products || products.length === 0) throw new Error('No products selected');
-    if (!stripeid) throw new Error('No stripeid provided');
 
     const convertToCents = (amount) => amount * 100;
 
@@ -42,19 +62,7 @@ router.post('/create-checkout-session', async (req, res) => {
       quantity,
     }));
 
-    const session = await stripe.checkout.sessions.create({
-      customer: stripeid,
-      billing_address_collection: 'required',
-      payment_method_types: ['card'],
-      line_items,
-      mode: 'payment',
-      success_url: 'http://localhost:3000',
-      cancel_url: 'http://localhost:3000',
-      shipping_address_collection: {
-        allowed_countries: ['US', 'CA'],
-      },
-    });
-
+    const session = await createStripeSession(stripeid, line_items);
     res.json({ id: session.id });
   } catch (err) {
     console.error('Error creating Stripe Checkout session:', err);
@@ -72,5 +80,7 @@ router.post('/create-portal-session', async (req, res) => {
 
   res.send({ url: session.url });
 });
+
+
 
 module.exports = router;

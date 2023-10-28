@@ -2,10 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import {
   CartInterface,
   UserInterface,
-  CardInterface,
   ContextProviderProps,
-  AddressInterface,
-  DefaultBillingInterface,
 } from "../Interfaces/Interfaces";
 
 const defaultContextValues = {
@@ -26,32 +23,6 @@ const defaultContextValues = {
     console.error("toggleFilter function not yet implemented");
   },
   guestUser: {} as UserInterface,
-  cardList: [] as CardInterface[],
-  addCardToList: (_value: CardInterface) => {
-    console.error("toggleFilter function not yet implemented");
-  },
-  removeCard: (_value: string) => {
-    console.error("toggleFilter function not yet implemented");
-  },
-  defaultCard: null as string | null,
-  setDefaultCard: (_value: string | null) => {
-    console.error("toggleFilter function not yet implemented");
-  },
-  addressList: [] as AddressInterface[],
-  setAddressList: (_value: AddressInterface[]) => {
-    console.error("toggleFilter function not yet implemented");
-  },
-  defaultShipping: null as number | null,
-  setDefaultShipping: (_value: number | null) => {
-    console.error("toggleFilter function not yet implemented");
-  },
-  removeAddress: (_value: number) => {
-    console.error("toggleFilter function not yet implemented");
-  },
-  defaultBilling: null as any | null,
-  setDefaultBilling: (_value: any | null) => {
-    console.error("toggleFilter function not yet implemented");
-  },
 };
 
 export const UserContext = createContext(defaultContextValues);
@@ -63,6 +34,7 @@ export function UserContextProvider({
     userid: 0,
     username: "Guest",
     email: "",
+    stripeid: "Guest",
   } as UserInterface;
 
   let savedUser = JSON.parse(localStorage.getItem("user") || "{}");
@@ -70,53 +42,18 @@ export function UserContextProvider({
 
   const [user, setUser] = useState(savedUser as UserInterface);
   const [cartList, setCartList] = useState(user.cart as CartInterface[]);
-  const [cardList, setCardList] = useState(user.cards as CardInterface[]);
   const [cartSize, setCartSize] = useState(0);
-  const [addressList, setAddressList] = useState(
-    user.addresses as AddressInterface[]
-  );
-  const [defaultCard, setDefaultCard] = useState<string | null>(
-    user.defaultCard
-  );
   const [shouldSaveCart, setShouldSaveCart] = useState(false);
-  const [defaultShipping, setDefaultShipping] = useState<number | null>(
-    user.defaultAddress
-  );
-  const [defaultBilling, setDefaultBilling] =
-    useState<DefaultBillingInterface | null>(user.defaultBilling);
 
-  console.log("user", user);
-  console.log(defaultBilling);
   // setting useStates to user attributes
   useEffect(() => {
     if (user.username === "Guest") {
-      resetCardList();
       resetCartList();
-      resetAddressList();
-      resetDefaultCard();
-      resetDefaultAddress();
-      resetDefaultBilling();
     }
 
     localStorage.setItem("user", JSON.stringify(user));
-
-    if (user.cards) {
-      setCardList(user.cards);
-    }
     if (user.cart) {
       setCartList(user.cart);
-    }
-    if (user.addresses) {
-      setAddressList(user.addresses);
-    }
-    if (user.defaultCard) {
-      setDefaultCard(user.defaultCard);
-    }
-    if (user.defaultAddress) {
-      setDefaultShipping(user.defaultAddress);
-    }
-    if (user.defaultBilling) {
-      setDefaultBilling(user.defaultBilling);
     }
   }, [user.userid]);
 
@@ -125,72 +62,14 @@ export function UserContextProvider({
     setUser({ ...user, cart: cartList });
   }, [cartList]);
 
-  useEffect(() => {
-    setUser({ ...user, cards: cardList });
-  }, [cardList]);
-
-  useEffect(() => {
-    setUser({ ...user, defaultCard: defaultCard });
-  }, [defaultCard]);
-
-  useEffect(() => {
-    setUser({ ...user, addresses: addressList });
-  }, [addressList]);
-
-  useEffect(() => {
-    setUser({ ...user, defaultAddress: defaultShipping });
-  }, [defaultShipping]);
-
-  useEffect(() => {
-    setUser({ ...user, defaultBilling: defaultBilling });
-  }, [defaultBilling]);
-
   // saving user to local storage each time a user attribute changes changes
   useEffect(() => {
+    console.log("saving user", user);
     localStorage.setItem("user", JSON.stringify(user));
-  }, [
-    user.cards,
-    user.cart,
-    user.addresses,
-    user.defaultCard,
-    user.defaultAddress,
-    user.defaultBilling,
-  ]);
-
-  // reset funcitons
-  const resetCardList = () => {
-    setCardList([] as CardInterface[]);
-  };
+  }, [user.cart, user.username, user.userid, user.email, user.stripeid]);
 
   const resetCartList = () => {
     setCartList([] as CartInterface[]);
-  };
-
-  const resetAddressList = () => {
-    setAddressList([] as AddressInterface[]);
-  };
-
-  const resetDefaultCard = () => {
-    setDefaultCard(null);
-  };
-
-  const resetDefaultAddress = () => {
-    setDefaultShipping(null);
-  };
-
-  const resetDefaultBilling = () => {
-    setDefaultBilling(null);
-  };
-
-  // other
-  const removeCard = (cardid: string) => {
-    const newCardList = cardList.filter((c) => c.id !== cardid);
-    setCardList(newCardList);
-  };
-
-  const removeAddress = (addressid: number) => {
-    const newAddressList = addressList.filter((a) => a.addressid !== addressid);
-    setAddressList(newAddressList);
   };
 
   const isLoggedIn = user.username === "Guest" ? false : true;
@@ -282,10 +161,6 @@ export function UserContextProvider({
     setShouldSaveCart(true);
   };
 
-  const addCardToList = (card: CardInterface) => {
-    setCardList([...cardList, card]);
-  };
-
   console.log("user", user);
   const contextData = {
     user,
@@ -297,18 +172,6 @@ export function UserContextProvider({
     addListingToCart,
     removeListingFromCart,
     removeOneFromCart,
-    cardList,
-    addCardToList,
-    removeCard,
-    defaultCard,
-    setDefaultCard,
-    addressList,
-    setAddressList,
-    setDefaultShipping,
-    defaultShipping,
-    removeAddress,
-    setDefaultBilling,
-    defaultBilling,
   };
 
   return (

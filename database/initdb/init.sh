@@ -8,9 +8,7 @@ FILES=(
   "/docker-entrypoint-initdb.d/schema/Schema.sql"
   "/docker-entrypoint-initdb.d/data/Users.sql"
   "/docker-entrypoint-initdb.d/data/Listings.sql"
-  "/docker-entrypoint-initdb.d/data/Addresses.sql"
   "/docker-entrypoint-initdb.d/data/Carts.sql"
-  "/docker-entrypoint-initdb.d/data/Transactions.sql"
   "/docker-entrypoint-initdb.d/data/Reviews.sql"
 )
 
