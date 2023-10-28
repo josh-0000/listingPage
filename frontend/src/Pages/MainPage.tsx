@@ -8,9 +8,8 @@ function MainPage(): JSX.Element {
   return (
     <>
       <HeaderCategories />
+      <ListingContainerHeader />
       <Row className="listingsContainer bg-light p-10 m-2">
-        <FeaturedCard />
-        <ListingContainerHeader />
         <ListingContainer />
       </Row>
     </>

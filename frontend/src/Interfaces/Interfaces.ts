@@ -1,7 +1,7 @@
 export interface ListingInterface {
   listingid: number;
   listingname: string;
-  price: string;
+  price: number;
   color: string | null;
   brand: string;
   size: string;

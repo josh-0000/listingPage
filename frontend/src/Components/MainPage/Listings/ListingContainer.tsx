@@ -5,6 +5,7 @@ import ListingContainerFilters from "../ListingContainerFilters";
 import ListingPageSwitcher from "./ListingPageSwitcher";
 import NoResultsFound from "./NoResultsFound";
 import { Col, Row, Container } from "react-bootstrap";
+import FeaturedCard from "../FeaturedCard";
 
 function ListingContainer(): JSX.Element {
   const {
@@ -58,8 +59,9 @@ function ListingContainer(): JSX.Element {
   const currentProducts = filteredListings.slice(startIndex, endIndex);
 
   return (
-    <Container as={Col} className="listingPageCol border-top m-2 mb-5">
+    <Container as={Col} className="listingPageCol m-2 mb-5">
       <ListingContainerFilters />
+      <FeaturedCard />
       <Row className="g-4 listingRow noPaddingOrMargins">
         {currentProducts.map((product, index) => (
           <Col
@@ -69,7 +71,7 @@ function ListingContainer(): JSX.Element {
             md={6}
             lg={4}
             xl={3}
-            className="p-1 mt-1"
+            className="p-1 mt-3"
           >
             <Listing product={product} />
           </Col>

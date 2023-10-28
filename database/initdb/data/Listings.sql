@@ -1,6 +1,6 @@
 INSERT INTO Listings (ListingName, Price, Color, Brand, Size, Sex, Category, Description, ShippingAddress, Discount)
 VALUES 
-('Sweatshirt', 29.99, 'Gray', 'BrandA', 'M', 'Unisex', 'Tops', 'Warm and cozy sweatshirt', 'Warehouse1', 0.0),
+('Sweatshirt', 0.99, 'Gray', 'BrandA', 'M', 'Unisex', 'Tops', 'Warm and cozy sweatshirt', 'Warehouse1', 0.0),
 ('Shorts', 24.99, 'Green', 'BrandB', 'L', 'Men', 'Bottoms', 'Summer shorts', 'Warehouse2', 5.0),
 ('Skirt', 34.99, 'Pink', 'BrandC', 'S', 'Women', 'Bottoms', 'Stylish pink skirt', 'Warehouse3', 10.0),
 ('T-Shirt', 19.99, 'White', 'BrandD', 'M', 'Men', 'Tops', 'Casual white T-Shirt', 'Warehouse4', 2.0),

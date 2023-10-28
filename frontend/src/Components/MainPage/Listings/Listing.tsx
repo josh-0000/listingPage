@@ -14,9 +14,10 @@ function Listing({ product }: ListingProps): JSX.Element {
   const { changePage } = useContext(ViewContext);
   const { setViewListingDescription } = useContext(ListingContext);
   return (
-    <Card className="text-center flex-column m-0 listing shadow-sm">
+    <Card className="text-center flex-column m-0 border bg-white">
       <Card.Img
         variant="top"
+        className="p-3"
         src={logo}
         alt="alt"
         onClick={() => {
@@ -24,7 +25,7 @@ function Listing({ product }: ListingProps): JSX.Element {
           changePage("DESCRIPTION");
         }}
       />
-      <Card.Body className="d-flex flex-column listing-card-body">
+      <Card.Body className="d-flex flex-column listing-card-body border bg-white">
         <Card.Title className="bold">
           {product.listingname + " "}
           {product.listingid}

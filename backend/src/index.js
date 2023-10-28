@@ -4,6 +4,7 @@ require('./config/environmentVariables');
 const authRoutes = require('./routes/authRoutes');
 const logger = require('./utils/logger');
 const listingRoutes = require('./routes/listingRoutes');
+const stripeSessionRoutes = require('./routes/stripeSessionRoutes');
 const userRoutes = require('./routes/userRoutes');
 const app = express();
 
@@ -26,6 +27,12 @@ try {
   app.use('/user', userRoutes);
 }
 catch (error) {
+  logger.error(error);
+}
+
+try {
+  app.use('/stripe', stripeSessionRoutes);
+} catch (error) {
   logger.error(error);
 }
 

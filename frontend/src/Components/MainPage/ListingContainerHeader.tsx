@@ -5,11 +5,11 @@ import Results from "./LCHResults";
 
 function ListingContainerHeader(): JSX.Element {
   return (
-    <Row className="ListingContainerHeader m-0 rounded">
-      <Col className="d-flex flex-column justify-content-center ListingContainerHeaderCol pt-4">
+    <Row className="no-gutters bg-white border-bottom">
+      <Col className="d-flex flex-column justify-content-center ListingContainerHeaderCol no-gutters">
         <Results />
       </Col>
-      <Col className="d-flex flex-column justify-content-center ListingContainerHeaderCol pt-2">
+      <Col className="d-flex flex-column justify-content-center ListingContainerHeaderCol no-gutters">
         <div>
           <Sort />
           <Filter />

@@ -22,6 +22,22 @@ function ProfilePage(): JSX.Element {
     Notification("Successfully Logged out");
   };
 
+  const enterCustomerPortal = async () => {
+    const stripeid = user.stripeid;
+    const response = await fetch(
+      "http://localhost:3001/stripe/create-portal-session",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ customerId: stripeid }), // include it here
+      }
+    );
+    const data = await response.json();
+    window.location.href = data.url;
+  };
+
   return (
     <Container>
       <Row className="profilePageRow mt-5 mb-5">
@@ -63,27 +79,27 @@ function ProfilePage(): JSX.Element {
                     </Col>
                   </Row>
                 </Container>
-                <Button
-                  variant="primary"
-                  className="mt-5"
-                  onClick={() => logout()}
-                >
-                  Logout
-                </Button>
+                <Container>
+                  <Row className="mt-5">
+                    <Col className="d-flex justify-content-start">
+                      <Button
+                        variant="primary"
+                        onClick={() => logout()}
+                        className="me-2"
+                      >
+                        Logout
+                      </Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => enterCustomerPortal()}
+                      >
+                        Manage Account
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
               </Card.Body>
             </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Elements stripe={stripePromise}>
-              <PaymentContainer />
-            </Elements>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <AddressContainer />
           </Col>
         </Row>
       </Row>

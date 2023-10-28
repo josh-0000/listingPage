@@ -160,7 +160,7 @@ img.home {
 }
 
 .results {
-  font-size: 12pt;
+  font-size: 10pt;
 }
 
 .ListingContainerHeaderCol {
@@ -175,6 +175,9 @@ img.home {
   width: 50%;
 }
 
+.LCH-Color {
+  background-color: rgb(124, 123, 123);
+}
 .profilePageCol {
   padding: 0px !important;
   margin: 0px !important;
