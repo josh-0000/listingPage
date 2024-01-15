@@ -42,7 +42,7 @@ function ProfilePage(): JSX.Element {
           <Col className="d-flex align-items-center justify-content-center mb-5">
             <img
               src={profileImg}
-              className="profilePageImg"
+              className="profilePageImage"
               alt="Profile"
               style={{ width: "200px", height: "200px" }}
             />

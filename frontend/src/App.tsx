@@ -38,7 +38,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <Container fluid className="v-100 bg-light">
+    <Container fluid className="v-100 bg-light m-0 p-0">
       <ListingContextProvider>
         <UserContextProvider>
           <Navbar />

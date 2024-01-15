@@ -23,7 +23,7 @@ function Navbar(): JSX.Element {
     <div>Login</div>
   );
   return (
-    <Row>
+    <Row className="m-0 p-0">
       <BootstrapNavbar
         bg="dark"
         variant="dark"
@@ -52,13 +52,10 @@ function Navbar(): JSX.Element {
                   className="text-white white-icon w-100"
                   onClick={() => changePage("CART")}
                 >
-                  <div className="d-flex justify-content-center align-items-center">
+                  <div className="position-relative d-flex justify-content-center align-items-center">
                     <img src={cartImg} className="cart" alt="Cart" />
-                    <span
-                      className="mt-2"
-                      style={{ marginLeft: "-50%", zIndex: 1 }}
-                    >
-                      {cartSize}
+                    <span className="cartSize translate-middle">
+                      {cartSize.toString()}
                     </span>
                   </div>
                 </Button>

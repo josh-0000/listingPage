@@ -25,7 +25,7 @@ function Listing({ product }: ListingProps): JSX.Element {
           changePage("DESCRIPTION");
         }}
       />
-      <Card.Body className="d-flex flex-column listing-card-body border bg-white">
+      <Card.Body className="d-flex flex-column listing-card-body border-top bg-white">
         <Card.Title className="bold">
           {product.listingname + " "}
           {product.listingid}

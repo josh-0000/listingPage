@@ -97,19 +97,19 @@ function ListingPageSwitcher(): JSX.Element {
             variant={currentPage === buttonOne ? "dark" : "outline-dark"}
             onClick={currentPageOptionOne}
           >
-            {buttonOne <= numPages ? buttonOne : "."}
+            {buttonOne <= numPages ? buttonOne : ""}
           </Button>
           <Button
             variant={currentPage === buttonTwo ? "dark" : "outline-dark"}
             onClick={currentPageOptionTwo}
           >
-            {buttonTwo <= numPages ? buttonTwo : "."}
+            {buttonTwo <= numPages ? buttonTwo : ""}
           </Button>
           <Button
             variant={currentPage === buttonThree ? "dark" : "outline-dark"}
             onClick={currentPageOptionThree}
           >
-            {buttonThree <= numPages ? buttonThree : "."}
+            {buttonThree <= numPages ? buttonThree : ""}
           </Button>
           <Button variant="outline-dark" onClick={nextPage}>
             Next

@@ -5,8 +5,8 @@ import LCHCategory from "./LCHCategory";
 function Results(): JSX.Element {
   const { numPages, currentPage, numResults } = useContext(ListingContext);
   return (
-    <div className="results bold text-dark mt-3">
-      {currentPage}-{numPages} of {numResults} results for <LCHCategory />
+    <div className="m-0 p-0">
+      {currentPage}-{numPages} of {numResults} results for
     </div>
   );
 }

@@ -18,13 +18,13 @@
 }
 
 img.cart {
-  width: 34px;
+  width: 35px;
+  height: 35px;
 }
 
 img.profile {
-  width:30px;
-  height: 30px;
-  margin-top: 2px;
+  width: 35px;
+  height: 35px;
 }
 
 .cartContainerRow {
@@ -35,8 +35,8 @@ img.profile {
 }
 
 img.home {
-  width:37px;
-  height: 37px;
+  width: 35px;
+  height: 35px;
 }
 
 .custom-search {
@@ -112,10 +112,9 @@ img.home {
 }
 .cartSize {
   position: absolute;
-  z-index: 1000 !important;
-  top: 29px;
-  right: 98px;
-  font-size: 11pt;
+  top: 14px;
+  left: 19px;
+  font-size: 9pt;
 }
 
 
@@ -187,6 +186,7 @@ img.home {
 .profilePageImage {
   width: 100%;
   height: 300px;
+  filter: invert(80%);
 }
 
 .featured-card {
@@ -273,3 +273,4 @@ img.home {
   display: flex;
   justify-content: space-between;
 }
+

@@ -6,13 +6,13 @@ function LCHCategory(): JSX.Element {
   const { categoryList } = useContext(ListingContext);
 
   return (
-    <>
+    <div className="m-0 p-0">
       {categoryList.map((category, index) => (
-        <Breadcrumb key={index} className="d-inline-block me-1">
+        <Breadcrumb key={index} className="d-inline-block">
           <Breadcrumb.Item>{category}</Breadcrumb.Item>
         </Breadcrumb>
       ))}
-    </>
+    </div>
   );
 }
 

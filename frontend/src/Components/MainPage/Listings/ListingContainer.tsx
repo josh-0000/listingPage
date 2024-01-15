@@ -67,7 +67,7 @@ function ListingContainer(): JSX.Element {
           <Col
             key={index}
             xs={12}
-            sm={12}
+            sm={6}
             md={6}
             lg={4}
             xl={3}

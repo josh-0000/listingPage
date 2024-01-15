@@ -29,6 +29,7 @@ const defaultContextValues = {
     console.error("toggleFilter function not yet implemented");
   },
   selectedFilters: [] as string[],
+  showFeatured: true,
   allListings: [] as ListingInterface[],
   viewListing: null as ListingInterface | null,
   numPages: 1,
@@ -50,6 +51,7 @@ export function ListingContextProvider({
   const [numResults, setNumResults] = useState(0);
   const [categoryList, setCategoryList] = useState(["All"]);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [showFeatured, setShowFeatured] = useState(true);
 
   const toggleFilter = (filter: string) => {
     setSelectedFilters((prevFilters) => {
@@ -62,6 +64,17 @@ export function ListingContextProvider({
       }
     });
   };
+
+  console.log("selectedFilters", selectedFilters);
+  console.log("categoryList", categoryList);
+  console.log("showFeatured", showFeatured);
+  useEffect(() => {
+    if (categoryList[0] === "All") {
+      setShowFeatured(true);
+    } else {
+      setShowFeatured(false);
+    }
+  }, [categoryList]);
 
   const setViewListingDescription = (product: ListingInterface) => {
     setViewListings(product);
@@ -114,6 +127,7 @@ export function ListingContextProvider({
     numPages,
     productsPerPage,
     numResults,
+    showFeatured,
   };
 
   return (
