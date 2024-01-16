@@ -28,12 +28,10 @@ const createStripeSession = async (stripeid, line_items) => {
 router.post('/create-checkout-session', async (req, res) => {
   try {
     const { products, stripeid } = req.body;
-    console.log(products);
-    console.log(stripeid);
     if (!products || products.length === 0) throw new Error('No products selected');
 
-    const convertToCents = (amount) => amount * 100;
-
+    const convertToCents = (amount) => Math.round(amount * 100);
+    
     const formattedProducts = [];
 
     for (const product of products) {
@@ -45,7 +43,6 @@ router.post('/create-checkout-session', async (req, res) => {
       }
 
       const listing = result.rows[0];
-      console.log(convertToCents(listing.price));
       formattedProducts.push({
         name: listing.listingname,
         unit_amount: convertToCents(listing.price),
